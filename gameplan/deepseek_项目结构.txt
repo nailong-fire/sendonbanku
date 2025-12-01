@@ -1,0 +1,27 @@
+Assets/
+├── Scripts/
+│   ├── Core/
+│   │   ├── GameManager.cs
+│   │   ├── TurnSystem.cs
+│   │   ├── ResourceSystem.cs
+│   │   └── GameBoard.cs
+│   ├── Cards/
+│   │   ├── CardData.cs
+│   │   ├── CardEntity.cs
+│   │   ├── CardEffectSystem.cs
+│   │   └── CardFactory.cs (建议创建)
+│   ├── Players/
+│   │   ├── Player.cs
+│   │   └── AIController.cs (敌人AI)
+│   └── UI/
+│       ├── UIManager.cs
+│       ├── HandUI.cs
+│       └── ResourceUI.cs
+├── Prefabs/
+│   ├── CardPrefab.prefab
+│   └── Player.prefab
+├── ScriptableObjects/
+│   ├── CardDatabase.asset
+│   └── GameSettings.asset
+└── Scenes/
+    └── GameScene.unity
