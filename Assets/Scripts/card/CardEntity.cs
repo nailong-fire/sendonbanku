@@ -2,17 +2,11 @@ using System;
 using TMPro;
 using UnityEngine;
 
-//ÁÙÊ±Àà
-public class PlayerController
-{
-
-}
-
 
 [RequireComponent(typeof(Collider2D))]
 public class CardEntity : MonoBehaviour
 {
-    [Header("×é¼þÒýÓÃ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField] private SpriteRenderer cardBackground;
     [SerializeField] private SpriteRenderer cardFrame;
     [SerializeField] private SpriteRenderer cardArt;
@@ -23,13 +17,13 @@ public class CardEntity : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private ParticleSystem cardGlow;
 
-    [Header("×´Ì¬ÑÕÉ«")]
+    [Header("×´Ì¬ï¿½ï¿½É«")]
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color damagedColor = new Color(1, 0.5f, 0.5f, 1);
     [SerializeField] private Color selectedColor = new Color(0.5f, 0.8f, 1, 1);
     [SerializeField] private Color playableColor = new Color(0.5f, 1, 0.5f, 1);
 
-    // ¿¨ÅÆÊý¾Ý
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private CardRuntimeData _cardData;
     private CardDataSO _cardDataSO;
 
@@ -38,10 +32,10 @@ public class CardEntity : MonoBehaviour
     private bool _isPlayable = false;
     private bool _isOnBoard = false;
 
-    // ËùÓÐÕß
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private PlayerController _owner;
 
-    // ÊÂ¼þ
+    // ï¿½Â¼ï¿½
     public System.Action<CardEntity> OnCardClicked;
     public System.Action<CardEntity> OnCardDestroyed;
 
@@ -52,7 +46,7 @@ public class CardEntity : MonoBehaviour
     public bool IsPlayable => _isPlayable;
     public bool IsOnBoard => _isOnBoard;
 
-    // ³õÊ¼»¯¿¨ÅÆ
+    // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void Initialize(CardDataSO cardSO, PlayerController owner)
     {
         _cardDataSO = cardSO;
@@ -63,45 +57,45 @@ public class CardEntity : MonoBehaviour
         UpdateRarityEffects();
     }
 
-    // Ê¹ÓÃÔËÐÐÊ±Êý¾Ý³õÊ¼»¯
+    // Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ý³ï¿½Ê¼ï¿½ï¿½
     public void Initialize(CardRuntimeData runtimeData, PlayerController owner)
     {
         _cardData = runtimeData;
         _owner = owner;
 
-        // ÕâÀïÐèÒª¸ù¾ÝID²éÕÒ¶ÔÓ¦µÄCardDataSO
-        // »òÕß´æ´¢Ò»¸öÒýÓÃ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½Ò¶ï¿½Ó¦ï¿½ï¿½CardDataSO
+        // ï¿½ï¿½ï¿½ß´æ´¢Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
         UpdateCardVisuals();
         UpdateRarityEffects();
     }
 
-    // ¸üÐÂ¿¨ÅÆÊÓ¾õÐ§¹û
+    // ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ï¿½Ó¾ï¿½Ð§ï¿½ï¿½
     private void UpdateCardVisuals()
     {
         if (_cardData == null) return;
 
-        // ÉèÖÃÎÄ±¾
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
         if (healthText) healthText.text = _cardData.CurrentHealth.ToString();
         if (powerText) powerText.text = _cardData.Power.ToString();
         if (costText) costText.text = _cardData.FaithCost.ToString();
         if (nameText) nameText.text = _cardData.CardName;
         if (descriptionText) descriptionText.text = _cardData.Description;
 
-        // ÉèÖÃÍ¼Ïñ
+        // ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½
         if (cardArt && _cardData.CardArt)
         {
             cardArt.sprite = _cardData.CardArt;
         }
 
-        // ¸ù¾ÝÏ¡ÓÐ¶ÈÉèÖÃ±ß¿òÑÕÉ«
+        // ï¿½ï¿½ï¿½ï¿½Ï¡ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½Ã±ß¿ï¿½ï¿½ï¿½É«
         UpdateFrameColor();
 
-        // ¸üÐÂ×´Ì¬ÑÕÉ«
+        // ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½É«
         UpdateStateColor();
     }
 
-    // ¸ù¾ÝÏ¡ÓÐ¶È¸üÐÂ±ß¿òÑÕÉ«
+    // ï¿½ï¿½ï¿½ï¿½Ï¡ï¿½Ð¶È¸ï¿½ï¿½Â±ß¿ï¿½ï¿½ï¿½É«
     private void UpdateFrameColor()
     {
         if (!cardFrame) return;
@@ -119,19 +113,19 @@ public class CardEntity : MonoBehaviour
         cardFrame.color = frameColor;
     }
 
-    // ¸üÐÂÏ¡ÓÐ¶ÈÌØÐ§
+    // ï¿½ï¿½ï¿½ï¿½Ï¡ï¿½Ð¶ï¿½ï¿½ï¿½Ð§
     private void UpdateRarityEffects()
     {
         if (!cardGlow) return;
 
-        // ¸ù¾ÝÏ¡ÓÐ¶È¿ªÆô/¹Ø±ÕÌØÐ§
+        // ï¿½ï¿½ï¿½ï¿½Ï¡ï¿½Ð¶È¿ï¿½ï¿½ï¿½/ï¿½Ø±ï¿½ï¿½ï¿½Ð§
         bool shouldGlow = _cardData.Rarity >= Rarity.Rare;
 
         if (shouldGlow && !cardGlow.isPlaying)
         {
             cardGlow.Play();
 
-            // ÉèÖÃÁ£×ÓÑÕÉ«
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«
             var main = cardGlow.main;
             Color glowColor = _cardData.Rarity switch
             {
@@ -149,7 +143,7 @@ public class CardEntity : MonoBehaviour
         }
     }
 
-    // ¸üÐÂ×´Ì¬ÑÕÉ«
+    // ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½É«
     private void UpdateStateColor()
     {
         if (!cardBackground) return;
@@ -166,7 +160,7 @@ public class CardEntity : MonoBehaviour
         }
         else if (_cardData.CurrentHealth < _cardData.MaxHealth)
         {
-            // ¸ù¾ÝÑªÁ¿±ÈÀý»ìºÏÑÕÉ«
+            // ï¿½ï¿½ï¿½ï¿½Ñªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«
             float healthPercent = (float)_cardData.CurrentHealth / _cardData.MaxHealth;
             targetColor = Color.Lerp(damagedColor, normalColor, healthPercent);
         }
@@ -174,7 +168,7 @@ public class CardEntity : MonoBehaviour
         cardBackground.color = targetColor;
     }
 
-    // ¿¨ÅÆÊÜÉË
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void TakeDamage(int damage)
     {
         if (_cardData == null || !_cardData.IsAlive) return;
@@ -182,7 +176,7 @@ public class CardEntity : MonoBehaviour
         _cardData.TakeDamage(damage);
         UpdateCardVisuals();
 
-        // ÊÜÉËÌØÐ§
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
         StartCoroutine(DamageEffect());
 
         if (!_cardData.IsAlive)
@@ -191,7 +185,7 @@ public class CardEntity : MonoBehaviour
         }
     }
 
-    // ÖÎÁÆ¿¨ÅÆ
+    // ï¿½ï¿½ï¿½Æ¿ï¿½ï¿½ï¿½
     public void Heal(int amount)
     {
         if (_cardData == null || !_cardData.IsAlive) return;
@@ -199,11 +193,11 @@ public class CardEntity : MonoBehaviour
         _cardData.Heal(amount);
         UpdateCardVisuals();
 
-        // ÖÎÁÆÌØÐ§
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
         StartCoroutine(HealEffect());
     }
 
-    // ÊÜÉËÌØÐ§
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
     private System.Collections.IEnumerator DamageEffect()
     {
         if (cardArt)
@@ -215,7 +209,7 @@ public class CardEntity : MonoBehaviour
         }
     }
 
-    // ÖÎÁÆÌØÐ§
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
     private System.Collections.IEnumerator HealEffect()
     {
         if (cardArt)
@@ -227,23 +221,23 @@ public class CardEntity : MonoBehaviour
         }
     }
 
-    // ¿¨ÅÆËÀÍö
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private void OnDeath()
     {
-        // ËÀÍöÌØÐ§
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
         StartCoroutine(DeathEffect());
 
-        // ´¥·¢ÊÂ¼þ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
         OnCardDestroyed?.Invoke(this);
 
-        // ÑÓ³ÙÏú»Ù
+        // ï¿½Ó³ï¿½ï¿½ï¿½ï¿½ï¿½
         Destroy(gameObject, 0.5f);
     }
 
-    // ËÀÍöÌØÐ§
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
     private System.Collections.IEnumerator DeathEffect()
     {
-        // µ­³öÐ§¹û
+        // ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
         float duration = 0.5f;
         float elapsed = 0f;
 
@@ -273,43 +267,43 @@ public class CardEntity : MonoBehaviour
         }
     }
 
-    // ÉèÖÃÊÇ·ñ¿ÉÑ¡
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ñ¡
     public void SetSelectable(bool selectable)
     {
-        // ¿ÉÒÔÌí¼ÓÊÓ¾õÐ§¹û
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¾ï¿½Ð§ï¿½ï¿½
     }
 
-    // ÉèÖÃÊÇ·ñ¿É´ò³ö
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½É´ï¿½ï¿½
     public void SetPlayable(bool playable)
     {
         _isPlayable = playable;
         UpdateStateColor();
     }
 
-    // ÉèÖÃÊÇ·ñÔÚ³¡ÉÏ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ú³ï¿½ï¿½ï¿½
     public void SetOnBoard(bool onBoard)
     {
         _isOnBoard = onBoard;
         UpdateStateColor();
     }
 
-    // Êó±êµã»÷
+    // ï¿½ï¿½ï¿½ï¿½ï¿½
     private void OnMouseDown()
     {
         OnCardClicked?.Invoke(this);
     }
 
-    // Êó±êÐüÍ£
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Í£
     private void OnMouseEnter()
     {
         if (!_isSelected)
         {
-            // ÐüÍ£Ð§¹û£ºÇáÎ¢·Å´ó
+            // ï¿½ï¿½Í£Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¢ï¿½Å´ï¿½
             transform.localScale = Vector3.one * 1.1f;
         }
     }
 
-    // Êó±êÀë¿ª
+    // ï¿½ï¿½ï¿½ï¿½ë¿ª
     private void OnMouseExit()
     {
         if (!_isSelected)
@@ -318,7 +312,7 @@ public class CardEntity : MonoBehaviour
         }
     }
 
-    // Ñ¡ÖÐ¿¨ÅÆ
+    // Ñ¡ï¿½Ð¿ï¿½ï¿½ï¿½
     public void Select()
     {
         _isSelected = true;
@@ -326,7 +320,7 @@ public class CardEntity : MonoBehaviour
         UpdateStateColor();
     }
 
-    // È¡ÏûÑ¡ÖÐ
+    // È¡ï¿½ï¿½Ñ¡ï¿½ï¿½
     public void Deselect()
     {
         _isSelected = false;
@@ -334,27 +328,27 @@ public class CardEntity : MonoBehaviour
         UpdateStateColor();
     }
 
-    // »ñÈ¡¿¨ÅÆ¹¥»÷·¶Î§
+    // ï¿½ï¿½È¡ï¿½ï¿½ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½Î§
     public bool CanAttackTarget(CardEntity target)
     {
         if (target == null || !target.CardData.IsAlive) return false;
 
-        // Èç¹ûÓÐÔ¶³Ì¹¥»÷£¬¿ÉÒÔ¹¥»÷ÈÎºÎÄ¿±ê
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¹ï¿½ï¿½ï¿½ï¿½Îºï¿½Ä¿ï¿½ï¿½
         if (_cardData.HasEffect(SpecialEffect.RangedAttack))
             return true;
 
-        // ·ñÔòÖ»ÄÜ¹¥»÷Ç°ÅÅ
-        // ÕâÀïÐèÒª¸ù¾ÝÓÎÏ·¹æÔòÊµÏÖ
+        // ï¿½ï¿½ï¿½ï¿½Ö»ï¿½Ü¹ï¿½ï¿½ï¿½Ç°ï¿½ï¿½
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
         return true;
     }
 
-    // »ñÈ¡¹¥»÷Á¦
+    // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public int GetAttackPower()
     {
         return _cardData.Power;
     }
 
-    // »ñÈ¡ÖÎÁÆÁ¿
+    // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public int GetHealPower()
     {
         return _cardData.HasEffect(SpecialEffect.Healer) ? _cardData.Power : 0;
