@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bde68c0377d783e40b4909686769a129, type: 3}
-  m_Name: Card_
+  m_Name: Card_002
   m_EditorClassIdentifier: 
-  cardId: card_001
-  cardName: "\u65B0\u5361\u724C"
+  cardId: card_002
+  cardName: 002
   description: "\u5361\u724C\u63CF\u8FF0"
   cardType: 0
   rarity: 0
   cardArt: {fileID: 0}
   cardFrame: {fileID: 0}
-  cardBackground: {fileID: 0}
+  cardBackground: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   health: 5
   power: 3
   speed: 5
-  faithCost: 2
+  faithCost: 1
   canPlaceFront: 1
   canPlaceBack: 1
   specialEffects: 
