@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public PlayerData playerData;
-    public CardZone handCardsZone;
-    public CardZone fieldCardsZone;
+    public HandCardZone handCardsZone;
+    public FieldCardZone fieldCardsZone;
 
     // Start is called before the first frame update
     void Start()
@@ -42,13 +42,8 @@ public class PlayerController : MonoBehaviour
     }
 
     // 出牌到场上
-    public bool PlayCardToField(CardDataSO card)
-    {
-        if (fieldCardsZone.CanAddCard(card) && handCardsZone.RemoveCard(card))
-        {
-            fieldCardsZone.AddCard(card);
-            return true;
-        }
-        return false;
-    }
+    //public bool PlayCardToField(CardDataSO card)
+    //{
+        
+    //}
 }
