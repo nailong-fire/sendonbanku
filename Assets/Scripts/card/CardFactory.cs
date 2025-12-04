@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class CardFactory : MonoBehaviour
 {
-    [Header("Ô¤ÖÆÌå")]
+    [Header("é¢„åˆ¶ä½“")]
     [SerializeField] private GameObject cardPrefab;
 
-    [Header("Êı¾İ¿â")]
+    [Header("å¡ç‰Œæ•°æ®åº“")]
     [SerializeField] private CardDatabaseSO cardDatabase;
 
     private static CardFactory _instance;
@@ -23,25 +23,25 @@ public class CardFactory : MonoBehaviour
         }
     }
 
-    // Í¨¹ıID´´½¨¿¨ÅÆ
+    // é€šè¿‡ ID åˆ›å»ºå¡ç‰Œ
     public CardEntity CreateCardById(string cardId, PlayerController owner, Transform parent = null)
     {
         CardDataSO cardData = cardDatabase.GetCardById(cardId);
         if (cardData == null)
         {
-            Debug.LogError($"¿¨ÅÆID²»´æÔÚ: {cardId}");
+            Debug.LogError($"æœªæ‰¾åˆ°å¡ç‰Œ IDï¼š {cardId}");
             return null;
         }
 
         return CreateCard(cardData, owner, parent);
     }
 
-    // Í¨¹ıScriptableObject´´½¨¿¨ÅÆ
+    // é€šè¿‡ ScriptableObject åˆ›å»ºå¡ç‰Œ
     public CardEntity CreateCard(CardDataSO cardData, PlayerController owner, Transform parent = null)
     {
         if (cardPrefab == null)
         {
-            Debug.LogError("¿¨ÅÆÔ¤ÖÆÌåÎ´ÉèÖÃ!");
+            Debug.LogError("å¡ç‰Œé¢„åˆ¶ä½“æœªæŒ‡å®š!");
             return null;
         }
 
@@ -50,7 +50,7 @@ public class CardFactory : MonoBehaviour
 
         if (cardEntity == null)
         {
-            Debug.LogError("¿¨ÅÆÔ¤ÖÆÌåÉÏÃ»ÓĞCardEntity×é¼ş!");
+            Debug.LogError("å¡ç‰Œé¢„åˆ¶ä½“ä¸Šç¼ºå°‘ CardEntity ç»„ä»¶!");
             Destroy(cardObj);
             return null;
         }
@@ -61,11 +61,11 @@ public class CardFactory : MonoBehaviour
         return cardEntity;
     }
 
-    // ´´½¨ÔËĞĞÊ±Êı¾İ¿¨ÅÆ
+    // ä½¿ç”¨è¿è¡Œæ—¶æ•°æ®åˆ›å»ºå¡ç‰Œ
     public CardEntity CreateCard(CardRuntimeData runtimeData, PlayerController owner, Transform parent = null)
     {
-        // ÕâÀïĞèÒª¸ù¾İID²éÕÒ¶ÔÓ¦µÄCardDataSO
-        // ÔİÊ±ÏÈ´´½¨Ò»¸ö¼òµ¥µÄ¿¨ÅÆ
+        // è¿™é‡Œåº”æ ¹æ® runtimeData çš„ ID æŸ¥æ‰¾å¯¹åº”çš„ CardDataSOï¼ˆå¦‚éœ€è¦ï¼‰
+        // æš‚æ—¶ç›´æ¥ç”¨é¢„åˆ¶ä½“åˆ›å»ºå¹¶ç”¨è¿è¡Œæ—¶æ•°æ®åˆå§‹åŒ–
         GameObject cardObj = Instantiate(cardPrefab, parent);
         CardEntity cardEntity = cardObj.GetComponent<CardEntity>();
         cardEntity.Initialize(runtimeData, owner);
@@ -73,7 +73,7 @@ public class CardFactory : MonoBehaviour
         return cardEntity;
     }
 
-    // ´´½¨Ëæ»ú¿¨ÅÆ
+    // åˆ›å»ºéšæœºå¡ç‰Œ
     public CardEntity CreateRandomCard(PlayerController owner, Transform parent = null)
     {
         CardDataSO randomCard = cardDatabase.GetRandomCard();
@@ -82,7 +82,7 @@ public class CardFactory : MonoBehaviour
         return CreateCard(randomCard, owner, parent);
     }
 
-    // ´´½¨³õÊ¼¿¨×é
+    // åˆ›å»ºèµ·å§‹å¡ç»„
     public CardEntity[] CreateStarterDeck(PlayerController owner, Transform parent = null)
     {
         var starterDeck = cardDatabase.GetStarterDeck();

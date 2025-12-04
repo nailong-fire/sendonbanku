@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardZone : MonoBehaviour
+public class HandCardZone : MonoBehaviour
 {
     public string zoneName;
     public int maxCards = 7;

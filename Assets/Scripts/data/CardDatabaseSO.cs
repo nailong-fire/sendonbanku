@@ -1,49 +1,49 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "CardDatabase", menuName = "ÔÆ¸Ô¿¨ÅÆ/¿¨ÅÆÊı¾İ¿â")]
+[CreateAssetMenu(fileName = "CardDatabase", menuName = "å¡ç‰Œç³»ç»Ÿ/å¡ç‰Œæ•°æ®åº“")]
 public class CardDatabaseSO : ScriptableObject
 {
-    [Header("¿¨ÅÆÁĞ±í")]
-    [Tooltip("ËùÓĞ¿¨ÅÆÊı¾İ")]
+    [Header("å¡ç‰Œåˆ—è¡¨")]
+    [Tooltip("æ‰€æœ‰å¯ç”¨çš„å¡ç‰Œ")]
     public List<CardDataSO> allCards = new List<CardDataSO>();
 
-    [Header("³õÊ¼¿¨×é")]
-    [Tooltip("Íæ¼Ò³õÊ¼ÓµÓĞµÄ¿¨ÅÆIDÁĞ±í")]
+    [Header("èµ·å§‹å¥—ç‰Œ")]
+    [Tooltip("èµ·å§‹å¥—ç‰ŒåŒ…å«çš„å¡ç‰Œ ID åˆ—è¡¨")]
     public List<string> starterDeckCardIds = new List<string>();
 
-    // Í¨¹ıID²éÕÒ¿¨ÅÆ
+    // é€šè¿‡ ID æŸ¥æ‰¾å¡ç‰Œ
     public CardDataSO GetCardById(string cardId)
     {
         return allCards.Find(card => card.cardId == cardId);
     }
 
-    // »ñÈ¡ËùÓĞÖ¸¶¨ÀàĞÍµÄ¿¨ÅÆ
+    // è·å–æŒ‡å®šç±»å‹çš„å¡ç‰Œ
     public List<CardDataSO> GetCardsByType(CardType type)
     {
         return allCards.FindAll(card => card.cardType == type);
     }
 
-    // »ñÈ¡ËùÓĞÖ¸¶¨Ï¡ÓĞ¶ÈµÄ¿¨ÅÆ
+    // è·å–æŒ‡å®šç¨€æœ‰åº¦çš„å¡ç‰Œ
     public List<CardDataSO> GetCardsByRarity(Rarity rarity)
     {
         return allCards.FindAll(card => card.rarity == rarity);
     }
 
-    // »ñÈ¡ÏûºÄÔÚÖ¸¶¨·¶Î§ÄÚµÄ¿¨ÅÆ
+    // è·å–è´¹ç”¨åœ¨æŒ‡å®šèŒƒå›´å†…çš„å¡ç‰Œ
     public List<CardDataSO> GetCardsByCost(int minCost, int maxCost)
     {
         return allCards.FindAll(card => card.faithCost >= minCost && card.faithCost <= maxCost);
     }
 
-    // »ñÈ¡Ëæ»ú¿¨ÅÆ
+    // è·å–éšæœºå¡ç‰Œ
     public CardDataSO GetRandomCard()
     {
         if (allCards.Count == 0) return null;
         return allCards[Random.Range(0, allCards.Count)];
     }
 
-    // »ñÈ¡NÕÅËæ»ú¿¨ÅÆ
+    // è·å– N å¼ éšæœºå¡ç‰Œ
     public List<CardDataSO> GetRandomCards(int count, bool allowDuplicates = true)
     {
         if (allCards.Count == 0) return new List<CardDataSO>();
@@ -52,7 +52,7 @@ public class CardDatabaseSO : ScriptableObject
 
         if (allowDuplicates)
         {
-            // ÔÊĞíÖØ¸´
+            // å…è®¸é‡å¤ï¼Œä»æ•´ä¸ªåˆ—è¡¨éšæœºæŠ½å–
             for (int i = 0; i < count; i++)
             {
                 result.Add(GetRandomCard());
@@ -60,7 +60,7 @@ public class CardDatabaseSO : ScriptableObject
         }
         else
         {
-            // ²»ÔÊĞíÖØ¸´
+            // ä¸å…è®¸é‡å¤ï¼Œä»åˆ—è¡¨ä¸­æŠ½å–ä¸é‡å¤é¡¹
             if (count > allCards.Count)
                 count = allCards.Count;
 
@@ -77,7 +77,7 @@ public class CardDatabaseSO : ScriptableObject
         return result;
     }
 
-    // »ñÈ¡³õÊ¼¿¨×é
+    // è·å–èµ·å§‹å¥—ç‰Œ
     public List<CardDataSO> GetStarterDeck()
     {
         List<CardDataSO> deck = new List<CardDataSO>();
@@ -91,17 +91,17 @@ public class CardDatabaseSO : ScriptableObject
             }
             else
             {
-                Debug.LogWarning($"³õÊ¼¿¨×éÖĞÕÒ²»µ½¿¨ÅÆ: {cardId}");
+                Debug.LogWarning($"èµ·å§‹å¥—ç‰Œä¸­æœªæ‰¾åˆ°å¡ç‰Œ: {cardId}");
             }
         }
 
         return deck;
     }
 
-    // ÔÚ±à¼­Æ÷ÖĞÑéÖ¤Êı¾İ
+    // ç¼–è¾‘å™¨æ ¡éªŒï¼ˆæ£€æŸ¥é‡å¤ IDï¼‰
     private void OnValidate()
     {
-        // ¼ì²éÊÇ·ñÓĞÖØ¸´µÄID
+        // æ£€æŸ¥æ˜¯å¦å­˜åœ¨é‡å¤çš„ ID
         HashSet<string> ids = new HashSet<string>();
         foreach (var card in allCards)
         {
@@ -109,7 +109,7 @@ public class CardDatabaseSO : ScriptableObject
             {
                 if (ids.Contains(card.cardId))
                 {
-                    Debug.LogWarning($"¿¨ÅÆÊı¾İ¿âÖĞÓĞÖØ¸´µÄID: {card.cardId}");
+                    Debug.LogWarning($"å¡ç‰Œæ•°æ®åº“ä¸­å­˜åœ¨é‡å¤ID: {card.cardId}");
                 }
                 else
                 {

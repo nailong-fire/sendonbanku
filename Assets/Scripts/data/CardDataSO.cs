@@ -1,126 +1,126 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-// ¿¨ÅÆÀàĞÍÃ¶¾Ù
+// å¡ç‰Œç±»å‹æšä¸¾
 public enum CardType
 {
-    Buddha,        // ·ğ
-    Bodhisattva,   // ÆĞÈø
-    Vajra,         // ½ğ¸Õ
-    Apsara,        // ·ÉÌì
-    Monk,          // É®
-    Effect         // Ğ§¹ûÅÆ
+    Buddha,        // ä½›é™€
+    Bodhisattva,   // è©è¨
+    Vajra,         // é‡‘åˆš
+    Apsara,        // é£å¤©ï¼ˆä»™å¥³ï¼‰
+    Monk,          // åƒ§ä¾£
+    Effect         // æ•ˆæœç±»
 }
 
-// ÌØÊâĞ§¹ûÃ¶¾Ù
+// ç‰¹æ®Šæ•ˆæœæšä¸¾
 public enum SpecialEffect
 {
     None,
-    RangedAttack,      // Ô¶³Ì¹¥»÷
-    IgnoreLowDamage,   // µÍÓÚ2µÄÉËº¦ÎŞĞ§
-    Healer,           // ÖÎÁÆÕß
-    Guardian,         // »¤ÎÀ
-    QuickStrike,      // ÏÈ¹¥
-    Taunt            // ³°·í
+    RangedAttack,      // è¿œç¨‹æ”»å‡»
+    IgnoreLowDamage,   // å¿½ç•¥ä½ä¼¤å®³ï¼ˆå°äº2çš„ä¼¤å®³æ— æ•ˆï¼‰
+    Healer,            // æ²»ç–—è€…
+    Guardian,          // å®ˆæŠ¤
+    QuickStrike,       // è¿…æ·
+    Taunt              // å˜²è®½
 }
 
-// Ï¡ÓĞ¶ÈÃ¶¾Ù
+// ç¨€æœ‰åº¦æšä¸¾
 public enum Rarity
 {
-    Common,      // ÆÕÍ¨
-    Uncommon,    // Ï¡ÓĞ
-    Rare,        // º±¼û
-    Epic,        // Ê·Ê«
-    Legendary    // ´«Ëµ
+    Common,      // æ™®é€š
+    Uncommon,    // éå‡¡
+    Rare,        // ç¨€æœ‰
+    Epic,        // å²è¯—
+    Legendary    // ä¼ è¯´
 }
 
-[CreateAssetMenu(fileName = "Card_", menuName = "ÔÆ¸Ô¿¨ÅÆ/¿¨ÅÆÊı¾İ")]
+[CreateAssetMenu(fileName = "Card_", menuName = "å¡ç‰Œç³»ç»Ÿ/å¡ç‰Œæ•°æ®")]
 public class CardDataSO : ScriptableObject
 {
-    [Header("»ù´¡ĞÅÏ¢")]
-    [Tooltip("¿¨ÅÆÎ¨Ò»ID£¬½¨Òé¸ñÊ½: card_001")]
+    [Header("å¡ç‰ŒåŸºæœ¬ä¿¡æ¯")]
+    [Tooltip("å¡ç‰Œå”¯ä¸€IDï¼Œå»ºè®®æ ¼å¼: card_001")]
     public string cardId = "card_001";
 
-    [Tooltip("¿¨ÅÆÃû³Æ")]
-    public string cardName = "ĞÂ¿¨ÅÆ";
+    [Tooltip("å¡ç‰Œåç§°")]
+    public string cardName = "ç¤ºä¾‹å¡ç‰Œ";
 
-    [Tooltip("¿¨ÅÆÃèÊö")]
+    [Tooltip("å¡ç‰Œæè¿°")]
     [TextArea(2, 4)]
-    public string description = "¿¨ÅÆÃèÊö";
+    public string description = "å¡ç‰Œæè¿°";
 
-    [Tooltip("¿¨ÅÆÀàĞÍ")]
+    [Tooltip("å¡ç‰Œç±»å‹")]
     public CardType cardType = CardType.Buddha;
 
-    [Tooltip("¿¨ÅÆÏ¡ÓĞ¶È")]
+    [Tooltip("å¡ç‰Œç¨€æœ‰åº¦")]
     public Rarity rarity = Rarity.Common;
 
-    [Header("¿¨ÅÆÍâ¹Û")]
-    [Tooltip("¿¨ÅÆÕıÃæÍ¼°¸")]
+    [Header("è§†è§‰èµ„æº")]
+    [Tooltip("å¡ç‰Œå¤´åƒæˆ–ç«‹ç»˜")]
     public Sprite cardArt;
 
-    [Tooltip("¿¨ÅÆ±ß¿ò£¨¸ù¾İÏ¡ÓĞ¶È²»Í¬£©")]
+    [Tooltip("å¡ç‰Œè¾¹æ¡†ï¼ˆå¯æ ¹æ®ç¨€æœ‰åº¦æ›´æ¢ï¼‰")]
     public Sprite cardFrame;
 
-    [Tooltip("¿¨ÅÆ±³¾°")]
+    [Tooltip("å¡ç‰ŒèƒŒæ™¯å›¾")]
     public Sprite cardBackground;
 
-    [Header("Õ½¶·ÊôĞÔ")]
-    [Tooltip("ÉúÃüÖµ")]
+    [Header("å±æ€§æ•°å€¼")]
+    [Tooltip("ç”Ÿå‘½å€¼ä¸Šé™")]
     [Range(1, 20)]
     public int health = 5;
 
-    [Tooltip("Á¦Á¿Öµ£¨¹¥»÷/ÖÎÁÆÁ¿£©")]
+    [Tooltip("æ”»å‡»åŠ›/æ•ˆæœæ•°å€¼")]
     [Range(0, 10)]
     public int power = 3;
 
-    [Tooltip("ĞĞ¶¯ËÙ¶È£¨Ô½´óÔ½¿ì£©")]
+    [Tooltip("é€Ÿåº¦ï¼ˆå›åˆ/è¡ŒåŠ¨é¡ºåºç›¸å…³ï¼‰")]
     [Range(1, 10)]
     public int speed = 5;
 
-    [Tooltip("ÏûºÄµÄFaithÖµ")]
+    [Tooltip("æ‰“å‡ºè¯¥å¡æ‰€éœ€çš„ Faith å€¼")]
     [Range(0, 10)]
     public int faithCost = 1;
 
-    [Header("Î»ÖÃÏŞÖÆ")]
-    [Tooltip("ÊÇ·ñ¿ÉÒÔ·ÅÖÃÔÚÇ°ÅÅ")]
+    [Header("ä½ç½®é™åˆ¶")]
+    [Tooltip("æ˜¯å¦å…è®¸æ”¾åœ¨å‰æ’")]
     public bool canPlaceFront = true;
 
-    [Tooltip("ÊÇ·ñ¿ÉÒÔ·ÅÖÃÔÚºóÅÅ")]
+    [Tooltip("æ˜¯å¦å…è®¸æ”¾åœ¨åæ’")]
     public bool canPlaceBack = true;
 
-    [Header("ÌØÊâĞ§¹û")]
-    [Tooltip("¿¨ÅÆµÄÌØÊâĞ§¹ûÁĞ±í")]
+    [Header("ç‰¹æ®Šæ•ˆæœ")]
+    [Tooltip("è¯¥å¡åŒ…å«çš„ç‰¹æ®Šæ•ˆæœåˆ—è¡¨")]
     public List<SpecialEffect> specialEffects = new List<SpecialEffect>();
 
-    [Header("¿¨ÅÆ¹ÊÊÂ")]
-    [Tooltip("¿¨ÅÆ±³ºóµÄÔÆ¸ÔÊ¯¿ß¹ÊÊÂ")]
+    [Header("èƒŒæ™¯æ•…äº‹")]
+    [Tooltip("å¡ç‰Œçš„èƒŒæ™¯æ•…äº‹æˆ–æè¿°")]
     [TextArea(3, 6)]
-    public string story = "ÕâÕÅ¿¨ÅÆÓëÔÆ¸ÔÊ¯¿ßµÄ¹ÊÊÂ...";
+    public string story = "è¿™æ˜¯å¡ç‰Œçš„èƒŒæ™¯æ•…äº‹ç¤ºä¾‹...";
 
-    // ÔËĞĞÊ±Ê¹ÓÃµÄÊı¾İ¸±±¾£¨±ÜÃâĞŞ¸ÄÔ­Ê¼Êı¾İ£©
+    // åˆ›å»ºè¿è¡Œæ—¶æ•°æ®å‰¯æœ¬ï¼ˆç”¨äºæ¸¸æˆè¿è¡Œæ—¶ä¿®æ”¹ï¼Œä¸å½±å“åŸå§‹ScriptableObjectï¼‰
     public CardRuntimeData CreateRuntimeData()
     {
         return new CardRuntimeData(this);
     }
 
-    // ÑéÖ¤Êı¾İ£¨ÔÚ±à¼­Æ÷ÖĞµ÷ÓÃ£©
+    // ç¼–è¾‘å™¨æ ¡éªŒï¼Œç¡®ä¿æ•°æ®åˆç†
     private void OnValidate()
     {
-        // È·±£ID²»Îª¿Õ
+        // å¦‚æœæ²¡æœ‰ IDï¼Œåˆ™ç”Ÿæˆä¸€ä¸ªéšæœºçŸ­ ID
         if (string.IsNullOrEmpty(cardId))
         {
             cardId = $"card_{System.Guid.NewGuid().ToString().Substring(0, 8)}";
         }
 
-        // È·±£ÉúÃüÖµÖÁÉÙÎª1
+        // ç¡®ä¿ç”Ÿå‘½è‡³å°‘ä¸º1
         health = Mathf.Max(1, health);
 
-        // È·±£ÏûºÄ²»Îª¸ºÊı
+        // ç¡®ä¿èŠ±è´¹ä¸ä¸ºè´Ÿ
         faithCost = Mathf.Max(0, faithCost);
     }
 }
 
-// ÔËĞĞÊ±¿¨ÅÆÊı¾İ£¨´ÓScriptableObject´´½¨µÄ¸±±¾£©
+// è¿è¡Œæ—¶ä½¿ç”¨çš„æ•°æ®å‰¯æœ¬ï¼ˆç”¨äºåœ¨æ¸¸æˆä¸­ä¿®æ”¹è€Œä¸å½±å“SOï¼‰
 [System.Serializable]
 public class CardRuntimeData
 {
@@ -161,7 +161,7 @@ public class CardRuntimeData
 
     public void TakeDamage(int damage)
     {
-        // ¼ì²éÊÇ·ñÓĞºöÂÔµÍÉËº¦µÄĞ§¹û
+        // å¦‚æœåŒ…å«å¿½ç•¥å°é¢ä¼¤å®³æ•ˆæœä¸”ä¼¤å®³å°äº2ï¼Œåˆ™ä¸å‡å°‘ç”Ÿå‘½
         if (SpecialEffects.Contains(SpecialEffect.IgnoreLowDamage) && damage < 2)
             return;
 

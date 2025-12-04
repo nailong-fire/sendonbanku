@@ -84,7 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1437542766389286253}
-  - component: {fileID: 7925906308913915419}
+  - component: {fileID: 2718031625058299522}
   m_Layer: 0
   m_Name: HandCards
   m_TagString: Untagged
@@ -107,7 +107,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 393675903225117547}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7925906308913915419
+--- !u!114 &2718031625058299522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a82fa839b2d0614ea5e9b9a0a63e68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneName: HandCards
+  zoneName: "\u624B\u724C\u533A\u57DF"
   maxCards: 7
   cards: []
 --- !u!1 &755788448430616986
@@ -207,7 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 393675903225117547}
   m_Layer: 0
-  m_Name: PlayerPrefab
+  m_Name: playerprefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,8 +283,8 @@ MonoBehaviour:
     maxHope: 8
     faith: 0
     maxFaith: 10
-  handCardsZone: {fileID: 7925906308913915419}
-  fieldCardsZone: {fileID: 5860057181442183399}
+  handCardsZone: {fileID: 0}
+  fieldCardsZone: {fileID: 0}
 --- !u!1 &2466319387908599296
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,7 +985,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8594547989201596561}
-  - component: {fileID: 5860057181442183399}
+  - component: {fileID: 6934309616465004244}
   m_Layer: 0
   m_Name: FieldCards
   m_TagString: Untagged
@@ -1008,7 +1008,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 393675903225117547}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5860057181442183399
+--- !u!114 &6934309616465004244
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1017,9 +1017,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 8917939474490194715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a82fa839b2d0614ea5e9b9a0a63e68f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5960ff7616bb6b94f8c8af349f9bc70f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneName: FieldCards
+  zoneName: "\u51FA\u724C\u533A\u57DF"
   maxCards: 5
-  cards: []
+  isPlayerZone: 1
+  frontRowCount: 2
+  backRowCount: 3
+  frontRowPositions: []
+  backRowPositions: []
+  onCardAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  onCardRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  onZoneUpdated:
+    m_PersistentCalls:
+      m_Calls: []
