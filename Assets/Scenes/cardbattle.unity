@@ -152,7 +152,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 1355342992358950991, guid: 11e73a581f61e81498fb44553cdcdceb, type: 3}
+<<<<<<< Updated upstream
   cardDatabase: {fileID: 0}
+=======
+  cardDatabase: {fileID: 11400000, guid: 21e01924635ef614da761e0aa78c3125, type: 2}
+>>>>>>> Stashed changes
 --- !u!4 &501130907
 Transform:
   m_ObjectHideFlags: 0

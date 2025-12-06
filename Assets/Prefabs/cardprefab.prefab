@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 224647037386744420}
   - component: {fileID: 5095542675095951694}
   - component: {fileID: 1005431411693488323}
+  - component: {fileID: 2466867395827531132}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -383,6 +384,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2466867395827531132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3516692619030762238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb8103e1f3adcd0438b164de2635a455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoBindMainCamera: 1
+  bindOnAwake: 1
+  bindOnStart: 1
 --- !u!1 &4656030058919360804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,7 +1047,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2831853064714581359}
@@ -1051,7 +1067,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0

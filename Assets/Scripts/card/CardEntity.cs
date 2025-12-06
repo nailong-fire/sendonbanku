@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 
 [RequireComponent(typeof(Collider2D))]
@@ -33,7 +34,7 @@ public class CardEntity : MonoBehaviour
     private bool _isOnBoard = false;
 
     // 所有者
-    private PlayerController _owner;
+    private UniversalController _owner;
 
     // 事件
     public System.Action<CardEntity> OnCardClicked;
@@ -42,12 +43,12 @@ public class CardEntity : MonoBehaviour
 
     public CardRuntimeData CardData => _cardData;
     public CardDataSO CardDataSO => _cardDataSO;
-    public PlayerController Owner => _owner;
+    public UniversalController Owner => _owner;
     public bool IsPlayable => _isPlayable;
     public bool IsOnBoard => _isOnBoard;
 
     // 初始化（使用 CardDataSO）
-    public void Initialize(CardDataSO cardSO, PlayerController owner)
+    public void Initialize(CardDataSO cardSO, UniversalController owner)
     {
         _cardDataSO = cardSO;
         _cardData = cardSO.CreateRuntimeData();

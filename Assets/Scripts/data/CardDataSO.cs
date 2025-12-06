@@ -34,7 +34,7 @@ public enum Rarity
     Legendary    // 传说
 }
 
-[CreateAssetMenu(fileName = "Card_", menuName = "卡牌系统/卡牌数据")]
+[CreateAssetMenu(fileName = "Card_", menuName = "卡牌/卡牌数据")]
 public class CardDataSO : ScriptableObject
 {
     [Header("卡牌基本信息")]

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class FieldCardZone : MonoBehaviour
+public class CardZone : MonoBehaviour
 {
     [System.Serializable]
     public class CardPosition
@@ -28,7 +28,7 @@ public class FieldCardZone : MonoBehaviour
     public int frontRowCount = 2;
     public int backRowCount = 3;
     
-    [Header("位置点（可选）")]
+    [Header("位置点")]
     public Transform[] frontRowPositions; // 前排位置点
     public Transform[] backRowPositions;  // 后排位置点
     

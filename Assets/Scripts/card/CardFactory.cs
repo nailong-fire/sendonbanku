@@ -24,7 +24,7 @@ public class CardFactory : MonoBehaviour
     }
 
     // 通过 ID 创建卡牌
-    public CardEntity CreateCardById(string cardId, PlayerController owner, Transform parent = null)
+    public CardEntity CreateCardById(string cardId, UniversalController owner, Transform parent = null)
     {
         CardDataSO cardData = cardDatabase.GetCardById(cardId);
         if (cardData == null)
@@ -37,7 +37,7 @@ public class CardFactory : MonoBehaviour
     }
 
     // 通过 ScriptableObject 创建卡牌
-    public CardEntity CreateCard(CardDataSO cardData, PlayerController owner, Transform parent = null)
+    public CardEntity CreateCard(CardDataSO cardData, UniversalController owner, Transform parent = null)
     {
         if (cardPrefab == null)
         {
@@ -82,17 +82,5 @@ public class CardFactory : MonoBehaviour
         return CreateCard(randomCard, owner, parent);
     }
 
-    // 创建起始卡组
-    public CardEntity[] CreateStarterDeck(PlayerController owner, Transform parent = null)
-    {
-        var starterDeck = cardDatabase.GetStarterDeck();
-        CardEntity[] cards = new CardEntity[starterDeck.Count];
 
-        for (int i = 0; i < starterDeck.Count; i++)
-        {
-            cards[i] = CreateCard(starterDeck[i], owner, parent);
-        }
-
-        return cards;
-    }
 }
