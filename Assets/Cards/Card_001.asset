@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde68c0377d783e40b4909686769a129, type: 3}
   m_Name: Card_001
   m_EditorClassIdentifier: 
-  cardId: card_001
+  cardId: 001
   cardName: 001
-  description: "\u5361\u724C\u63CF\u8FF0"
+  description: 
   cardType: 0
   rarity: 0
   cardArt: {fileID: 0}

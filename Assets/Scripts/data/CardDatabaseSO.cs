@@ -98,7 +98,7 @@ public class CardDatabaseSO : ScriptableObject
         
         if (playerDeckCardIds.Count == 0)
         {
-            Debug.LogWarning("玩家牌组为空，无法抽牌");
+            Debug.LogWarning("牌组为空，无法抽牌");
             return drawnCards;
         }
 
@@ -143,7 +143,7 @@ public class CardDatabaseSO : ScriptableObject
         
         if (playerDiscardPileCardIds.Count == 0)
         {
-            Debug.LogWarning("玩家弃牌组为空，无法抽牌");
+            Debug.LogWarning("弃牌组为空，无法抽牌");
             return drawnCards;
         }
 
@@ -255,7 +255,7 @@ public class CardDatabaseSO : ScriptableObject
             deckBackup.Add(cardId);
         }
         
-        Debug.Log($"已备份玩家牌组，共{deckBackup.Count}张卡牌");
+        Debug.Log($"已备份牌组，共{deckBackup.Count}张卡牌");
     }
 
     // 从备份恢复玩家牌组
@@ -276,7 +276,7 @@ public class CardDatabaseSO : ScriptableObject
             playerDeckCardIds.Add(cardId);
         }
         
-        Debug.Log($"已从备份恢复玩家牌组，共{playerDeckCardIds.Count}张卡牌");
+        Debug.Log($"已从备份恢复牌组，共{playerDeckCardIds.Count}张卡牌");
     }
 
     // 获取玩家当前牌组（返回卡牌数据对象列表）
@@ -293,7 +293,7 @@ public class CardDatabaseSO : ScriptableObject
             }
             else
             {
-                Debug.LogWarning($"玩家牌组中未找到卡牌: {cardId}");
+                Debug.LogWarning($"牌组中未找到卡牌: {cardId}");
             }
         }
 
@@ -314,7 +314,7 @@ public class CardDatabaseSO : ScriptableObject
             }
             else
             {
-                Debug.LogWarning($"玩家弃牌组中未找到卡牌: {cardId}");
+                Debug.LogWarning($"弃牌组中未找到卡牌: {cardId}");
             }
         }
 

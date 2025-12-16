@@ -1,6 +1,8 @@
 using System;
 using TMPro;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.TextCore.Text;
 
 
@@ -20,9 +22,15 @@ public class CardEntity : MonoBehaviour
 
     [Header("状态颜色")]
     [SerializeField] private Color normalColor = Color.white;
-    [SerializeField] private Color damagedColor = new Color(1, 0.5f, 0.5f, 1);
-    [SerializeField] private Color selectedColor = new Color(0.5f, 0.8f, 1, 1);
-    [SerializeField] private Color playableColor = new Color(0.5f, 1, 0.5f, 1);
+    // 新增回合制相关属性
+    [Header("回合制属性")]
+    public bool HasActedThisTurn = false;
+    public bool IsAlive = true;
+    public bool HasActionAbility = false;
+    public bool IsInFrontRow = false;
+
+    [Header("所有者")]
+
 
     // 卡牌运行时数据
     private CardRuntimeData _cardData;
@@ -31,13 +39,13 @@ public class CardEntity : MonoBehaviour
     // 状态
     private bool _isSelected = false;
     private bool _isPlayable = false;
-    private bool _isOnBoard = false;
+    private bool _isOnHand = false;
 
     // 所有者
+    [SerializeField]
     private UniversalController _owner;
 
     // 事件
-    public System.Action<CardEntity> OnCardClicked;
     public System.Action<CardEntity> OnCardDestroyed;
 
 
@@ -45,7 +53,7 @@ public class CardEntity : MonoBehaviour
     public CardDataSO CardDataSO => _cardDataSO;
     public UniversalController Owner => _owner;
     public bool IsPlayable => _isPlayable;
-    public bool IsOnBoard => _isOnBoard;
+    public bool IsOnHand => _isOnHand;
 
     // 初始化（使用 CardDataSO）
     public void Initialize(CardDataSO cardSO, UniversalController owner)
@@ -150,21 +158,6 @@ public class CardEntity : MonoBehaviour
 
         Color targetColor = normalColor;
 
-        if (_isSelected)
-        {
-            targetColor = selectedColor;
-        }
-        else if (_isPlayable && !_isOnBoard)
-        {
-            targetColor = playableColor;
-        }
-        else if (_cardData.CurrentHealth < _cardData.MaxHealth)
-        {
-            // 根据当前生命值混合受伤颜色
-            float healthPercent = (float)_cardData.CurrentHealth / _cardData.MaxHealth;
-            targetColor = Color.Lerp(damagedColor, normalColor, healthPercent);
-        }
-
         cardBackground.color = targetColor;
     }
 
@@ -267,12 +260,6 @@ public class CardEntity : MonoBehaviour
         }
     }
 
-    // 设置是否可选
-    public void SetSelectable(bool selectable)
-    {
-        // TODO: 添加可选时的视觉/交互提示
-    }
-
     // 设置是否可被使用（可打出）
     public void SetPlayable(bool playable)
     {
@@ -280,18 +267,13 @@ public class CardEntity : MonoBehaviour
         UpdateStateColor();
     }
 
-    // 设置是否已上场
-    public void SetOnBoard(bool onBoard)
+    // 设置是否在手牌中
+    public void SetOnHand(bool onHand)
     {
-        _isOnBoard = onBoard;
+        _isOnHand = onHand;
         UpdateStateColor();
     }
 
-    // 鼠标按下
-    private void OnMouseDown()
-    {
-        OnCardClicked?.Invoke(this);
-    }
 
     // 鼠标进入（悬停）
     private void OnMouseEnter()
@@ -299,7 +281,7 @@ public class CardEntity : MonoBehaviour
         if (!_isSelected)
         {
             // 悬停效果：略微放大
-            transform.localScale = Vector3.one * 1.1f;
+            transform.localScale = Vector3.one * 0.15f;
         }
     }
 
@@ -308,25 +290,10 @@ public class CardEntity : MonoBehaviour
     {
         if (!_isSelected)
         {
-            transform.localScale = Vector3.one;
+            transform.localScale = Vector3.one * 0.1f;
         }
     }
 
-    // 选中
-    public void Select()
-    {
-        _isSelected = true;
-        transform.localScale = Vector3.one * 1.2f;
-        UpdateStateColor();
-    }
-
-    // 取消选中
-    public void Deselect()
-    {
-        _isSelected = false;
-        transform.localScale = Vector3.one;
-        UpdateStateColor();
-    }
 
     // 是否可以攻击目标
     public bool CanAttackTarget(CardEntity target)
@@ -351,5 +318,51 @@ public class CardEntity : MonoBehaviour
     public int GetHealPower()
     {
         return _cardData.HasEffect(SpecialEffect.Healer) ? _cardData.Power : 0;
+    }
+
+
+    // 新增方法
+    // 执行行动
+    public IEnumerator ExecuteAction()
+    {
+        // 这里实现卡牌的特殊行动逻辑
+        // 例如：治疗友军、施放法术等
+        
+        Debug.Log($"{CardData.CardName} 执行特殊行动");
+        
+        yield return new WaitForSeconds(0.5f);
+    }
+    
+    // 处理回合结束效果
+    public void ProcessEndTurnEffects()
+    {
+        // 处理持续伤害/治疗等效果
+        // 例如：中毒每回合扣血，恢复每回合回血
+        
+        if (HasStatusEffect("Poison"))
+        {
+            TakeDamage(1);
+            Debug.Log($"{CardData.CardName} 受到中毒伤害");
+        }
+        
+        if (HasStatusEffect("Regeneration"))
+        {
+            // Heal(1);
+            Debug.Log($"{CardData.CardName} 受到恢复效果");
+        }
+    }
+    
+    
+    private bool HasStatusEffect(string effectName)
+    {
+        // 检查是否有某个状态效果
+        // 实现状态效果系统
+        return false;
+    }
+    
+    private void HealAllies()
+    {
+        // 治疗所有友军卡牌
+        // 实现治疗逻辑
     }
 }

@@ -31,6 +31,10 @@ public class CardZone : MonoBehaviour
     [Header("位置点")]
     public Transform[] frontRowPositions; // 前排位置点
     public Transform[] backRowPositions;  // 后排位置点
+
+    [Header("卡牌移动设置")]
+    public float cardMoveDuration = 0.5f;
+    public AnimationCurve cardMoveCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
     
     // 位置管理
     private List<CardPosition> _cardPositions = new List<CardPosition>();
@@ -148,15 +152,18 @@ public class CardZone : MonoBehaviour
         position.isOccupied = true;
         position.occupiedCard = card;
         
+
+        StartCoroutine(PlayCardMoveAnimation(card, position.positionTransform != null ? position.positionTransform.position : card.transform.position));
+
         // 移动卡牌到位置点
-        if (position.positionTransform != null)
-        {
-            card.transform.position = position.positionTransform.position;
-            card.transform.rotation = position.positionTransform.rotation;
-        }
+        //if (position.positionTransform != null)
+        //{
+        //    card.transform.position = position.positionTransform.position;
+        //    card.transform.rotation = position.positionTransform.rotation;
+        //}
         
         // 设置卡牌状态
-        card.SetOnBoard(true);
+        card.SetOnHand(false);
         
         // 触发事件
         onCardAdded?.Invoke(card);
@@ -495,5 +502,86 @@ public class CardZone : MonoBehaviour
         }
     }
     
+    public int GetPositionIndexAtPoint(Vector3 point, out bool isFrontRow)
+    {
+        isFrontRow = false;
+        float closestDistance = float.MaxValue;
+        int closestIndex = -1;
+        
+        for (int i = 0; i < _cardPositions.Count; i++)
+        {
+            var position = _cardPositions[i];
+            Vector3 pos;
+            if (position.positionTransform != null)
+            {
+                pos = position.positionTransform.position;
+            }
+            else
+            {
+                pos = transform.position + new Vector3(
+                    position.isFrontRow ? position.positionIndex - 0.5f : position.positionIndex - 1,
+                    0,
+                    position.isFrontRow ? 0 : -1);
+            }
+            
+            float distance = Vector3.Distance(point, pos);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestIndex = i;
+                isFrontRow = position.isFrontRow;
+            }
+        }
+
+        if(!isFrontRow)
+        closestIndex -= 2;
+        
+        return closestIndex;
+    }
     
+
+    IEnumerator PlayCardMoveAnimation(CardEntity card, Vector3 targetPos)
+    {
+        float elapsed = 0f;
+        Vector3 startPos = card.transform.position;
+        Vector3 startScale = card.transform.localScale;
+        
+        // 先稍微抬高
+        Vector3 midPos = (startPos + targetPos) / 2 + Vector3.up * 2f;
+        
+        while (elapsed < cardMoveDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / cardMoveDuration;
+            t = cardMoveCurve.Evaluate(t);
+            
+            // 贝塞尔曲线移动
+            Vector3 position = CalculateBezierPoint(t, startPos, midPos, targetPos);
+            card.transform.position = position;
+            
+            // 轻微旋转
+            card.transform.rotation = Quaternion.Euler(0, t * 360, 0);
+            
+            yield return null;
+        }
+        
+        // 确保最终位置正确
+        card.transform.position = targetPos;
+        card.transform.rotation = Quaternion.identity;
+        card.transform.localScale = startScale;
+    }
+    
+    // 计算贝塞尔曲线点
+    Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
+    {
+        float u = 1 - t;
+        float tt = t * t;
+        float uu = u * u;
+        
+        Vector3 p = uu * p0;
+        p += 2 * u * t * p1;
+        p += tt * p2;
+        
+        return p;
+    }
 }

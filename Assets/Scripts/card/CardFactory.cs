@@ -58,6 +58,8 @@ public class CardFactory : MonoBehaviour
         cardEntity.Initialize(cardData, owner);
         cardObj.name = $"Card_{cardData.cardName}";
 
+        cardObj.transform.localScale = 0.1f * Vector3.one; // 设置卡牌初始缩放比例
+
         return cardEntity;
     }
 

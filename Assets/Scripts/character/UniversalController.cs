@@ -93,10 +93,11 @@ public class UniversalController : MonoBehaviour
     // 初始化角色
     public virtual void Initialize(string name, bool isPlayer, int startingHope, int startingFaith)
     {
+
         characterName = name;
         isPlayerControlled = isPlayer;
         
-        resourceSystem = new ResourceSystem(startingHope, startingFaith);
+        //resourceSystem = new ResourceSystem(startingHope, startingFaith);
         
         // 初始化卡组
         InitializeDeck();
@@ -160,6 +161,10 @@ public class UniversalController : MonoBehaviour
         CardEntity card = CreateCardEntity(cardData);
         if (card != null)
         {
+            if(card.Owner.isPlayerControlled)
+                card.transform.position = new Vector3(2, 0, 0);
+            else
+                card.transform.position = new Vector3(-2, 0, 0);
             AddCardToHand(card);
             OnCardDrawn?.Invoke(card);
             
@@ -171,17 +176,6 @@ public class UniversalController : MonoBehaviour
         return null;
     }
     
-    // 抽初始手牌
-    public virtual IEnumerator DrawStartingHand(int handSize)
-    {
-        for (int i = 0; i < handSize; i++)
-        {
-            DrawCard();
-            yield return new WaitForSeconds(0.1f);
-        }
-        
-        Debug.Log($"{characterName} 初始手牌: {_handCards.Count} 张");
-    }
     
     // 创建卡牌实体
     protected virtual CardEntity CreateCardEntity(CardDataSO cardData)
@@ -203,11 +197,9 @@ public class UniversalController : MonoBehaviour
             _handCards.Add(card);
             
             // 设置卡牌状态
-            card.SetOnBoard(false);
-            card.SetPlayable(canPlayCards && CanPlayCard(card));
+            card.SetOnHand(true);
+            card.SetPlayable(canPlayCards);
             
-            // 订阅卡牌事件
-            card.OnCardClicked += OnHandCardClicked;
         }
         else
         {
@@ -221,73 +213,11 @@ public class UniversalController : MonoBehaviour
         if (!_handCards.Contains(card)) return;
         
         _handCards.Remove(card);
-        card.OnCardClicked -= OnHandCardClicked;
         
         if (handZone != null)
         {
             handZone.RemoveCard(card);
         }
-    }
-    
-    // 手牌卡牌被点击
-    protected virtual void OnHandCardClicked(CardEntity card)
-    {
-        if (isMyTurn && canPlayCards && card.IsPlayable)
-        {
-            // 玩家控制：显示可放置位置
-            // AI控制：自动处理
-            TryPlayCard(card);
-        }
-    }
-    
-    // 尝试打出卡牌
-    public virtual bool TryPlayCard(CardEntity card)
-    {
-        if (!CanPlayCard(card)) return false;
-        
-        // 寻找最佳位置
-        CardZone.CardPosition bestPosition = FindBestPositionForCard(card);
-        if (bestPosition == null) return false;
-        
-        return PlayCardToPosition(card, bestPosition);
-    }
-    
-    // 检查是否可以打出卡牌
-    public virtual bool CanPlayCard(CardEntity card)
-    {
-        if (card == null) return false;
-        
-        // 检查资源
-        if (!resourceSystem.CanAfford(card.CardData.FaithCost))
-        {
-            return false;
-        }
-        
-        // 检查是否在回合中
-        if (!isMyTurn)
-        {
-            return false;
-        }
-        
-        // 检查回合出牌限制
-        if (cardsPlayedThisTurn >= maxCardsPerTurn)
-        {
-            return false;
-        }
-        
-        // 检查战场是否有空位
-        if (battlefield == null || battlefield.IsFull())
-        {
-            return false;
-        }
-        
-        // 检查卡牌放置限制
-        if (!CanPlaceCardAnywhere(card))
-        {
-            return false;
-        }
-        
-        return true;
     }
     
     // 检查卡牌是否可以放置在战场上任何位置
@@ -444,8 +374,7 @@ public class UniversalController : MonoBehaviour
     {
         foreach (var card in _handCards)
         {
-            bool playable = CanPlayCard(card);
-            card.SetPlayable(playable);
+            card.SetPlayable(true);
         }
     }
     
