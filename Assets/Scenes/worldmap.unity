@@ -1945,6 +1945,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1194547332}
+  - component: {fileID: 1194547333}
+  - component: {fileID: 1194547334}
   m_Layer: 0
   m_Name: Backgroundmusic
   m_TagString: Untagged
@@ -1968,6 +1970,36 @@ Transform:
   - {fileID: 1397194294}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1194547333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194547331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb96908b1c2681d448fb790c30e3aae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 1397194295}
+  mapMusic: {fileID: 8300000, guid: 69c3dee66de5f404ba6b97d746e5be3d, type: 3}
+  battleMusic: {fileID: 8300000, guid: 66b1ff4302894e844a7f5f8454688038, type: 3}
+--- !u!114 &1194547334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194547331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f321e5b528d20b40b59f1014b81c252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 1397194295}
+  mapMusic: {fileID: 8300000, guid: 69c3dee66de5f404ba6b97d746e5be3d, type: 3}
+  battleMusic: {fileID: 8300000, guid: 66b1ff4302894e844a7f5f8454688038, type: 3}
 --- !u!1 &1397194293
 GameObject:
   m_ObjectHideFlags: 0
