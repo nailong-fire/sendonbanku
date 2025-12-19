@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardId: 006
   cardName: "\u50E7\u4EBA\u6619\u66DC"
-  description: "\u5361\u724C\u63CF\u8FF0"
+  description: 
   cardType: 3
   rarity: 0
   cardArt: {fileID: 21300000, guid: 08d1bf2cdd059b448a5d95da848fccd6, type: 3}

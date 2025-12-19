@@ -76,7 +76,7 @@ public class CharacterUIController : MonoBehaviour, ICharacterUI
     {
         if (hopeText != null)
         {
-            hopeText.text = $"{currentHope}/{maxHope}";
+            hopeText.text = $"{currentHope}";
             
             // 显示变化效果
             //if (changeAmount != 0)

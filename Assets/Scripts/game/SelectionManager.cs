@@ -429,7 +429,7 @@ public class SelectionManager : MonoBehaviour
         if (selectedCard != null)
         {
             // 恢复原始大小
-            selectedCard.transform.localScale = Vector3.one * 0.15f;
+            selectedCard.transform.localScale = Vector3.one * 0.2f;
         }
         
         // 销毁高亮对象
@@ -453,7 +453,7 @@ public class SelectionManager : MonoBehaviour
         currentHighlight.transform.SetParent(cardTransform);
         currentHighlight.transform.localPosition = Vector3.zero;
         currentHighlight.transform.localRotation = Quaternion.identity;
-        currentHighlight.transform.localScale = Vector3.one * 0.18f;
+        currentHighlight.transform.localScale = Vector3.one * 0.25f;
         
         // 添加线框渲染器（可选）
         // 或者使用粒子效果
