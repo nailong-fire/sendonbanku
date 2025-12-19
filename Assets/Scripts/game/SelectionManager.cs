@@ -19,6 +19,8 @@ public class SelectionManager : MonoBehaviour
     
     // 选择状态
     private CardEntity selectedCard;
+
+    private UniversalController targetplayer;
     private CardZone targetZone;
     private Vector3 targetPosition;
     
@@ -109,9 +111,10 @@ public class SelectionManager : MonoBehaviour
             {
                 Transform tf = clickedObject.GetComponent<Transform>();
                 CardZone zone = clickedObject.GetComponentInParent<CardZone>();
+                UniversalController player = clickedObject.GetComponentInParent<UniversalController>();
                 if (tf != null && zone != null)
                 {
-                    OnBattlefieldClicked(zone, tf.position);
+                    OnBattlefieldClicked(player, zone, tf.position);
                 }
             }
         }
@@ -182,7 +185,7 @@ public class SelectionManager : MonoBehaviour
     }
     
     // 战场被点击
-    void OnBattlefieldClicked(CardZone zone, Vector3 position)
+    void OnBattlefieldClicked(UniversalController player, CardZone zone, Vector3 position)
     {
         if (selectedCard == null)
         {
@@ -209,6 +212,7 @@ public class SelectionManager : MonoBehaviour
         
         targetZone = zone;
         targetPosition = position;
+        targetplayer = player;
         TryPlaceCard();
     }
     
@@ -329,10 +333,10 @@ public class SelectionManager : MonoBehaviour
     {
         isPlacingCard = true;
         bool isFrontRow;
-        int positionIndex = targetZone.GetPositionIndexAtPoint(targetPosition, out isFrontRow);
-
+        int positionIndex = targetZone.GetPositionIndexAtPoint_battlefield(targetPosition, out isFrontRow);
+        CardZone handzone = targetplayer.handZone;
         // 通知玩家控制器放置卡牌
-        bool success = targetZone.PlaceCardAtPosition(selectedCard, isFrontRow, positionIndex);
+        bool success = targetZone.PlaceCardAtPosition(selectedCard, isFrontRow, positionIndex, handzone);
         
         if (success)
         {
@@ -424,7 +428,7 @@ public class SelectionManager : MonoBehaviour
         if (selectedCard != null)
         {
             // 恢复原始大小
-            selectedCard.transform.localScale = Vector3.one * 0.1f;
+            selectedCard.transform.localScale = Vector3.one * 0.15f;
         }
         
         // 销毁高亮对象
@@ -448,7 +452,7 @@ public class SelectionManager : MonoBehaviour
         currentHighlight.transform.SetParent(cardTransform);
         currentHighlight.transform.localPosition = Vector3.zero;
         currentHighlight.transform.localRotation = Quaternion.identity;
-        currentHighlight.transform.localScale = Vector3.one * 1.1f;
+        currentHighlight.transform.localScale = Vector3.one * 0.18f;
         
         // 添加线框渲染器（可选）
         // 或者使用粒子效果

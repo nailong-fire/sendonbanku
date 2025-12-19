@@ -23,8 +23,9 @@ MonoBehaviour:
   health: 5
   power: 3
   speed: 5
-  faithCost: 1
+  faithCost: 0
   canPlaceFront: 1
   canPlaceBack: 1
-  specialEffects: 
+  specialEffects: 00000000
+  continuousEffects: 
   story: "\u8FD9\u5F20\u5361\u724C\u4E0E\u4E91\u5188\u77F3\u7A9F\u7684\u6545\u4E8B..."

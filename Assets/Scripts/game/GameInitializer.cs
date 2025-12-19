@@ -192,10 +192,9 @@ public class GameInitializer : MonoBehaviour
         yield return null;
     }
     
-    // 步骤4：初始化卡组和手牌
     private IEnumerator InitializeDeckAndHand()
     {
-        Debug.Log("步骤4：初始化卡组和手牌...");
+        Debug.Log("初始化卡组和手牌...");
         
         // 初始化玩家
         if (_player != null)
@@ -234,13 +233,17 @@ public class GameInitializer : MonoBehaviour
             ));
         }
         
+        
+        yield return new WaitForSeconds(5f);
+        gameObject.SetActive(false);
+
         yield return null;
     }
     
     // 步骤5：设置相机和UI
     private IEnumerator Step4_SetupCameraAndUI()
     {
-        Debug.Log("步骤5：设置相机和UI...");
+        Debug.Log("步骤4：设置相机和UI...");
         
         // 设置相机
         if (mainCamera == null)
@@ -260,7 +263,7 @@ public class GameInitializer : MonoBehaviour
     // 步骤6：最终设置
     private IEnumerator Step5_FinalSetup()
     {
-        Debug.Log("步骤6：最终设置...");
+        Debug.Log("步骤5：最终设置...");
         
         // 打印初始化信息
         PrintInitializationInfo();
