@@ -91,7 +91,8 @@ public class GameManager : MonoBehaviour
         currentPhase = TurnPhase.PlayerAction;
         
         // 开始玩家行动阶段
-        StartPlayerActionPhase();
+        //StartPlayerActionPhase();
+        StartEnemyActionPhase();
     }
     
     // 开始玩家行动阶段
@@ -140,7 +141,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("玩家行动阶段结束");
         
         // 切换到敌人行动阶段
-        StartEnemyActionPhase();
+        //StartEnemyActionPhase();
+        StartCardActionPhase();
     }
     
     // 开始敌人行动阶段
@@ -217,7 +219,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("敌人行动阶段结束");
         
         // 切换到卡牌行动阶段
-        StartCardActionPhase();
+        //StartCardActionPhase();
+        StartPlayerActionPhase();
     }
     
     // 开始卡牌行动阶段
@@ -237,6 +240,7 @@ public class GameManager : MonoBehaviour
         
         // 开始卡牌行动
         StartCoroutine(ExecuteCardActions());
+        StartPlayerActionPhase();
     }
     
     // 准备行动队列（按速度排序）
