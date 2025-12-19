@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Card_002
   m_EditorClassIdentifier: 
   cardId: 002
-  cardName: 002
+  cardName: "\u6587\u6B8A\u83E9\u8428"
   description: 
-  cardType: 0
+  cardType: 1
   rarity: 0
-  cardArt: {fileID: 0}
+  cardArt: {fileID: 21300000, guid: 96887e169f34860488537a173f1309f1, type: 3}
   cardFrame: {fileID: 0}
-  cardBackground: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  cardBackground: {fileID: 21300000, guid: 96887e169f34860488537a173f1309f1, type: 3}
   health: 1
   power: 0
   speed: 5

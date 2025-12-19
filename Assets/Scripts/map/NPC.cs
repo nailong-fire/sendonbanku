@@ -61,12 +61,12 @@ public class NPCInteract : MonoBehaviour
             dialogController.StartDialog(
                 npcName,       // 保留作为默认名字（如果 DialogLine 没填 speaker 可以用）
                 dialogLines,
-                OnDialogEnd    // 关键：统一出口
+                OnDialogEnd    // ⭐ 关键：统一出口
             );
         }
     }
 
-    // 对话文本全部播完后调用
+    // ⭐ 对话文本全部播完后调用
     void OnDialogEnd()
     {
         // 如果需要显示战斗选项
@@ -96,8 +96,16 @@ public class NPCInteract : MonoBehaviour
         if (dialogController != null)
             dialogController.EndDialog();
 
-        // 切换到战斗场景
-        SceneManager.LoadScene(battleSceneName, LoadSceneMode.Single);
+        // 使用过渡效果切换场景
+        if (SceneTransition.Instance != null)
+        {
+            SceneTransition.Instance.LoadScene(battleSceneName);
+        }
+        else
+        {
+            // 如果没有过渡管理器，直接切换
+            SceneManager.LoadScene(battleSceneName);
+        }
     }
 
     // 选择"还需要准备" → 结束对话，恢复移动
