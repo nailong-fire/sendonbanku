@@ -607,27 +607,23 @@ public class GameManager : MonoBehaviour
         // 示例：每回合恢复少量Faith
         if (player != null && player.resourceSystem != null)
         {
-            if(player.battlefield.GetAllCards() != null)
+            player.resourceSystem.CurrentFaith += player.resourceSystem.CalculateFaithGain();
+            Debug.Log("玩家恢复Faith");
+            
+            if(player.battlefield.GetCardCount() == 0)
             {
-                player.resourceSystem.CurrentFaith += player.resourceSystem.CalculateFaithGain();
-                Debug.Log("玩家恢复Faith");
-            }
-            else
-            {
-                player.resourceSystem.CurrentFaith -= 3;
+                player.resourceSystem.CurrentHope -= 3;
             }
         }
         
         if (enemy != null && enemy.resourceSystem != null)
         {
-            if(enemy.battlefield.GetAllCards() != null)
+            enemy.resourceSystem.CurrentFaith += enemy.resourceSystem.CalculateFaithGain();
+            Debug.Log("敌人恢复Faith");
+            
+            if(enemy.battlefield.GetCardCount() == 0)
             {
-                enemy.resourceSystem.CurrentFaith += enemy.resourceSystem.CalculateFaithGain();
-                Debug.Log("敌人恢复Faith");
-            }
-            else
-            {
-                enemy.resourceSystem.CurrentFaith -= 3;
+                enemy.resourceSystem.CurrentHope -= 3;
             }
         }
     }
