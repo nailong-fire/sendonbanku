@@ -15,13 +15,21 @@ public enum CardType
 // 特殊效果枚举
 public enum SpecialEffect
 {
-    None,
+    MeleeAttack,       // 近战攻击
     RangedAttack,      // 远程攻击
     IgnoreLowDamage,   // 忽略低伤害（小于2的伤害无效）
     Healer,            // 治疗者
     Guardian,          // 守护
     QuickStrike,       // 迅捷
     Taunt              // 嘲讽
+}
+
+//持续效果枚举
+public enum ContinuousEffect
+{
+    Poison,
+    Regeneration
+    
 }
 
 // 稀有度枚举
@@ -92,6 +100,9 @@ public class CardDataSO : ScriptableObject
     [Tooltip("该卡包含的特殊效果列表")]
     public List<SpecialEffect> specialEffects = new List<SpecialEffect>();
 
+    [Header("持续效果")]
+    public List<ContinuousEffect> continuousEffects = new List<ContinuousEffect>();
+
     [Header("背景故事")]
     [Tooltip("卡牌的背景故事或描述")]
     [TextArea(3, 6)]
@@ -134,6 +145,7 @@ public class CardRuntimeData
     public int Speed;
     public int FaithCost;
     public List<SpecialEffect> SpecialEffects;
+    public List<ContinuousEffect> ContinuousEffects;
     public bool CanPlaceFront;
     public bool CanPlaceBack;
     public Sprite CardArt;
@@ -153,6 +165,7 @@ public class CardRuntimeData
         Speed = so.speed;
         FaithCost = so.faithCost;
         SpecialEffects = new List<SpecialEffect>(so.specialEffects);
+        ContinuousEffects = new List<ContinuousEffect>(so.continuousEffects);
         CanPlaceFront = so.canPlaceFront;
         CanPlaceBack = so.canPlaceBack;
         CardArt = so.cardArt;
@@ -177,5 +190,11 @@ public class CardRuntimeData
     public bool HasEffect(SpecialEffect effect)
     {
         return SpecialEffects.Contains(effect);
+    }
+
+    public bool HasStatusEffect(ContinuousEffect effect)
+    {
+        return ContinuousEffects.Contains(effect);
+        
     }
 }

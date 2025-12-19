@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
     public bool isGameOver = false;
     
     [Header("阶段设置")]
-    public float playerActionTime = 30f;   // 玩家行动时间
-    public float enemyActionTime = 15f;    // 敌人行动时间
+    public float playerActionTime = 300f;   // 玩家行动时间
+    public float enemyActionTime = 150f;    // 敌人行动时间
     public float cardActionDelay = 1f;     // 卡牌行动间隔
     
     // 新增：卡牌行动队列
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         enemyBattlefield = enemy.battlefield;
     }
     
-    // 开始游戏（修改版）
+    // 开始游戏
     public void StartGame()
     {
         if (isGameOver) return;
@@ -167,20 +167,37 @@ public class GameManager : MonoBehaviour
         Debug.Log("敌人AI开始行动...");
         
         // 敌人抽卡
-        if (enemy != null)
-        {
-            CardEntity drawnCard = enemy.DrawCard();
-            if (drawnCard != null)
-            {
-                Debug.Log($"敌人抽到: {drawnCard.CardData.CardName}");
-                yield return new WaitForSeconds(0.5f);
-            }
-        }
+        //if (enemy != null)
+        //{
+        //    CardEntity drawnCard = enemy.DrawCard();
+        //    if (drawnCard != null)
+        //    {
+        //        Debug.Log($"敌人抽到: {drawnCard.CardData.CardName}");
+        //        yield return new WaitForSeconds(0.5f);
+        //    }
+        //}
         
         // 敌人出牌逻辑（简单示例）
-        
-        // 等待一点时间，然后结束敌人阶段
-        yield return new WaitForSeconds(1f);
+        if(enemy.handZone.GetAllCards() != null)
+        {
+            CardEntity card = null;
+            bool isFrontRow = true;
+            while(card == null)
+            {
+                card = enemy.handZone.GetCardAtPosition(true, UnityEngine.Random.Range(0, 5));
+                yield return new WaitForSeconds(0.05f);
+            }
+            if(UnityEngine.Random.Range(0, 2) == 0)
+            {
+                isFrontRow = false;
+            }
+            while(!enemy.battlefield.PlaceCardAtPosition(card, isFrontRow, isFrontRow?UnityEngine.Random.Range(0, 3):UnityEngine.Random.Range(0, 2), enemy.handZone))
+            {
+                yield return new WaitForSeconds(0.05f);
+            }
+            // 等待一点时间，然后结束敌人阶段
+            yield return new WaitForSeconds(1f);
+        }
         
         EndEnemyActionPhase();
     }
@@ -248,7 +265,7 @@ public class GameManager : MonoBehaviour
             }
             return speedCompare;
         });
-        
+
         // 触发队列准备好事件
         OnActionQueueReady?.Invoke(actionQueue);
     }
@@ -262,7 +279,7 @@ public class GameManager : MonoBehaviour
         {
             CardEntity card = actionQueue[currentActionIndex];
             
-            if (card == null || !card.IsAlive || card.HasActedThisTurn) continue;
+            if (card == null || !card.CardData.IsAlive || card.HasActedThisTurn) continue;
             
             Debug.Log($"[行动 {currentActionIndex + 1}/{actionQueue.Count}] " +
                      $"{card.CardData.CardName} (速度: {card.CardData.Speed}) 行动");
@@ -297,24 +314,22 @@ public class GameManager : MonoBehaviour
     {
         // 这里调用卡牌自身的行动逻辑
         // 例如：攻击、治疗、施法等
-        
         if (card.HasActionAbility)
         {
-            // 如果有特殊行动能力，执行它
-            yield return StartCoroutine(card.ExecuteAction());
+            if(card.CardData.HasEffect(SpecialEffect.MeleeAttack))
+            {
+                StartCoroutine(PerformMeleeAttack(card));
+            }
+
         }
-        else
-        {
-            // 默认行动：攻击
-            yield return StartCoroutine(PerformDefaultAttack(card));
-        }
+        yield return null;
     }
     
-    // 默认攻击行动
-    private IEnumerator PerformDefaultAttack(CardEntity attacker)
+    // 近战攻击行动
+    private IEnumerator PerformMeleeAttack(CardEntity attacker)
     {
         // 确定攻击目标
-        CardEntity target = FindAttackTarget(attacker);
+        CardEntity target = FindMeleeAttackTarget(attacker);
         
         if (target != null)
         {
@@ -334,12 +349,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            
         }
     }
     
     // 查找攻击目标
-    private CardEntity FindAttackTarget(CardEntity attacker)
+    private CardEntity FindMeleeAttackTarget(CardEntity attacker)
     {
         // 确定攻击方是玩家还是敌人
         bool isAttackerPlayer = attacker.Owner == player;
@@ -354,19 +368,82 @@ public class GameManager : MonoBehaviour
         List<CardEntity> targets = new List<CardEntity>(opponentBattlefield.GetAllCards());
         
         // 移除已经死亡的卡牌
-        targets.RemoveAll(card => !card.IsAlive);
+        targets.RemoveAll(card => !card.CardData.IsAlive);
         
         if (targets.Count == 0) return null;
-        
-        // 优先攻击前排（如果有的话）
-        List<CardEntity> frontRowTargets = targets.FindAll(card => card.IsInFrontRow);
-        if (frontRowTargets.Count > 0)
+
+        CardEntity target = null;
+
+        if(attacker.IsInFrontRow)
         {
-            return frontRowTargets[Random.Range(0, frontRowTargets.Count)];
+            if(attacker.positionindex == 0)
+            {
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 2);
+                if(target != null)
+                return target;
+
+                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 1);
+                if(target != null)
+                return target;
+            }
+            if(attacker.positionindex == 1)
+            {
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 2);
+                if(target != null)
+                return target;
+                
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 1);
+                if(target != null)
+                return target;
+
+                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 1);
+                if(target != null)
+                return target;
+
+                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 0);
+                if(target != null)
+                return target;
+            }
+            if(attacker.positionindex == 2)
+            {
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 1);
+                if(target != null)
+                return target;
+                
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 0);
+                if(target != null)
+                return target;
+
+                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 0);
+                if(target != null)
+                return target;
+            }
         }
-        
-        // 否则随机选择
-        return targets[Random.Range(0, targets.Count)];
+        else
+        {
+            if(attacker.positionindex == 0)
+            {
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 2);
+                if(target != null)
+                return target;
+
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 1);
+                if(target != null)
+                return target;
+            }
+            if(attacker.positionindex == 1)
+            {
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 1);
+                if(target != null)
+                return target;
+                
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 0);
+                if(target != null)
+                return target;
+            }
+        }
+
+        return target;
     }
     
     
@@ -402,7 +479,7 @@ public class GameManager : MonoBehaviour
         {
             foreach (CardEntity card in playerBattlefield.GetAllCards())
             {
-                if (card != null && !card.IsAlive)
+                if (card != null && !card.CardData.IsAlive)
                 {
                     cardsToRemove.Add(card);
                 }
@@ -410,6 +487,7 @@ public class GameManager : MonoBehaviour
             
             foreach (CardEntity deadCard in cardsToRemove)
             {
+                Debug.Log("移除" + deadCard.name);
                 playerBattlefield.RemoveCard(deadCard);
                 Destroy(deadCard.gameObject);
             }
@@ -422,7 +500,7 @@ public class GameManager : MonoBehaviour
         {
             foreach (CardEntity card in enemyBattlefield.GetAllCards())
             {
-                if (card != null && !card.IsAlive)
+                if (card != null && !card.CardData.IsAlive)
                 {
                     cardsToRemove.Add(card);
                 }
@@ -485,6 +563,7 @@ public class GameManager : MonoBehaviour
             if (card != null)
             {
                 card.HasActedThisTurn = false;
+                card.HasActionAbility = true;
             }
         }
     }
@@ -499,7 +578,7 @@ public class GameManager : MonoBehaviour
         
         foreach (CardEntity card in allCards)
         {
-            if (card != null && card.IsAlive)
+            if (card != null && card.CardData.IsAlive)
             {
                 card.ProcessEndTurnEffects();
             }
@@ -512,14 +591,14 @@ public class GameManager : MonoBehaviour
         // 示例：每回合恢复少量Faith
         if (player != null && player.resourceSystem != null)
         {
-            player.resourceSystem.CurrentFaith += 1;
-            Debug.Log("玩家恢复1点Faith");
+            player.resourceSystem.CurrentFaith += player.resourceSystem.CalculateFaithGain();
+            Debug.Log("玩家恢复Faith");
         }
         
         if (enemy != null && enemy.resourceSystem != null)
         {
-            enemy.resourceSystem.CurrentFaith += 1;
-            Debug.Log("敌人恢复1点Faith");
+            enemy.resourceSystem.CurrentFaith += enemy.resourceSystem.CalculateFaithGain();
+            Debug.Log("敌人恢复Faith");
         }
     }
     
@@ -692,5 +771,13 @@ public class GameManager : MonoBehaviour
         {
             RestartGame();
         }
+    }
+
+    void OnDestroy()
+    {
+        Debug.Log("游戏结束，摧毁游戏管理器");
+        player.cardDatabase.RestorePlayerDeckFromBackup();
+        enemy.cardDatabase.RestorePlayerDeckFromBackup();
+        
     }
 }

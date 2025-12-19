@@ -102,7 +102,7 @@ public class ResourceSystem
     }
     
     // 计算Faith增长（Hope高时增长慢，低时增长快）
-    private int CalculateFaithGain()
+    public int CalculateFaithGain()
     {
         float hopeRatio = (float)_currentHope / maxHope;
         

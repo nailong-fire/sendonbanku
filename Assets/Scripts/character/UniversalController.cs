@@ -65,8 +65,8 @@ public class UniversalController : MonoBehaviour
         
         if (battlefield != null)
         {
-            battlefield.frontRowCount = 2;
-            battlefield.backRowCount = 3;
+            battlefield.frontRowCount = 3;
+            battlefield.backRowCount = 2;
         }
     }
 
@@ -191,7 +191,7 @@ public class UniversalController : MonoBehaviour
         if (card == null || handZone == null) return;
         
         // 添加到手牌区域
-        bool placed = handZone.AutoPlaceCard(card, true);
+        bool placed = handZone.AutoPlaceCard(card, null, true);
         if (placed)
         {
             _handCards.Add(card);
@@ -265,88 +265,6 @@ public class UniversalController : MonoBehaviour
         return null;
     }
     
-    // 在指定位置打出卡牌
-    public virtual bool PlayCardToPosition(CardEntity card, CardZone.CardPosition position)
-    {
-        if (card == null || position == null || battlefield == null) return false;
-        
-        // 消耗资源
-        if (!resourceSystem.SpendFaith(card.CardData.FaithCost)) return false;
-        
-        // 放置到战场
-        bool placed = battlefield.PlaceCardAtPosition(
-            card, 
-            position.isFrontRow, 
-            position.positionIndex
-        );
-        
-        if (placed)
-        {
-            RemoveCardFromHand(card);
-            cardsPlayedThisTurn++;
-            
-            OnCardPlayed?.Invoke(card);
-            
-            Debug.Log($"{characterName} 打出 {card.CardData.CardName}");
-            
-            return true;
-        }
-        
-        return false;
-    }
-    
-    // 开始回合
-    public virtual void StartTurn()
-    {
-        isMyTurn = true;
-        canPlayCards = true;
-        cardsPlayedThisTurn = 0;
-        
-        // 回合开始获得Faith
-        resourceSystem.EndTurnGainFaith();
-        
-        // 抽一张牌
-        DrawCard();
-        
-        // 更新手牌可打出状态
-        UpdateHandCardsPlayability();
-        
-        // 触发事件
-        OnTurnStart?.Invoke(this);
-
-        if (uiController != null)
-        {
-            uiController.ShowTurnIndicator(true);
-        }
-        
-        Debug.Log($"{characterName} 的回合开始");
-    }
-    
-    // 结束回合
-    public virtual void EndTurn()
-    {
-        isMyTurn = false;
-        canPlayCards = false;
-        
-        // 更新手牌状态
-        foreach (var card in _handCards)
-        {
-            card.SetPlayable(false);
-        }
-        
-        // 检查战场状态（Hope增减规则）
-        CheckBattlefieldHopeRules();
-        
-        // 触发事件
-        OnTurnEnd?.Invoke(this);
-
-        if (uiController != null)
-        {
-            uiController.ShowTurnIndicator(false);
-        }
-        
-        Debug.Log($"{characterName} 的回合结束");
-    }
     
     // 检查战场Hope规则
     protected virtual void CheckBattlefieldHopeRules()

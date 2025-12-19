@@ -25,12 +25,11 @@ public class CardEntity : MonoBehaviour
     // 新增回合制相关属性
     [Header("回合制属性")]
     public bool HasActedThisTurn = false;
-    public bool IsAlive = true;
     public bool HasActionAbility = false;
+
+    [Header("位置属性")]
     public bool IsInFrontRow = false;
-
-    [Header("所有者")]
-
+    public int positionindex = 0;
 
     // 卡牌运行时数据
     private CardRuntimeData _cardData;
@@ -172,10 +171,10 @@ public class CardEntity : MonoBehaviour
         // 播放受伤特效
         StartCoroutine(DamageEffect());
 
-        if (!_cardData.IsAlive)
-        {
-            OnDeath();
-        }
+        //if (!_cardData.IsAlive)
+        //{
+        //    OnDeath();
+        //}
     }
 
     // 治疗
@@ -275,26 +274,6 @@ public class CardEntity : MonoBehaviour
     }
 
 
-    // 鼠标进入（悬停）
-    private void OnMouseEnter()
-    {
-        if (!_isSelected)
-        {
-            // 悬停效果：略微放大
-            transform.localScale = Vector3.one * 0.15f;
-        }
-    }
-
-    // 鼠标离开
-    private void OnMouseExit()
-    {
-        if (!_isSelected)
-        {
-            transform.localScale = Vector3.one * 0.1f;
-        }
-    }
-
-
     // 是否可以攻击目标
     public bool CanAttackTarget(CardEntity target)
     {
@@ -325,10 +304,15 @@ public class CardEntity : MonoBehaviour
     // 执行行动
     public IEnumerator ExecuteAction()
     {
-        // 这里实现卡牌的特殊行动逻辑
+        // 这里实现卡牌的行动逻辑
         // 例如：治疗友军、施放法术等
         
-        Debug.Log($"{CardData.CardName} 执行特殊行动");
+        Debug.Log($"{CardData.CardName} 执行行动");
+
+        if(_cardData.HasEffect(SpecialEffect.MeleeAttack))
+        {
+            
+        }
         
         yield return new WaitForSeconds(0.5f);
     }
@@ -339,26 +323,19 @@ public class CardEntity : MonoBehaviour
         // 处理持续伤害/治疗等效果
         // 例如：中毒每回合扣血，恢复每回合回血
         
-        if (HasStatusEffect("Poison"))
+        if (_cardData.HasStatusEffect(ContinuousEffect.Poison))
         {
             TakeDamage(1);
             Debug.Log($"{CardData.CardName} 受到中毒伤害");
         }
         
-        if (HasStatusEffect("Regeneration"))
+        if (_cardData.HasStatusEffect(ContinuousEffect.Regeneration))
         {
             // Heal(1);
             Debug.Log($"{CardData.CardName} 受到恢复效果");
         }
     }
     
-    
-    private bool HasStatusEffect(string effectName)
-    {
-        // 检查是否有某个状态效果
-        // 实现状态效果系统
-        return false;
-    }
     
     private void HealAllies()
     {

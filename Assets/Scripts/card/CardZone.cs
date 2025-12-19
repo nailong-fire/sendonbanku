@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,18 +16,18 @@ public class CardZone : MonoBehaviour
         // 是否是前排位置
         public bool isFrontRow;
         
-        // 位置索引（前排0-1，后排0-2）
+        // 位置索引（前排0-2，后排0-1）
         public int positionIndex;
     }
     
     [Header("区域基本信息")]
     public string zoneName = "战场区域";
-    public int maxCards = 5; // 2前排 + 3后排
+    public int maxCards = 5; // 3前排 + 2后排
     public bool isPlayerZone = true; // true=玩家区域，false=敌人区域
     
     [Header("前后排划分")]
-    public int frontRowCount = 2;
-    public int backRowCount = 3;
+    public int frontRowCount = 3;
+    public int backRowCount = 2;
     
     [Header("位置点")]
     public Transform[] frontRowPositions; // 前排位置点
@@ -125,10 +126,9 @@ public class CardZone : MonoBehaviour
     }
     
     // 在指定位置放置卡牌
-    public bool PlaceCardAtPosition(CardEntity card, bool isFrontRow, int positionIndex)
+    public bool PlaceCardAtPosition(CardEntity card, bool isFrontRow, int positionIndex, CardZone handzone)
     {
         CardPosition position = FindPosition(isFrontRow, positionIndex);
-        
         if (position == null)
         {
             Debug.LogWarning($"位置不存在: {(isFrontRow ? "前排" : "后排")}_{positionIndex}");
@@ -151,7 +151,17 @@ public class CardZone : MonoBehaviour
         // 放置卡牌
         position.isOccupied = true;
         position.occupiedCard = card;
-        
+        card.IsInFrontRow = isFrontRow;
+        card.positionindex = positionIndex;
+
+        if(handzone != null)
+        {
+            Vector3 originposition = card.transform.position;
+            int originpositionindex = handzone.GetPositionIndexAtPoint_handzone(originposition);
+            CardPosition origincardposition = handzone.FindPosition(true,originpositionindex);
+            origincardposition.isOccupied = false;
+            origincardposition.occupiedCard = null;
+        }
 
         StartCoroutine(PlayCardMoveAnimation(card, position.positionTransform != null ? position.positionTransform.position : card.transform.position));
 
@@ -173,7 +183,7 @@ public class CardZone : MonoBehaviour
     }
     
     // 自动放置卡牌（找到第一个合适的位置）
-    public bool AutoPlaceCard(CardEntity card, bool preferFrontRow = true)
+    public bool AutoPlaceCard(CardEntity card, CardZone handzone, bool preferFrontRow = true)
     {
         // 先尝试首选行
         var positions = preferFrontRow ? GetFrontRowPositions() : GetBackRowPositions();
@@ -194,7 +204,7 @@ public class CardZone : MonoBehaviour
         
         // 选择第一个可用位置
         CardPosition selectedPosition = positions[0];
-        return PlaceCardAtPosition(card, selectedPosition.isFrontRow, selectedPosition.positionIndex);
+        return PlaceCardAtPosition(card, selectedPosition.isFrontRow, selectedPosition.positionIndex, handzone);
     }
     
     // 检查卡牌是否可以放置在指定行
@@ -502,7 +512,7 @@ public class CardZone : MonoBehaviour
         }
     }
     
-    public int GetPositionIndexAtPoint(Vector3 point, out bool isFrontRow)
+    public int GetPositionIndexAtPoint_battlefield(Vector3 point, out bool isFrontRow)
     {
         isFrontRow = false;
         float closestDistance = float.MaxValue;
@@ -534,7 +544,40 @@ public class CardZone : MonoBehaviour
         }
 
         if(!isFrontRow)
-        closestIndex -= 2;
+        closestIndex -= 3;
+        
+        return closestIndex;
+    }
+
+    public int GetPositionIndexAtPoint_handzone(Vector3 point)
+    {
+
+        float closestDistance = float.MaxValue;
+        int closestIndex = -1;
+        
+        for (int i = 0; i < _cardPositions.Count; i++)
+        {
+            var position = _cardPositions[i];
+            Vector3 pos;
+            if (position.positionTransform != null)
+            {
+                pos = position.positionTransform.position;
+            }
+            else
+            {
+                pos = transform.position + new Vector3(
+                    position.isFrontRow ? position.positionIndex - 0.5f : position.positionIndex - 1,
+                    0,
+                    position.isFrontRow ? 0 : -1);
+            }
+            
+            float distance = Vector3.Distance(point, pos);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestIndex = i;
+            }
+        }
         
         return closestIndex;
     }
@@ -567,6 +610,7 @@ public class CardZone : MonoBehaviour
         
         // 确保最终位置正确
         card.transform.position = targetPos;
+        card.transform.position = new Vector3(card.transform.position.x, card.transform.position.y, -1);
         card.transform.rotation = Quaternion.identity;
         card.transform.localScale = startScale;
     }
