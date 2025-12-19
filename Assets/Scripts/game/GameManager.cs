@@ -721,6 +721,13 @@ public class GameManager : MonoBehaviour
         OnPhaseChange?.Invoke(TurnPhase.GameOver);
         OnGameOver?.Invoke(playerWon);
 
+        Debug.Log("游戏结束，摧毁游戏管理器");
+        player.cardDatabase.RestorePlayerDeckFromBackup();
+        enemy.cardDatabase.RestorePlayerDeckFromBackup();
+        GameInitializer gameInitializer = FindObjectOfType<GameInitializer>();
+        gameInitializer.DestroyExistingObjects();
+        gameInitializer.gameObject.SetActive(false);
+
         Destroy(gameObject);
     }
     
@@ -806,13 +813,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void OnDestroy()
-    {
-        Debug.Log("游戏结束，摧毁游戏管理器");
-        player.cardDatabase.RestorePlayerDeckFromBackup();
-        enemy.cardDatabase.RestorePlayerDeckFromBackup();
-        GameInitializer gameInitializer = FindObjectOfType<GameInitializer>();
-        gameInitializer.DestroyExistingObjects();
-        gameInitializer.gameObject.SetActive(false);
-    }
 }
