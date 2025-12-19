@@ -1517,6 +1517,8 @@ MonoBehaviour:
     content: "\u6211\u4EEC\u5FC5\u987B\u4FDD\u62A4\u77F3\u7A9F\uFF0C\u62B5\u6297\u90AA\u795F\uFF01"
   - speaker: "\u8001\u6751\u957F"
     content: "\u603B\u4E4B\u4F60\u51C6\u5907\u597D\u6218\u6597\u4E86\u5417"
+  - speaker: "\u8001\u6751\u957F"
+    content: "\u603B\u4E4B\u4F60\u51C6\u5907\u597D\u6218\u6597\u4E86\u5417"
   npcName: "\u8001\u6751\u957F"
   showBattleChoice: 1
   battleSceneName: cardbattle
@@ -1943,6 +1945,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1194547332}
+  - component: {fileID: 1194547333}
+  - component: {fileID: 1194547334}
   m_Layer: 0
   m_Name: BGM
   m_TagString: Untagged
@@ -1966,6 +1970,36 @@ Transform:
   - {fileID: 1397194294}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1194547333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194547331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb96908b1c2681d448fb790c30e3aae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 1397194295}
+  mapMusic: {fileID: 8300000, guid: 69c3dee66de5f404ba6b97d746e5be3d, type: 3}
+  battleMusic: {fileID: 8300000, guid: 66b1ff4302894e844a7f5f8454688038, type: 3}
+--- !u!114 &1194547334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194547331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f321e5b528d20b40b59f1014b81c252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 1397194295}
+  mapMusic: {fileID: 8300000, guid: 69c3dee66de5f404ba6b97d746e5be3d, type: 3}
+  battleMusic: {fileID: 8300000, guid: 66b1ff4302894e844a7f5f8454688038, type: 3}
 --- !u!1 &1397194293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2689,7 +2723,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f0ddcce6dfe38c3409191a14c1c923cd, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6d9ce5270a7a5e349ae5fb7856f35de7, type: 2}
   m_sharedMaterial: {fileID: -6542529623415622863, guid: f0ddcce6dfe38c3409191a14c1c923cd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2753,7 +2787,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &2137865767

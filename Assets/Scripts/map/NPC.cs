@@ -96,6 +96,10 @@ public class NPCInteract : MonoBehaviour
         if (dialogController != null)
             dialogController.EndDialog();
 
+        // 切换到战斗音乐（常驻音乐管理器）
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.PlayBattleMusic();
+
         // 使用过渡效果切换场景
         if (SceneTransition.Instance != null)
         {

@@ -725,6 +725,16 @@ public class GameManager : MonoBehaviour
         OnPhaseChange?.Invoke(TurnPhase.GameOver);
         OnGameOver?.Invoke(playerWon);
 
+        // 播放胜利/失败播报UI
+        var announcer = FindObjectOfType<GameResultAnnouncer>();
+        if (announcer != null)
+        {
+            if (playerWon)
+                announcer.ShowWin();
+            else
+                announcer.ShowLose();
+        }
+
         Debug.Log("游戏结束，摧毁游戏管理器");
         player.cardDatabase.RestorePlayerDeckFromBackup();
         enemy.cardDatabase.RestorePlayerDeckFromBackup();
