@@ -25,7 +25,7 @@ public class CardEntity : MonoBehaviour
     // 新增回合制相关属性
     [Header("回合制属性")]
     public bool HasActedThisTurn = false;
-    public bool HasActionAbility = false;
+    public bool HasActionAbility = true;
 
     [Header("位置属性")]
     public bool IsInFrontRow = false;

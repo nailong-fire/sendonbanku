@@ -106,8 +106,7 @@ MonoBehaviour:
   cardGlow: {fileID: 7156091534230244835}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   HasActedThisTurn: 0
-  IsAlive: 1
-  HasActionAbility: 0
+  HasActionAbility: 1
   IsInFrontRow: 0
   positionindex: 0
   _owner: {fileID: 0}

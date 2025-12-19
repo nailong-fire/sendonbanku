@@ -265,37 +265,6 @@ public class UniversalController : MonoBehaviour
         return null;
     }
     
-    
-    // 检查战场Hope规则
-    protected virtual void CheckBattlefieldHopeRules()
-    {
-        if (battlefield == null) return;
-        
-        int cardCount = battlefield.GetCardCount();
-        
-        if (cardCount == 0)
-        {
-            // 场上无卡牌，减少Hope
-            resourceSystem.CurrentHope -= 2;
-            Debug.Log($"{characterName} 场上无卡牌，Hope -2");
-        }
-        else
-        {
-            // 场上有卡牌，增加Hope
-            resourceSystem.CurrentHope += 1;
-            Debug.Log($"{characterName} 场上有卡牌，Hope +1");
-        }
-    }
-    
-    // 更新手牌可打出状态
-    protected virtual void UpdateHandCardsPlayability()
-    {
-        foreach (var card in _handCards)
-        {
-            card.SetPlayable(true);
-        }
-    }
-    
     // 从弃牌堆回收卡牌
     protected virtual void RecycleDiscardPile()
     {
@@ -367,14 +336,14 @@ public class UniversalController : MonoBehaviour
     {
         int baseLoss = 1;
         
-        if (card.CardData.FaithCost >= 5)
+        if (card.CardData.FaithCost >= 3)
         {
             baseLoss += 1; // 高消耗卡牌多减1点
         }
-        
-        if (card.CardData.Rarity == Rarity.Epic || card.CardData.Rarity == Rarity.Legendary)
+
+        if (card.CardData.FaithCost >= 5)
         {
-            baseLoss += 1; // 稀有卡牌多减1点
+            baseLoss += 2; // 高消耗卡牌多减1点
         }
         
         return baseLoss;

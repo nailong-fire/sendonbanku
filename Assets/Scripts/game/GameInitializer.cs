@@ -232,10 +232,6 @@ public class GameInitializer : MonoBehaviour
                 settings.enemyStartingHandSize
             ));
         }
-        
-        
-        yield return new WaitForSeconds(5f);
-        gameObject.SetActive(false);
 
         yield return null;
     }
@@ -249,12 +245,6 @@ public class GameInitializer : MonoBehaviour
         if (mainCamera == null)
         {
             mainCamera = Camera.main;
-        }
-        
-        // 创建回合指示器
-        if (turnIndicatorPrefab != null)
-        {
-            CreateTurnIndicators();
         }
         
         yield return null;
@@ -286,57 +276,6 @@ public class GameInitializer : MonoBehaviour
     //{
     //}
     
-    
-    // 创建战场位置点
-    private void CreateBattlefieldPositions(CardZone battlefield)
-    {
-        if (battlefield == null) return;
-        
-        // 创建前排位置
-        List<Transform> frontPositions = new List<Transform>();
-        for (int i = 0; i < battlefield.frontRowCount; i++)
-        {
-            GameObject posObj = new GameObject($"Position_Front_{i}");
-            posObj.transform.SetParent(battlefield.transform);
-            posObj.transform.localPosition = new Vector3(
-                i - (battlefield.frontRowCount - 1) * 0.5f,
-                0,
-                0
-            );
-            frontPositions.Add(posObj.transform);
-        }
-        
-        // 创建后排位置
-        List<Transform> backPositions = new List<Transform>();
-        for (int i = 0; i < battlefield.backRowCount; i++)
-        {
-            GameObject posObj = new GameObject($"Position_Back_{i}");
-            posObj.transform.SetParent(battlefield.transform);
-            posObj.transform.localPosition = new Vector3(
-                i - (battlefield.backRowCount - 1) * 0.5f,
-                0,
-                1
-            );
-            backPositions.Add(posObj.transform);
-        }
-        
-        battlefield.frontRowPositions = frontPositions.ToArray();
-        battlefield.backRowPositions = backPositions.ToArray();
-        
-        // 重新初始化位置
-        var initMethod = battlefield.GetType().GetMethod("InitializePositions");
-        if (initMethod != null)
-        {
-            initMethod.Invoke(battlefield, null);
-        }
-    }
-    
-    // 初始化角色卡组
-    private void InitializeCharacterDeck(UniversalController character, List<string> cardIds, bool isPlayer)
-    {
-        Debug.Log($"{(isPlayer ? "玩家" : "敌人")}卡组初始化: {cardDatabase.playerDeckCardIds.Count} 张卡牌");
-    }
-    
     // 抽初始手牌
     private IEnumerator DrawStartingHand(UniversalController character, int handSize)
     {
@@ -360,35 +299,6 @@ public class GameInitializer : MonoBehaviour
         Debug.Log($"{character.characterName} 初始手牌: {character.GetHandCount()} 张");
     }
     
-    // 创建回合指示器
-    private void CreateTurnIndicators()
-    {
-        Debug.Log("创建回合指示器...");
-
-        if (_player != null && turnIndicatorPrefab != null)
-        {
-            GameObject playerIndicator = Instantiate(
-                turnIndicatorPrefab,
-                _player.transform.position + Vector3.up * 3,
-                Quaternion.identity,
-                _player.transform
-            );
-            playerIndicator.name = "PlayerTurnIndicator";
-            playerIndicator.SetActive(false); // 默认隐藏
-        }
-        
-        if (_enemy != null && turnIndicatorPrefab != null)
-        {
-            GameObject enemyIndicator = Instantiate(
-                turnIndicatorPrefab,
-                _enemy.transform.position + Vector3.up * 3,
-                Quaternion.identity,
-                _enemy.transform
-            );
-            enemyIndicator.name = "EnemyTurnIndicator";
-            enemyIndicator.SetActive(false); // 默认隐藏
-        }
-    }
     
     // 确保必要组件存在
     private void EnsureEssentialComponents()
@@ -487,14 +397,34 @@ public class GameInitializer : MonoBehaviour
     }
     
     // 销毁现有对象
-    private void DestroyExistingObjects()
+    public void DestroyExistingObjects()
     {
         if (_player != null) Destroy(_player.gameObject);
         if (_enemy != null) Destroy(_enemy.gameObject);
-        if (_playerBattlefield != null) Destroy(_playerBattlefield.gameObject);
-        if (_playerHandZone != null) Destroy(_playerHandZone.gameObject);
-        if (_enemyBattlefield != null) Destroy(_enemyBattlefield.gameObject);
-        if (_enemyHandZone != null) Destroy(_enemyHandZone.gameObject);
+        if (_playerBattlefield != null) 
+        {
+            foreach(CardEntity card in _playerBattlefield.GetAllCards())
+            Destroy(card.gameObject);
+            Destroy(_playerBattlefield.gameObject);
+        }
+        if (_playerHandZone != null) 
+        {
+            foreach(CardEntity card in _playerHandZone.GetAllCards())
+            Destroy(card.gameObject);
+            Destroy(_playerHandZone.gameObject);
+        }
+        if (_enemyBattlefield != null) 
+        {
+            foreach(CardEntity card in _enemyBattlefield.GetAllCards())
+            Destroy(card.gameObject);
+            Destroy(_enemyBattlefield.gameObject);
+        }
+        if (_enemyHandZone != null) 
+        {
+            foreach(CardEntity card in _enemyHandZone.GetAllCards())
+            Destroy(card.gameObject);
+            Destroy(_enemyHandZone.gameObject);
+        }
         
         _player = null;
         _enemy = null;

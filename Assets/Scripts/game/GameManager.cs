@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
                 card = enemy.handZone.GetCardAtPosition(true, UnityEngine.Random.Range(0, 5));
                 yield return new WaitForSeconds(0.05f);
             }
-            
+
             if(UnityEngine.Random.Range(0, 2) == 0)
             {
                 isFrontRow = false;
@@ -494,7 +494,7 @@ public class GameManager : MonoBehaviour
             
             foreach (CardEntity deadCard in cardsToRemove)
             {
-                Debug.Log("移除" + deadCard.name);
+                Debug.Log(player.name + "的" + deadCard.name + "损坏");
                 playerBattlefield.RemoveCard(deadCard);
                 Destroy(deadCard.gameObject);
             }
@@ -515,6 +515,7 @@ public class GameManager : MonoBehaviour
             
             foreach (CardEntity deadCard in cardsToRemove)
             {
+                Debug.Log(enemy.name + "的" + deadCard.name + "损坏");
                 enemyBattlefield.RemoveCard(deadCard);
                 Destroy(deadCard.gameObject);
             }
@@ -598,14 +599,28 @@ public class GameManager : MonoBehaviour
         // 示例：每回合恢复少量Faith
         if (player != null && player.resourceSystem != null)
         {
-            player.resourceSystem.CurrentFaith += player.resourceSystem.CalculateFaithGain();
-            Debug.Log("玩家恢复Faith");
+            if(player.battlefield.GetAllCards() != null)
+            {
+                player.resourceSystem.CurrentFaith += player.resourceSystem.CalculateFaithGain();
+                Debug.Log("玩家恢复Faith");
+            }
+            else
+            {
+                player.resourceSystem.CurrentFaith -= 3;
+            }
         }
         
         if (enemy != null && enemy.resourceSystem != null)
         {
-            enemy.resourceSystem.CurrentFaith += enemy.resourceSystem.CalculateFaithGain();
-            Debug.Log("敌人恢复Faith");
+            if(enemy.battlefield.GetAllCards() != null)
+            {
+                enemy.resourceSystem.CurrentFaith += enemy.resourceSystem.CalculateFaithGain();
+                Debug.Log("敌人恢复Faith");
+            }
+            else
+            {
+                enemy.resourceSystem.CurrentFaith -= 3;
+            }
         }
     }
     
@@ -654,7 +669,7 @@ public class GameManager : MonoBehaviour
         }
         
         // 检查回合限制（如果有）
-        if (currentTurn > 50) // 可以配置
+        if (currentTurn > 100) // 可以配置
         {
             EndGameByTurnLimit();
             return;
@@ -701,6 +716,8 @@ public class GameManager : MonoBehaviour
         // 触发游戏结束事件
         OnPhaseChange?.Invoke(TurnPhase.GameOver);
         OnGameOver?.Invoke(playerWon);
+
+        Destroy(gameObject);
     }
     
     // 公共方法：获取当前阶段信息
@@ -778,6 +795,11 @@ public class GameManager : MonoBehaviour
         {
             RestartGame();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            EndGame(false,"玩家主动退出");
+        }
     }
 
     void OnDestroy()
@@ -785,6 +807,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("游戏结束，摧毁游戏管理器");
         player.cardDatabase.RestorePlayerDeckFromBackup();
         enemy.cardDatabase.RestorePlayerDeckFromBackup();
-        
+        GameInitializer gameInitializer = FindObjectOfType<GameInitializer>();
+        gameInitializer.DestroyExistingObjects();
+        gameInitializer.gameObject.SetActive(false);
     }
 }
