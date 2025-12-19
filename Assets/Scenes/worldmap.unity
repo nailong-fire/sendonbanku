@@ -1946,7 +1946,7 @@ GameObject:
   - component: {fileID: 1194547333}
   - component: {fileID: 1194547334}
   m_Layer: 0
-  m_Name: Backgroundmusic
+  m_Name: BGM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -202,6 +202,10 @@ public class GameManager : MonoBehaviour
                 {
                     isFrontRow = false;
                 }
+                else
+                {
+                    isFrontRow = true;
+                }
                 yield return new WaitForSeconds(0.05f);
             }
             // 等待一点时间，然后结束敌人阶段
