@@ -187,12 +187,19 @@ public class GameManager : MonoBehaviour
                 card = enemy.handZone.GetCardAtPosition(true, UnityEngine.Random.Range(0, 5));
                 yield return new WaitForSeconds(0.05f);
             }
+            
             if(UnityEngine.Random.Range(0, 2) == 0)
             {
                 isFrontRow = false;
             }
+            yield return new WaitForSeconds(0.05f);
+
             while(!enemy.battlefield.PlaceCardAtPosition(card, isFrontRow, isFrontRow?UnityEngine.Random.Range(0, 3):UnityEngine.Random.Range(0, 2), enemy.handZone))
             {
+                if(UnityEngine.Random.Range(0, 2) == 0)
+                {
+                    isFrontRow = false;
+                }
                 yield return new WaitForSeconds(0.05f);
             }
             // 等待一点时间，然后结束敌人阶段
