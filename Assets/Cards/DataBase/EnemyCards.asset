@@ -17,14 +17,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0c89aec0b70de574ab14818335c3d856, type: 2}
   - {fileID: 11400000, guid: 61da3577827b3114c96cae4e38602424, type: 2}
   playerOwnedCardIds: []
-  playerDeckCardIds:
-  - 001
-  - 001
-  - 001
-  - 001
-  - 001
-  - 001
-  - 001
-  - 001
-  - 001
+  playerDeckCardIds: []
   playerDiscardPileCardIds: []

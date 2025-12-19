@@ -180,8 +180,9 @@ public class GameManager : MonoBehaviour
         //}
         
         // 敌人出牌逻辑（简单示例）
-        if(enemy.handZone.GetAllCards() != null)
+        if(enemy.handZone.GetCardCount() != 0)
         {
+            Debug.Log("敌人出牌");
             CardEntity card = null;
             bool isFrontRow = true;
             while(card == null)
@@ -650,7 +651,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         
         // 开始下一回合的玩家行动阶段
-        StartPlayerActionPhase();
+        StartEnemyActionPhase();
     }
     
     // 检查游戏结束条件（修改版）
