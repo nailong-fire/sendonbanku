@@ -95,8 +95,6 @@ public class CharacterUIController : MonoBehaviour, ICharacterUI
     
     public void UpdateFaithUI(int currentFaith, int maxFaith, int changeAmount)
     {
-
-        Debug.Log("=====================================");
         if (faithText != null)
         {
             faithText.text = currentFaith.ToString();

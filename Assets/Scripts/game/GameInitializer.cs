@@ -194,7 +194,7 @@ public class GameInitializer : MonoBehaviour
     
     private IEnumerator InitializeDeckAndHand()
     {
-        Debug.Log("初始化卡组和手牌...");
+        Debug.Log("备份卡组和分发手牌...");
         
         // 初始化玩家
         if (_player != null)
@@ -232,6 +232,8 @@ public class GameInitializer : MonoBehaviour
                 settings.enemyStartingHandSize
             ));
         }
+
+        GameManager.Instance.StartGame();
 
         yield return null;
     }
@@ -452,9 +454,9 @@ public class GameInitializer : MonoBehaviour
         {
             if (IsInitialized && !IsGameStarted)
             {
+                ConnectGameManager();
                 StartCoroutine(InitializeDeckAndHand());
                 ConnectGameManager();
-                GameManager.Instance.StartGame();
                 IsGameStarted = true;
             }
             else 
