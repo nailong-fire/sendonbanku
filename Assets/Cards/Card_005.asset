@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Card_005
   m_EditorClassIdentifier: 
   cardId: 005
-  cardName: "\u5F25\u52D2\u4F5B"
+  cardName: 005
   description: 
   cardType: 0
   rarity: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Card_006
   m_EditorClassIdentifier: 
   cardId: 006
-  cardName: "\u50E7\u4EBA\u6619\u66DC"
+  cardName: 006
   description: 
   cardType: 3
   rarity: 0

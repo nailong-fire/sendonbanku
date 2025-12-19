@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Card_004
   m_EditorClassIdentifier: 
   cardId: 004
-  cardName: "\u91D1\u521A\u529B\u58EB"
+  cardName: 004
   description: 
   cardType: 2
   rarity: 0
