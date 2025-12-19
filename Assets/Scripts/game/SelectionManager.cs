@@ -121,6 +121,7 @@ public class SelectionManager : MonoBehaviour
         else
         {
             Debug.Log("未点击到任何对象");
+            CancelSelection();
             // 检查UI上的点击（如果是UI，使用不同方法）
         }
     }

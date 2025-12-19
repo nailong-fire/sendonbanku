@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/worldmap.unity
     guid: a8028da11f5251c418c6d2e3d3102f60
   - enabled: 1
     path: Assets/Scenes/cardbattle.unity
