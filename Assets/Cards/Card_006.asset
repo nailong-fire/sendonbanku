@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bde68c0377d783e40b4909686769a129, type: 3}
-  m_Name: Card_003
+  m_Name: Card_006
   m_EditorClassIdentifier: 
-  cardId: 003
-  cardName: "\u98DE\u5929"
-  description: 
+  cardId: 006
+  cardName: "\u50E7\u4EBA\u6619\u66DC"
+  description: "\u5361\u724C\u63CF\u8FF0"
   cardType: 3
   rarity: 0
-  cardArt: {fileID: 21300000, guid: 53d0f6978f560fa41b9cbd70a751293f, type: 3}
+  cardArt: {fileID: 21300000, guid: 08d1bf2cdd059b448a5d95da848fccd6, type: 3}
   cardFrame: {fileID: 0}
-  cardBackground: {fileID: 21300000, guid: 53d0f6978f560fa41b9cbd70a751293f, type: 3}
+  cardBackground: {fileID: 0}
   health: 5
   power: 3
   speed: 5
-  faithCost: 0
+  faithCost: 1
   canPlaceFront: 1
   canPlaceBack: 1
-  specialEffects: 00000000
+  specialEffects: 
   continuousEffects: 
-  story: "\u8FD9\u5F20\u5361\u724C\u4E0E\u4E91\u5188\u77F3\u7A9F\u7684\u6545\u4E8B..."
+  story: "\u8FD9\u662F\u5361\u724C\u7684\u80CC\u666F\u6545\u4E8B\u793A\u4F8B..."

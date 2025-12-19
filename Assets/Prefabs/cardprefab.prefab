@@ -104,7 +104,7 @@ MonoBehaviour:
   nameText: {fileID: 8838053875342883481}
   descriptionText: {fileID: 4850713193273529437}
   cardGlow: {fileID: 7156091534230244835}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  normalColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0}
   HasActedThisTurn: 0
   HasActionAbility: 1
   IsInFrontRow: 0
@@ -268,7 +268,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -276,7 +276,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3516692619030762238
