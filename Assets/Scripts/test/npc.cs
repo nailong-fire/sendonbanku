@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NPCInteract : MonoBehaviour
+public class NPCInteract2D : MonoBehaviour
 {
     [Header("References")]
     public DialogController dialogController;   // 对话控制器
-    public PlayerMovement playerMovement;       // 玩家移动脚本
+    public PlayerMovement2D playerMovement;       // 玩家移动脚本
 
     [Header("Dialog")]
     public DialogLine[] dialogLines;            // 这个 NPC 的对话内容
@@ -15,7 +15,7 @@ public class NPCInteract : MonoBehaviour
 
     [Header("Battle Settings")]
     public bool showBattleChoice = true;        // 对话结束后是否显示战斗选项
-    public string battleSceneName = "BattleScene";  // 战斗场景名称
+    public string battleSceneName = "cardbattle";  // 战斗场景名称
 
     [Header("Input")]
     public KeyCode interactKey = KeyCode.E;

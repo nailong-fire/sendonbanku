@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -739,6 +740,16 @@ public class GameManager : MonoBehaviour
         gameInitializer.DestroyExistingObjects();
         gameInitializer.gameObject.SetActive(false);
 
+        if (SceneTransition.Instance != null)
+        {
+            SceneTransition.Instance.LoadScene("test");
+        }
+        else
+        {
+            // 如果没有过渡管理器，直接切换
+            SceneManager.LoadScene("test");
+        }
+
         Destroy(gameObject);
     }
     
@@ -801,7 +812,6 @@ public class GameManager : MonoBehaviour
         return null;
     }
     
-    // 原有更新方法保留
     private void Update()
     {
         // 快捷键

@@ -17,9 +17,9 @@ MonoBehaviour:
   description: 
   cardType: 2
   rarity: 0
-  cardArt: {fileID: 21300000, guid: 3a2f3d716dd71de4a95bdb38ebbcd76a, type: 3}
+  cardArt: {fileID: 21300000, guid: 2c93d12cb07457444b76c33ac440bd67, type: 3}
   cardFrame: {fileID: 0}
-  cardBackground: {fileID: 21300000, guid: 3a2f3d716dd71de4a95bdb38ebbcd76a, type: 3}
+  cardBackground: {fileID: 0}
   health: 5
   power: 3
   speed: 5
