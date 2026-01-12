@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     public float playerActionTime = 300f;   // 玩家行动时间
     public float enemyActionTime = 150f;    // 敌人行动时间
     public float cardActionDelay = 1f;     // 卡牌行动间隔
-    
+
     // 新增：卡牌行动队列
     private List<CardEntity> actionQueue = new List<CardEntity>();
     private int currentActionIndex = 0;

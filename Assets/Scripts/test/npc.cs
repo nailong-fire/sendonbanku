@@ -5,7 +5,7 @@ public class NPCInteract2D : MonoBehaviour
 {
     [Header("References")]
     public DialogController dialogController;   // 对话控制器
-    public PlayerMovement2D playerMovement;       // 玩家移动脚本
+    public PlayerMovement2D playerMovement;       // 玩家移动脚本  
 
     [Header("Dialog")]
     public DialogLine[] dialogLines;            // 这个 NPC 的对话内容
@@ -61,12 +61,12 @@ public class NPCInteract2D : MonoBehaviour
             dialogController.StartDialog(
                 npcName,       // 保留作为默认名字（如果 DialogLine 没填 speaker 可以用）
                 dialogLines,
-                OnDialogEnd    // ⭐ 关键：统一出口
+                OnDialogEnd    // 关键：统一出口
             );
         }
     }
 
-    // ⭐ 对话文本全部播完后调用
+    // 对话文本全部播完后调用
     void OnDialogEnd()
     {
         // 如果需要显示战斗选项
@@ -99,6 +99,7 @@ public class NPCInteract2D : MonoBehaviour
         // 切换到战斗音乐（常驻音乐管理器）
         if (MusicManager.Instance != null)
             MusicManager.Instance.PlayBattleMusic();
+        
 
         // 使用过渡效果切换场景
         if (SceneTransition.Instance != null)

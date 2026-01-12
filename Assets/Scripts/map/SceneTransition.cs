@@ -15,6 +15,8 @@ public class SceneTransition : MonoBehaviour
     public float fadeDuration = 0.5f;       // 淡入淡出时长
     public Color fadeColor = Color.black;   // 过渡颜色（黑色/白色）
 
+    private GameObject player;
+    private Vector3 playerPosition;
     private Image fadeImage;
     private Canvas fadeCanvas;
     private bool isTransitioning = false;
@@ -89,6 +91,12 @@ public class SceneTransition : MonoBehaviour
     {
         isTransitioning = true;
 
+        if(sceneName == "cardbattle")
+        {
+            player = GameObject.FindWithTag("Player");
+            playerPosition = player.transform.position;
+        }
+
         // 淡出（画面变黑）
         yield return StartCoroutine(Fade(0, 1));
 
@@ -97,6 +105,14 @@ public class SceneTransition : MonoBehaviour
 
         // 等待一帧确保场景加载完成
         yield return null;
+
+        if(sceneName != "cardbattle")
+        {
+            // 将玩家传送回原位置
+            player = GameObject.FindWithTag("Player");
+            Camera.main.transform.position = new Vector3(playerPosition.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
+            player.transform.position = playerPosition;
+        }
 
         // 淡入（画面恢复）
         yield return StartCoroutine(Fade(1, 0));

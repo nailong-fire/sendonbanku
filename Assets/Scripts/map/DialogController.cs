@@ -38,7 +38,7 @@ public class DialogController : MonoBehaviour
         if (waitingForChoice) return;  // 等待选择时不响应点击
         if (lines == null || lines.Length == 0) return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             HandleClick();
         }
