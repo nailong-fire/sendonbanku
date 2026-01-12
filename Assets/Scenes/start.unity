@@ -1551,7 +1551,7 @@ GameObject:
   - component: {fileID: 1317739025}
   - component: {fileID: 1317739024}
   m_Layer: 0
-  m_Name: somebody
+  m_Name: unknow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2531,10 +2531,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogController: {fileID: 2011272602}
   dialogLines:
-  - speaker: somebody
-    content: 1
+  - speaker: 
+    content: Red, all the red, you woke up and found your firend already dead in
+      a blood pool.
+  - speaker: 
+    content: That's not a common scene even in this time, yet somehow you were not
+      that surprised.
+  - speaker: unknow
+    content: You seem not surprised.
+  - speaker: 
+    content: A man in black suddenly talked to you, reavling his presence.
+  - speaker: unknow
+    content: And if you want to ask, no, it' s not me who killed him.
   - speaker: you
-    content: 1
+    content: ......then who are you?
+  - speaker: unknow
+    content: You know the caves over there?
+  - speaker: 
+    content: He pointed north.
+  - speaker: You
+    content: Yeah.
+  - speaker: unknow
+    content: There are a settlement.I am the leader.Though it's still dark, maybe
+      you should come with me, and then we talk about your friend's death.
+  - speaker: 
+    content: "His voice was low and deep as hell, but when he turned, you glimpsed
+      his eyes\u2014and within them, that same old sadness. "
+  - speaker: 
+    content: And you might have no choice but to follow him.
   npcName: somebody
 --- !u!1 &2011272601
 GameObject:
