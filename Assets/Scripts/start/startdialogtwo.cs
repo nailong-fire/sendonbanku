@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class startdialogtwo : MonoBehaviour
 {
@@ -22,5 +24,15 @@ public class startdialogtwo : MonoBehaviour
     {
         if (dialogController != null)
             dialogController.EndDialog();
+        
+        if (SceneTransition.Instance != null)
+        {
+            SceneTransition.Instance.LoadScene("test");
+        }
+        else
+        {
+            // 如果没有过渡管理器，直接切换
+            SceneManager.LoadScene("test");
+        }
     }
 }

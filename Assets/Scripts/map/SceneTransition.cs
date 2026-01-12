@@ -16,7 +16,7 @@ public class SceneTransition : MonoBehaviour
     public Color fadeColor = Color.black;   // 过渡颜色（黑色/白色）
 
     private GameObject player;
-    private Vector3 playerPosition;
+    private Vector3 playerPosition = Vector3.zero;
     private Image fadeImage;
     private Canvas fadeCanvas;
     private bool isTransitioning = false;
@@ -106,7 +106,7 @@ public class SceneTransition : MonoBehaviour
         // 等待一帧确保场景加载完成
         yield return null;
 
-        if(sceneName != "cardbattle")
+        if(sceneName != "cardbattle" && playerPosition != Vector3.zero)
         {
             // 将玩家传送回原位置
             player = GameObject.FindWithTag("Player");
