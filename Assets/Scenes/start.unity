@@ -2033,10 +2033,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogController: {fileID: 2011272602}
   dialogLines:
+  - speaker: 
+    content: This world, has been in ruins for a long time......
+  - speaker: 
+    content: North. You wanderers, adrift and without a path, have only that one
+      direction.  that very direction.
+  - speaker: 
+    content: "For the old legends speak of salvation coming from the North, and a
+      miracle seems to prove them right: in certain caves, ancient Buddha statues
+      still stand\u2014silent sentinels passed down from"
   - speaker: friend
-    content: 1
+    content: Do you really believe in the Buddha that the elderly are always talking
+      on about, the savior?
   - speaker: you
-    content: 1
+    content: I don't know.
+  - speaker: friend
+    content: Yet you still followed me here.
+  - speaker: you
+    content: Heard that someone has already established a settlement there.
+  - speaker: 
+    content: Your friend turned, a sharp edge of anger in his voice.
+  - speaker: friend
+    content: New settlements, new hope... always the same story, but it never works
+      out. It's all meaningless.
+  - speaker: friend
+    content: ......just like ours.
+  - speaker: friend
+    content: 'But rumor has it that through all these years, and all these disasters,
+      there are still Buddha statues standing there. '
+  - speaker: friend
+    content: Isn't this the very Buddha the old ones pray to, and our true salvation?
+  - speaker: friend
+    content: ......the only salvation.
+  - speaker: 
+    content: "He turned, faced you with a hopeful smile, yet his eyes betrayed a
+      familiar sadness\u2014that same helpless despair you recognized as a legacy
+      from all those who came before, from all who were gone."
+  - speaker: 
+    content: You wanna say something, but the night is deep and you all have to sleep.
+  - speaker: 
+    content: He lay still, the ghost of that smile lingering, though his eyes were
+      shut.
+  - speaker: 
+    content: And you fall in sleep......
   npcName: friend
   nextdialog: {fileID: 1732682298}
 --- !u!4 &1536204990
