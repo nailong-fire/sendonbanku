@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameInitializer : MonoBehaviour
 {
@@ -73,6 +74,12 @@ public class GameInitializer : MonoBehaviour
     
     private void Awake()
     {
+        if (SceneManager.GetActiveScene().name != "cardbattle")
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         if (_instance == null)
         {
             _instance = this;
