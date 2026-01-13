@@ -4,18 +4,18 @@ using UnityEngine.SceneManagement;
 public class NPCInteract2D : MonoBehaviour
 {
     [Header("References")]
-    public DialogController dialogController;   // 对话控制器
-    public PlayerMovement2D playerMovement;       // 玩家移动脚本  
+    public DialogController dialogController;
+    public PlayerMovement2D playerMovement;
 
     [Header("Dialog")]
-    public DialogLine[] dialogLines;            // 这个 NPC 的对话内容
+    public DialogLine[] dialogLines;
 
     [Header("NPC Info")]
     public string npcName = "unknown";
 
     [Header("Battle Settings")]
-    public bool showBattleChoice = true;        // 对话结束后是否显示战斗选项
-    public string battleSceneName = "cardbattle";  // 战斗场景名称
+    public bool showBattleChoice = true;
+    public string battleSceneName = "cardbattle";
 
     [Header("Input")]
     public KeyCode interactKey = KeyCode.E;
@@ -30,21 +30,6 @@ public class NPCInteract2D : MonoBehaviour
         {
             OpenDialog();
         }
-
-        // ESC 任何时候都能强制退出
-        if (dialogOpen && Input.GetKeyDown(KeyCode.Escape))
-        {
-            ForceCloseDialog();
-        }
-    }
-
-    // ESC 强制退出
-    void ForceCloseDialog()
-    {
-        if (dialogController != null)
-            dialogController.EndDialog();
-        
-        FinishDialog();
     }
 
     void OpenDialog()
@@ -55,13 +40,13 @@ public class NPCInteract2D : MonoBehaviour
         if (playerMovement != null)
             playerMovement.EnableMove(false);
 
-        // 开始对话，并注册"结束回调"
+        // 开始对话
         if (dialogController != null)
         {
             dialogController.StartDialog(
-                npcName,       // 保留作为默认名字（如果 DialogLine 没填 speaker 可以用）
+                npcName,
                 dialogLines,
-                OnDialogEnd    // 关键：统一出口
+                OnDialogEnd
             );
         }
     }
@@ -69,61 +54,47 @@ public class NPCInteract2D : MonoBehaviour
     // 对话文本全部播完后调用
     void OnDialogEnd()
     {
-        // 如果需要显示战斗选项
         if (showBattleChoice && dialogController != null)
         {
-            // 对话框保持打开，显示选项按钮
             dialogController.ShowChoices(
-                "准备好了",          // 选项1文字
-                OnChoiceReady,       // 选项1回调
-                "还需要准备",        // 选项2文字
-                OnChoiceNotReady     // 选项2回调
+                "准备好了",
+                OnChoiceReady,
+                "还需要准备",
+                OnChoiceNotReady
             );
         }
         else
         {
-            // 没有选项，直接关闭对话
             if (dialogController != null)
                 dialogController.EndDialog();
             FinishDialog();
         }
     }
 
-    // 选择"准备好了" → 进入战斗场景
+    // 选择“准备好了”
     void OnChoiceReady()
     {
-        // 关闭对话UI
         if (dialogController != null)
             dialogController.EndDialog();
 
-        // 切换到战斗音乐（常驻音乐管理器）
         if (MusicManager.Instance != null)
             MusicManager.Instance.PlayBattleMusic();
-        
 
-        // 使用过渡效果切换场景
         if (SceneTransition.Instance != null)
-        {
             SceneTransition.Instance.LoadScene(battleSceneName);
-        }
         else
-        {
-            // 如果没有过渡管理器，直接切换
             SceneManager.LoadScene(battleSceneName);
-        }
     }
 
-    // 选择"还需要准备" → 结束对话，恢复移动
+    // 选择“还需要准备”
     void OnChoiceNotReady()
     {
-        // 关闭对话UI
         if (dialogController != null)
             dialogController.EndDialog();
-        
+
         FinishDialog();
     }
 
-    // 真正结束对话的逻辑
     void FinishDialog()
     {
         dialogOpen = false;
@@ -135,16 +106,12 @@ public class NPCInteract2D : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {
             playerInRange = true;
-        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {
             playerInRange = false;
-        }
     }
 }
