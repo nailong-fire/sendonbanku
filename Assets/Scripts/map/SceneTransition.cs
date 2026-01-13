@@ -100,6 +100,15 @@ public class SceneTransition : MonoBehaviour
         // 淡出（画面变黑）
         yield return StartCoroutine(Fade(0, 1));
 
+        // ⭐ 在黑屏时切BGM（听感最好）
+        if (MusicManager.Instance != null)
+        {
+            if (sceneName == "cardbattle")
+                MusicManager.Instance.PlayBattleMusic();
+            else
+                MusicManager.Instance.PlayMapMusic();
+        }
+
         // 加载新场景
         SceneManager.LoadScene(sceneName);
 

@@ -93,7 +93,7 @@ public class NPCInteract : MonoBehaviour
         GameState.Instance.story.battleUnlocked = true;
 
         dialogController.EndDialog();
-        SceneManager.LoadScene(battleSceneName);
+        SceneTransition.Instance.LoadScene(battleSceneName);
     }
 
     void OnChoiceNotReady()

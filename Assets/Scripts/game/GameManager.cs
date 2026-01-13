@@ -740,15 +740,12 @@ public class GameManager : MonoBehaviour
         gameInitializer.DestroyExistingObjects();
         gameInitializer.gameObject.SetActive(false);
 
-        if (SceneTransition.Instance != null)
+        if (SceneTransition.Instance == null)
         {
-            SceneTransition.Instance.LoadScene("test");
+            Debug.LogError("SceneTransition not found. Scene change aborted.");
+            return;
         }
-        else
-        {
-            // 如果没有过渡管理器，直接切换
-            SceneManager.LoadScene("test");
-        }
+        SceneTransition.Instance.LoadScene("test");
 
         Destroy(gameObject);
     }
