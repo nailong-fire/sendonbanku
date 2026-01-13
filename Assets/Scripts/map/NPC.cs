@@ -20,6 +20,9 @@ public class NPCInteract : MonoBehaviour
     [Header("Input")]
     public KeyCode interactKey = KeyCode.E;
 
+    [Header("UI")]
+    public GameObject talkHint;
+
     private bool playerInRange = false;
     private bool dialogOpen = false;
 
@@ -114,11 +117,21 @@ public class NPCInteract : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) playerInRange = true;
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+            if (talkHint != null)
+                talkHint.SetActive(true);
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) playerInRange = false;
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+            if (talkHint != null)
+                talkHint.SetActive(false);
+        }
     }
 }
