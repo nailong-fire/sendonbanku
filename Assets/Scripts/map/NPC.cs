@@ -4,18 +4,18 @@ using UnityEngine.SceneManagement;
 public class NPCInteract : MonoBehaviour
 {
     [Header("References")]
-    public DialogController dialogController;   // 对话控制器
-    public PlayerMovement playerMovement;       // 玩家移动脚本
+    public DialogController dialogController;
+    public PlayerMovement playerMovement;
 
-    [Header("Dialog")]
-    public DialogLine[] dialogLines;            // 这个 NPC 的对话内容
+    [Header("Dialog Sets")]
+    public DialogLine[] firstMeetDialog;   // 第一次：背景故事
+    public DialogLine[] readyDialog;       // 准备询问：“你准备好了吗？”
 
     [Header("NPC Info")]
-    public string npcName = "unknown";
+    public string npcName = "VillageChief";
 
-    [Header("Battle Settings")]
-    public bool showBattleChoice = true;        // 对话结束后是否显示战斗选项
-    public string battleSceneName = "BattleScene";  // 战斗场景名称
+    [Header("Battle")]
+    public string battleSceneName = "cardbattle";
 
     [Header("Input")]
     public KeyCode interactKey = KeyCode.E;
@@ -23,127 +23,102 @@ public class NPCInteract : MonoBehaviour
     private bool playerInRange = false;
     private bool dialogOpen = false;
 
+    // ⭐ 用来区分：这次结束回调是“长剧情结束”还是“准备询问结束”
+    private enum DialogStage { None, FirstStory, ReadyAsk }
+    private DialogStage currentStage = DialogStage.None;
+
     void Update()
     {
-        // 按 E 开始对话
         if (playerInRange && !dialogOpen && Input.GetKeyDown(interactKey))
-        {
             OpenDialog();
-        }
 
-        // ESC 任何时候都能强制退出
         if (dialogOpen && Input.GetKeyDown(KeyCode.Escape))
-        {
             ForceCloseDialog();
-        }
-    }
-
-    // ESC 强制退出
-    void ForceCloseDialog()
-    {
-        if (dialogController != null)
-            dialogController.EndDialog();
-        
-        FinishDialog();
     }
 
     void OpenDialog()
     {
         dialogOpen = true;
+        if (playerMovement != null) playerMovement.EnableMove(false);
 
-        // 冻结玩家
-        if (playerMovement != null)
-            playerMovement.EnableMove(false);
+        bool isFirstMeet = !GameState.Instance.story.metVillageChief;
 
-        // 开始对话，并注册"结束回调"
-        if (dialogController != null)
+        if (isFirstMeet)
         {
-            dialogController.StartDialog(
-                npcName,       // 保留作为默认名字（如果 DialogLine 没填 speaker 可以用）
-                dialogLines,
-                OnDialogEnd    // ⭐ 关键：统一出口
-            );
+            // 第一次：先播长剧情
+            currentStage = DialogStage.FirstStory;
+
+            // ⭐ 第一次打开就标记（避免任何情况下重复）
+            GameState.Instance.story.metVillageChief = true;
+
+            dialogController.StartDialog(npcName, firstMeetDialog, OnDialogEnd);
+        }
+        else
+        {
+            // 非第一次：直接播“准备好了吗？”
+            currentStage = DialogStage.ReadyAsk;
+            dialogController.StartDialog(npcName, readyDialog, OnDialogEnd);
         }
     }
 
-    // ⭐ 对话文本全部播完后调用
     void OnDialogEnd()
     {
-        // 如果需要显示战斗选项
-        if (showBattleChoice && dialogController != null)
+        // ⭐ 如果刚播完的是“第一次长剧情”，那就立刻接上 readyDialog
+        if (currentStage == DialogStage.FirstStory)
         {
-            // 对话框保持打开，显示选项按钮
-            dialogController.ShowChoices(
-                "准备好了",          // 选项1文字
-                OnChoiceReady,       // 选项1回调
-                "还需要准备",        // 选项2文字
-                OnChoiceNotReady     // 选项2回调
-            );
+            currentStage = DialogStage.ReadyAsk;
+            dialogController.StartDialog(npcName, readyDialog, OnDialogEnd);
+            return;
         }
-        else
+
+        // ⭐ 播完 readyDialog 后才弹选项
+        if (currentStage == DialogStage.ReadyAsk)
         {
-            // 没有选项，直接关闭对话
-            if (dialogController != null)
-                dialogController.EndDialog();
-            FinishDialog();
+            dialogController.ShowChoices(
+                "准备好了",
+                OnChoiceReady,
+                "还没准备好",
+                OnChoiceNotReady
+            );
+            return;
         }
     }
 
-    // 选择"准备好了" → 进入战斗场景
     void OnChoiceReady()
     {
-        // 关闭对话UI
-        if (dialogController != null)
-            dialogController.EndDialog();
+        GameState.Instance.story.readyForBattle = true;
+        GameState.Instance.story.battleUnlocked = true;
 
-        // 切换到战斗音乐（常驻音乐管理器）
-        if (MusicManager.Instance != null)
-            MusicManager.Instance.PlayBattleMusic();
-
-        // 使用过渡效果切换场景
-        if (SceneTransition.Instance != null)
-        {
-            SceneTransition.Instance.LoadScene(battleSceneName);
-        }
-        else
-        {
-            // 如果没有过渡管理器，直接切换
-            SceneManager.LoadScene(battleSceneName);
-        }
+        dialogController.EndDialog();
+        SceneManager.LoadScene(battleSceneName);
     }
 
-    // 选择"还需要准备" → 结束对话，恢复移动
     void OnChoiceNotReady()
     {
-        // 关闭对话UI
-        if (dialogController != null)
-            dialogController.EndDialog();
-        
+        dialogController.EndDialog();
         FinishDialog();
     }
 
-    // 真正结束对话的逻辑
+    void ForceCloseDialog()
+    {
+        dialogController.EndDialog();
+        FinishDialog();
+    }
+
     void FinishDialog()
     {
         dialogOpen = false;
-
-        if (playerMovement != null)
-            playerMovement.EnableMove(true);
+        currentStage = DialogStage.None;
+        if (playerMovement != null) playerMovement.EnableMove(true);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
+        if (other.CompareTag("Player")) playerInRange = true;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-        }
+        if (other.CompareTag("Player")) playerInRange = false;
     }
 }
