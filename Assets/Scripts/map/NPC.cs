@@ -44,6 +44,9 @@ public class NPCInteract : MonoBehaviour
         dialogOpen = true;
         if (playerMovement != null) playerMovement.EnableMove(false);
 
+        if (talkHint != null)
+            talkHint.SetActive(false);
+
         bool isFirstMeet = !GameState.Instance.story.metVillageChief;
 
         if (isFirstMeet)
