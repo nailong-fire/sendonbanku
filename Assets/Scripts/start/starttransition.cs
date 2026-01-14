@@ -28,6 +28,7 @@ public class StartTransition : MonoBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
         // 创建过渡用的 UI
         CreateFadeUI();
     }
@@ -62,7 +63,7 @@ public class StartTransition : MonoBehaviour
     }
 
     /// <summary>
-    /// 带过渡效果加载场景
+    /// 带过渡效果加载指定场景。
     /// </summary>
     public void LoadScene()
     {
