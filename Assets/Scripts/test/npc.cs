@@ -23,6 +23,7 @@ public class NPCInteract2D : MonoBehaviour
     private bool playerInRange = false;
     private bool dialogOpen = false;
     private bool ismoving = false;
+    private float originalY;
 
     void Update()
     {
@@ -42,7 +43,7 @@ public class NPCInteract2D : MonoBehaviour
             
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y +0.025f, gameObject.transform.position.z); 
 
-            if(gameObject.transform.position.y >= 0.25f)
+            if(gameObject.transform.position.y - originalY >= 0.25f || gameObject.transform.position.y >= 0.25f)
             {
                 ismoving = false;
                 if (playerMovement != null)
@@ -73,6 +74,7 @@ public class NPCInteract2D : MonoBehaviour
     // 对话文本全部播完后调用
     void OnDialogEnd()
     {
+        originalY = gameObject.transform.position.y;
         ismoving = true;
         
         if (dialogController != null)

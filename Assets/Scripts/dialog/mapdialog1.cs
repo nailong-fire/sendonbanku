@@ -27,7 +27,7 @@ public class mapdialog1 : MonoBehaviour
 
         GameObject leader = GameObject.Find("leader");
 
-        leader.transform.position = new Vector3(-205.0f, leader.transform.position.y, leader.transform.position.z);
+        leader.transform.position = new Vector3(-205.0f, 0.25f, leader.transform.position.z);
         
         if (nextdialog != null)
             nextdialog.SetActive(true);
