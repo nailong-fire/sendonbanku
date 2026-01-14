@@ -4,7 +4,7 @@
 
 本项目没有使用任何模板，游戏中人物背景，人物形象为组员余星晨手绘，其余图片为组员集体AI生成。项目代码没有使用任何初始模板，为本组成员从零搭建。
 
-本项目在github上有备份，链接为**[https://github.com/nailong-fire/sendonbanku](https://github.com/nailong-fire/sendonbanku)**
+本项目在github上有备份，链接为[https://github.com/nailong-fire/sendonbanku](https://github.com/nailong-fire/sendonbanku)
 
 ## 环境需求
 

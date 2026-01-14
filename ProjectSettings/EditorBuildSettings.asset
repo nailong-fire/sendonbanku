@@ -6,11 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/worldmap.unity
-    guid: a8028da11f5251c418c6d2e3d3102f60
-  - enabled: 1
-    path: Assets/Scenes/cardbattle.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/Initial.unity
+    guid: 7c63968617c5ae14b8df56c562ca81f2
   - enabled: 1
     path: Assets/Scenes/start.unity
     guid: 217300ff2a7739042b8b89d5332bf951
@@ -20,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/map.unity
     guid: 9f8d3e5185fa3ba409b1c1170edbaffe
+  - enabled: 1
+    path: Assets/Scenes/worldmap.unity
+    guid: a8028da11f5251c418c6d2e3d3102f60
+  - enabled: 1
+    path: Assets/Scenes/cardbattle.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects: {}
