@@ -1053,7 +1053,7 @@ GameObject:
   - component: {fileID: 470206038}
   - component: {fileID: 470206037}
   - component: {fileID: 470206036}
-  - component: {fileID: 470206035}
+  - component: {fileID: 470206040}
   m_Layer: 0
   m_Name: the stupid
   m_TagString: Untagged
@@ -1061,66 +1061,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &470206035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470206034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61accf6b68dd2fb4d94b76453ec73f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 1568406113}
-  dialogLines:
-  - speaker: The stupid
-    content: You found a person wearing a robe similar to the Leader's, blocking
-      your way. He only stares at you and seems to have no intention of moving.
-  - speaker: The stupid
-    content: ...
-  - speaker: You
-    content: ...
-  - speaker: The stupid
-    content: ......
-  - speaker: You
-    content: ......
-  - speaker: The stupid
-    content: .........
-  - speaker: You
-    content: .........
-  - speaker: You
-    content: ...hey, may I have a pass?
-  - speaker: 
-    content: Finally, he was no longer fixed on you, his eyes having shifted to the
-      darkness of the cave at his side.
-  - speaker: The stupid
-    content: I saaaaaaaaaw that.
-  - speaker: 
-    content: "He dragged out the word \u201Csaw\u201D, like an idiot. He is an idoit."
-  - speaker: You
-    content: What?
-  - speaker: 
-    content: He turned back to face you again.
-  - speaker: The stupid
-    content: I saaaaaaaaaaaaaaaw that.
-  - speaker: The stupid
-    content: The leader just gave you a starter deck, riiiight? I saaaaaw that. That
-      means you're a newbie, riiiight? I knew it. Never try to cheat me.
-  - speaker: You
-    content: ......
-  - speaker: The stupid
-    content: Duel.
-  - speaker: You
-    content: ......
-  - speaker: The stupid
-    content: Duel.
-  npcName: 1
-  showBattleChoice: 1
-  battleSceneName: cardbattle
-  interactKey: 101
 --- !u!61 &470206036
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1278,6 +1218,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 105287907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &470206040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470206034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae552e66e88ef04785f3025b0534bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogController: {fileID: 275334918}
+  playerMovement: {fileID: 1568406113}
+  dialogs:
+  - {fileID: 11400000, guid: a8ddf5494174ee546a0770b993909b45, type: 2}
+  npcName: VillageChief
+  battleSceneName: cardbattle
+  interactKey: 101
+  talkHint: {fileID: 0}
 --- !u!1 &543644629
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,7 +2351,7 @@ GameObject:
   - component: {fileID: 1338226786}
   - component: {fileID: 1338226785}
   - component: {fileID: 1338226784}
-  - component: {fileID: 1338226783}
+  - component: {fileID: 1338226787}
   m_Layer: 0
   m_Name: the little
   m_TagString: Untagged
@@ -2414,58 +2374,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 105287907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1338226783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338226781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61accf6b68dd2fb4d94b76453ec73f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 1568406113}
-  dialogLines:
-  - speaker: The llittle
-    content: "Hey!Hey!!! \u2014\u2014 Stop!!!!!!!!!!!"
-  - speaker: 
-    content: You hear a really loud greeting...... from below.
-  - speaker: 
-    content: "So you look down \u2014\u2014 a little girl."
-  - speaker: 
-    content: And she' s angy.
-  - speaker: The little
-    content: How come everyone's always playing this trick on me? Am I really so
-      so small? They gave me this itty-bitty cave to live in!
-  - speaker: You
-    content: Sorry.
-  - speaker: The little
-    content: "Okay, fine, I forgive you! I saw you take down that dummy \u2014\u2014
-      he's, like, the lamest one of us Four Heavenly Kings!"
-  - speaker: 
-    content: She gave you a smile that was both cute and proud.
-  - speaker: The little
-    content: "Not bad at all\u2026 for a beginner. But let\u2019s see if you can
-      handle someone who\u2019s actually strong, like me!"
-  - speaker: You
-    content: ......
-  - speaker: The little
-    content: ......
-  - speaker: 
-    content: You look down and she looks up.
-  - speaker: You
-    content: ......
-  - speaker: The little
-    content: ......
-  - speaker: The little
-    content: ...you don't wanna play with me?
-  npcName: 1
-  showBattleChoice: 1
-  battleSceneName: cardbattle
-  interactKey: 101
 --- !u!61 &1338226784
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2608,6 +2516,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1338226787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338226781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae552e66e88ef04785f3025b0534bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogController: {fileID: 275334918}
+  playerMovement: {fileID: 1568406113}
+  dialogs:
+  - {fileID: 11400000, guid: 33c8925a1e93d594d88bf6d9d3673cbb, type: 2}
+  npcName: VillageChief
+  battleSceneName: cardbattle
+  interactKey: 101
+  talkHint: {fileID: 0}
 --- !u!1 &1352394244
 GameObject:
   m_ObjectHideFlags: 0
@@ -4126,7 +4054,7 @@ GameObject:
   - component: {fileID: 2007353929}
   - component: {fileID: 2007353928}
   - component: {fileID: 2007353927}
-  - component: {fileID: 2007353926}
+  - component: {fileID: 2007353930}
   m_Layer: 0
   m_Name: the sorrowful
   m_TagString: Untagged
@@ -4149,53 +4077,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 105287907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2007353926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007353924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61accf6b68dd2fb4d94b76453ec73f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 1568406113}
-  dialogLines:
-  - speaker: 
-    content: A woman is standing on the road, gazing up at the cave.
-  - speaker: The sorrowful
-    content: There used to be a head.
-  - speaker: 
-    content: She's talking to you, her voice like a flowing stream.
-  - speaker: You
-    content: Where is it now?
-  - speaker: The sorrowful
-    content: Gone.
-  - speaker: 
-    content: She turned to face you. You saw her deep blue eyes.
-  - speaker: The sorrowful
-    content: Where are you from?
-  - speaker: You
-    content: South. Away from here.
-  - speaker: The sorrowful
-    content: A settlement like here?
-  - speaker: You
-    content: Yeah.
-  - speaker: The sorrowful
-    content: And......?
-  - speaker: You
-    content: Gone.
-  - speaker: 
-    content: She looks up from her slight bow, eyes meeting yours.
-  - speaker: The sorrowful
-    content: Would you sit with me? We could play cards here.
-  npcName: 1
-  showBattleChoice: 1
-  battleSceneName: cardbattle
-  interactKey: 101
 --- !u!61 &2007353927
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4338,6 +4219,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2007353930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007353924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae552e66e88ef04785f3025b0534bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogController: {fileID: 275334918}
+  playerMovement: {fileID: 1568406113}
+  dialogs:
+  - {fileID: 11400000, guid: 02430f8728fa61947879b84a59a70976, type: 2}
+  npcName: VillageChief
+  battleSceneName: cardbattle
+  interactKey: 101
+  talkHint: {fileID: 0}
 --- !u!1 &2052165691
 GameObject:
   m_ObjectHideFlags: 0
@@ -4605,7 +4506,7 @@ GameObject:
   - component: {fileID: 2096896957}
   - component: {fileID: 2096896956}
   - component: {fileID: 2096896955}
-  - component: {fileID: 2096896954}
+  - component: {fileID: 2096896958}
   m_Layer: 0
   m_Name: the lost
   m_TagString: Untagged
@@ -4628,56 +4529,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 105287907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2096896954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2096896952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61accf6b68dd2fb4d94b76453ec73f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 1568406113}
-  dialogLines:
-  - speaker: The lost
-    content: Heeey there... How's today going?
-  - speaker: 
-    content: "The man greeting you has a sleepy look, propped against a nearby stone
-      column and casually blocking your path\u2014simply with his long legs."
-  - speaker: The lost
-    content: Hah, bad question. Today might have just begun, right? Living here...
-      it makes me dizzy.
-  - speaker: 
-    content: His eyes roll...... and fix on you.
-  - speaker: The lost
-    content: But seems like a long one already for you.
-  - speaker: You
-    content: I'm fine.
-  - speaker: The lost
-    content: "Ohhh, don\u2019t be so cold. You wanna pass? Well, of course you wouldn\u2019t
-      ask me to go back into that cave behind me, not in times like these. I\u2019d
-      be lost in there for good."
-  - speaker: You
-    content: Perhaps you could move your legs.
-  - speaker: The lost
-    content: Aaaaaall right...
-  - speaker: 
-    content: He unfolded himself from his lean against the stone column and turned
-      to face you.
-  - speaker: The Lost
-    content: I am one of the Four Heavenly Kings. You know the rules.
-  - speaker: 
-    content: He smiles at you.
-  - speaker: You
-    content: Of course. The duel.
-  npcName: 1
-  showBattleChoice: 1
-  battleSceneName: cardbattle
-  interactKey: 101
 --- !u!61 &2096896955
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4820,6 +4671,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2096896958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096896952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae552e66e88ef04785f3025b0534bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogController: {fileID: 275334918}
+  playerMovement: {fileID: 1568406113}
+  dialogs:
+  - {fileID: 11400000, guid: 9334fcbac0a376246b166e5d2e20b69a, type: 2}
+  npcName: VillageChief
+  battleSceneName: cardbattle
+  interactKey: 101
+  talkHint: {fileID: 0}
 --- !u!1 &2138961301
 GameObject:
   m_ObjectHideFlags: 0
@@ -4832,7 +4703,7 @@ GameObject:
   - component: {fileID: 2138961306}
   - component: {fileID: 2138961305}
   - component: {fileID: 2138961304}
-  - component: {fileID: 2138961303}
+  - component: {fileID: 2138961307}
   m_Layer: 0
   m_Name: leader
   m_TagString: Untagged
@@ -4855,34 +4726,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 105287907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2138961303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138961301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61accf6b68dd2fb4d94b76453ec73f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 1568406113}
-  dialogLines:
-  - speaker: 
-    content: The leader stands below the great Buddha.
-  - speaker: Leader
-    content: You finally here.
-  - speaker: Leader
-    content: You want ask me about your firend. But I guess you have already had
-      an answer.
-  - speaker: Leader
-    content: Let's play cards first.
-  npcName: 1
-  showBattleChoice: 1
-  battleSceneName: cardbattle
-  interactKey: 101
 --- !u!61 &2138961304
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5025,6 +4868,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2138961307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138961301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae552e66e88ef04785f3025b0534bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogController: {fileID: 275334918}
+  playerMovement: {fileID: 1568406113}
+  dialogs:
+  - {fileID: 11400000, guid: 8ccb6bd174245394db8ea175c3a9dca1, type: 2}
+  npcName: VillageChief
+  battleSceneName: cardbattle
+  interactKey: 101
+  talkHint: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

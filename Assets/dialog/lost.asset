@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f64cba195bb3564ab00d35ae0697b8f, type: 3}
+  m_Name: lost
+  m_EditorClassIdentifier: 
+  dialogId: 
+  lines:
+  - speaker: The lost
+    content: Heeey there... How's today going?
+  - speaker: 
+    content: "The man greeting you has a sleepy look, propped against a nearby stone
+      column and casually blocking your path\u2014simply with his long legs."
+  - speaker: The lost
+    content: Hah, bad question. Today might have just begun, right? Living here...
+      it makes me dizzy.
+  - speaker: 
+    content: His eyes roll...... and fix on you.
+  - speaker: The lost
+    content: But seems like a long one already for you.
+  - speaker: You
+    content: I'm fine.
+  - speaker: The lost
+    content: "Ohhh, don\u2019t be so cold. You wanna pass? Well, of course you wouldn\u2019t
+      ask me to go back into that cave behind me, not in times like these. I\u2019d
+      be lost in there for good."
+  - speaker: You
+    content: Perhaps you could move your legs.
+  - speaker: The lost
+    content: Aaaaaall right...
+  - speaker: 
+    content: He unfolded himself from his lean against the stone column and turned
+      to face you.
+  - speaker: The Lost
+    content: I am one of the Four Heavenly Kings. You know the rules.
+  - speaker: 
+    content: He smiles at you.
+  - speaker: You
+    content: Of course. The duel.

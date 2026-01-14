@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f64cba195bb3564ab00d35ae0697b8f, type: 3}
+  m_Name: sorrowful
+  m_EditorClassIdentifier: 
+  dialogId: 
+  lines:
+  - speaker: 
+    content: A woman is standing on the road, gazing up at the cave.
+  - speaker: The sorrowful
+    content: There used to be a head.
+  - speaker: 
+    content: She's talking to you, her voice like a flowing stream.
+  - speaker: You
+    content: Where is it now?
+  - speaker: The sorrowful
+    content: Gone.
+  - speaker: 
+    content: She turned to face you. You saw her deep blue eyes.
+  - speaker: The sorrowful
+    content: Where are you from?
+  - speaker: You
+    content: South. Away from here.
+  - speaker: The sorrowful
+    content: A settlement like here?
+  - speaker: You
+    content: Yeah.
+  - speaker: The sorrowful
+    content: And......?
+  - speaker: You
+    content: Gone.
+  - speaker: 
+    content: She looks up from her slight bow, eyes meeting yours.
+  - speaker: The sorrowful
+    content: Would you sit with me? We could play cards here.

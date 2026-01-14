@@ -1,15 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class NPCInteract : MonoBehaviour
 {
     [Header("References")]
     public DialogController dialogController;
-    public PlayerMovement playerMovement;
+    public PlayerMovement2D playerMovement;
 
-    [Header("Dialog Sets")]
-    public DialogLine[] firstMeetDialog;   // 第一次：背景故事
-    public DialogLine[] readyDialog;       // 准备询问：“你准备好了吗？”
+    [Header("Dialog Data (可拖多个)")]
+    public List<DialogData> dialogs;
 
     [Header("NPC Info")]
     public string npcName = "VillageChief";
@@ -43,41 +43,37 @@ public class NPCInteract : MonoBehaviour
     {
         dialogOpen = true;
         if (playerMovement != null) playerMovement.EnableMove(false);
-
-        if (talkHint != null)
-            talkHint.SetActive(false);
+        if (talkHint != null) talkHint.SetActive(false);
 
         bool isFirstMeet = !GameState.Instance.story.metVillageChief;
 
         if (isFirstMeet)
         {
-            // 第一次：先播长剧情
             currentStage = DialogStage.FirstStory;
-
-            // ⭐ 第一次打开就标记（避免任何情况下重复）
             GameState.Instance.story.metVillageChief = true;
 
-            dialogController.StartDialog(npcName, firstMeetDialog, OnDialogEnd);
+            var dialog = GetDialog("FirstMeet");
+            dialogController.StartDialog(npcName, dialog.lines, OnDialogEnd);
         }
         else
         {
-            // 非第一次：直接播“准备好了吗？”
             currentStage = DialogStage.ReadyAsk;
-            dialogController.StartDialog(npcName, readyDialog, OnDialogEnd);
+
+            var dialog = GetDialog("ReadyAsk");
+            dialogController.StartDialog(npcName, dialog.lines, OnDialogEnd);
         }
     }
 
     void OnDialogEnd()
     {
-        // ⭐ 如果刚播完的是“第一次长剧情”，那就立刻接上 readyDialog
         if (currentStage == DialogStage.FirstStory)
         {
             currentStage = DialogStage.ReadyAsk;
-            dialogController.StartDialog(npcName, readyDialog, OnDialogEnd);
+            var dialog = GetDialog("ReadyAsk");
+            dialogController.StartDialog(npcName, dialog.lines, OnDialogEnd);
             return;
         }
 
-        // ⭐ 播完 readyDialog 后才弹选项
         if (currentStage == DialogStage.ReadyAsk)
         {
             dialogController.ShowChoices(
@@ -86,7 +82,6 @@ public class NPCInteract : MonoBehaviour
                 "还没准备好",
                 OnChoiceNotReady
             );
-            return;
         }
     }
 
@@ -137,4 +132,15 @@ public class NPCInteract : MonoBehaviour
                 talkHint.SetActive(false);
         }
     }
+
+    DialogData GetDialog(string id)
+    {
+        foreach (var d in dialogs)
+        {
+            if (d != null && d.dialogId == id)
+                return d;
+        }
+        return null;
+    }
+
 }

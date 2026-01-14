@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(
-    fileName = "New Dialog",
+    fileName = "NewDialog",
     menuName = "Dialog/Dialog Data"
 )]
 public class DialogData : ScriptableObject
 {
-    [Header("NPC 名字")]
-    public string npcName;
+    [Header("对白标识（逻辑用）")]
+    public string dialogId;
 
-    [Header("对白内容")]
-    [TextArea(2, 4)]
-    public string[] dialogLines;
+    [Header("对白内容（逐句）")]
+    public DialogLine[] lines;
 }
+

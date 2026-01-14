@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f64cba195bb3564ab00d35ae0697b8f, type: 3}
+  m_Name: little
+  m_EditorClassIdentifier: 
+  dialogId: 
+  lines:
+  - speaker: The llittle
+    content: "Hey!Hey!!! \u2014\u2014 Stop!!!!!!!!!!!"
+  - speaker: 
+    content: You hear a really loud greeting...... from below.
+  - speaker: 
+    content: "So you look down \u2014\u2014 a little girl."
+  - speaker: 
+    content: And she' s angy.
+  - speaker: The little
+    content: How come everyone's always playing this trick on me? Am I really so
+      so small? They gave me this itty-bitty cave to live in!
+  - speaker: You
+    content: Sorry.
+  - speaker: The little
+    content: "Okay, fine, I forgive you! I saw you take down that dummy \u2014\u2014
+      he's, like, the lamest one of us Four Heavenly Kings!"
+  - speaker: 
+    content: She gave you a smile that was both cute and proud.
+  - speaker: The little
+    content: "Not bad at all\u2026 for a beginner. But let\u2019s see if you can
+      handle someone who\u2019s actually strong, like me!"
+  - speaker: You
+    content: ......
+  - speaker: The little
+    content: ......
+  - speaker: 
+    content: You look down and she looks up.
+  - speaker: You
+    content: ......
+  - speaker: The little
+    content: ......
+  - speaker: The little
+    content: ...you don't wanna play with me?
