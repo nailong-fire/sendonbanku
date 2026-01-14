@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-
-public class startdialogtwo : MonoBehaviour
+public class startdialog1 : MonoBehaviour
 {
     [Header("References")]
     public DialogController dialogController;
     public DialogLine[] dialogLines;
     public string npcName = "friend";
+    public GameObject nextdialog = null;
+
     void Start()
     {
         dialogController.StartDialog(
@@ -25,14 +25,18 @@ public class startdialogtwo : MonoBehaviour
         if (dialogController != null)
             dialogController.EndDialog();
         
-        if (SceneTransition.Instance != null)
-        {
-            SceneTransition.Instance.LoadScene("test");
-        }
-        else
-        {
-            // 如果没有过渡管理器，直接切换
-            SceneManager.LoadScene("test");
-        }
+        StartTransition.Instance.LoadScene();
+
+        StartCoroutine(waittransitionend());
+        
+        if (nextdialog != null)
+            nextdialog.SetActive(true);
+
+        gameObject.SetActive(false);
+    }
+
+    IEnumerator waittransitionend()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }

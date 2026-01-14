@@ -745,7 +745,7 @@ public class GameManager : MonoBehaviour
             Debug.LogError("SceneTransition not found. Scene change aborted.");
             return;
         }
-        SceneTransition.Instance.LoadScene("test");
+        SceneTransition.Instance.LoadScene("map");
 
         Destroy(gameObject);
     }

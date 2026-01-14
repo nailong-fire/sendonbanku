@@ -1,9 +1,8 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class SceneSwitchTrigger : MonoBehaviour
 {
-    public Camera mainCamera; // 在Inspector中拖入Main Camera
-    public float moveDistance = 17.82f; // 移动距离，可在Inspector中调整
     private bool isTriggered = false; // 标记是否已触发
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -17,12 +16,13 @@ public class SceneSwitchTrigger : MonoBehaviour
             if (playerX > triggerX)
             {
                 // 从右侧触碰（角色X > Trigger X），Camera向左移动
-                mainCamera.transform.position += new Vector3(-moveDistance, 0, 0);
+                //mainCamera.transform.position += new Vector3(-moveDistance, 0, 0);
+                StageTransition.Instance.LoadScene();
             }
             else
             {
                 // 从左侧触碰（角色X <= Trigger X），Camera向右移动
-                mainCamera.transform.position += new Vector3(moveDistance, 0, 0);
+                //mainCamera.transform.position += new Vector3(moveDistance, 0, 0);
             }
         }
     }

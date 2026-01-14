@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class startdialogone : MonoBehaviour
+
+public class startdialog2 : MonoBehaviour
 {
     [Header("References")]
     public DialogController dialogController;
     public DialogLine[] dialogLines;
     public string npcName = "friend";
-    public GameObject nextdialog = null;
-
     void Start()
     {
         dialogController.StartDialog(
@@ -25,18 +25,14 @@ public class startdialogone : MonoBehaviour
         if (dialogController != null)
             dialogController.EndDialog();
         
-        StartTransition.Instance.LoadScene();
-
-        StartCoroutine(waittransitionend());
-        
-        if (nextdialog != null)
-            nextdialog.SetActive(true);
-
-        gameObject.SetActive(false);
-    }
-
-    IEnumerator waittransitionend()
-    {
-        yield return new WaitForSeconds(1f);
+        if (SceneTransition.Instance != null)
+        {
+            SceneTransition.Instance.LoadScene("map");
+        }
+        else
+        {
+            // 如果没有过渡管理器，直接切换
+            SceneManager.LoadScene("map");
+        }
     }
 }

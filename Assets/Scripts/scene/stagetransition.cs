@@ -2,22 +2,16 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Runtime.CompilerServices;
 
-/// <summary>
-/// 场景过渡管理器 - 淡入淡出效果
-/// 使用方法：SceneTransition.Instance.LoadScene("场景名");
-/// </summary>
-public class SceneTransition : MonoBehaviour
+public class StageTransition : MonoBehaviour
 {
-    public static SceneTransition Instance { get; private set; }
+    public static StageTransition Instance { get; private set; }
 
     [Header("Settings")]
-    public float fadeDuration = 0.5f;       // 淡入淡出时长
+    public float fadeDuration = 1f;       // 淡入淡出时长
     public Color fadeColor = Color.black;   // 过渡颜色（黑色/白色）
-
-    private GameObject player;
-    private Vector3 playerPosition = new Vector3(0, -1, 0);
-    private Vector3 cameraPosition = new Vector3(0, 0, 0);
+    public GameObject player;              // 玩家对象
     private Image fadeImage;
     private Canvas fadeCanvas;
     private bool isTransitioning = false;
@@ -31,8 +25,6 @@ public class SceneTransition : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
-
         // 创建过渡用的 UI
         CreateFadeUI();
     }
@@ -69,61 +61,26 @@ public class SceneTransition : MonoBehaviour
     /// <summary>
     /// 带过渡效果加载场景
     /// </summary>
-    public void LoadScene(string sceneName)
+    public void LoadScene()
     {
         if (!isTransitioning)
         {
-            StartCoroutine(TransitionToScene(sceneName));
+            StartCoroutine(TransitionToScene());
         }
     }
 
-    /// <summary>
-    /// 带过渡效果加载场景（通过索引）
-    /// </summary>
-    public void LoadScene(int sceneIndex)
-    {
-        if (!isTransitioning)
-        {
-            StartCoroutine(TransitionToSceneByIndex(sceneIndex));
-        }
-    }
-
-    IEnumerator TransitionToScene(string sceneName)
+    IEnumerator TransitionToScene()
     {
         isTransitioning = true;
-
-        if(sceneName == "cardbattle")
-        {
-            player = GameObject.FindWithTag("Player");
-            playerPosition = player.transform.position;
-            cameraPosition = Camera.main.transform.position;
-        }
 
         // 淡出（画面变黑）
         yield return StartCoroutine(Fade(0, 1));
 
-        // ⭐ 在黑屏时切BGM（听感最好）
-        if (MusicManager.Instance != null)
-        {
-            if (sceneName == "cardbattle")
-                MusicManager.Instance.PlayBattleMusic();
-            else
-                MusicManager.Instance.PlayMapMusic();
-        }
+        yield return new WaitForSeconds(0.2f); // 可选的等待时间
 
-        // 加载新场景
-        SceneManager.LoadScene(sceneName);
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x - 50, Camera.main.transform.position.y, Camera.main.transform.position.z);
 
-        // 等待一帧确保场景加载完成
-        yield return null;
-
-        if(sceneName != "cardbattle" && playerPosition != new Vector3(0, -1, 0))
-        {
-            // 将玩家传送回原位置
-            player = GameObject.FindWithTag("Player");
-            Camera.main.transform.position = cameraPosition;
-            player.transform.position = playerPosition;
-        }
+        player.transform.position = new Vector3(Camera.main.transform.position.x + 8, player.transform.position.y, player.transform.position.z);
 
         // 淡入（画面恢复）
         yield return StartCoroutine(Fade(1, 0));
@@ -131,17 +88,6 @@ public class SceneTransition : MonoBehaviour
         isTransitioning = false;
     }
 
-    IEnumerator TransitionToSceneByIndex(int sceneIndex)
-    {
-        isTransitioning = true;
-
-        yield return StartCoroutine(Fade(0, 1));
-        SceneManager.LoadScene(sceneIndex);
-        yield return null;
-        yield return StartCoroutine(Fade(1, 0));
-
-        isTransitioning = false;
-    }
 
     IEnumerator Fade(float startAlpha, float endAlpha)
     {

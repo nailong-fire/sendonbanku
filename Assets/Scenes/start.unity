@@ -1767,14 +1767,16 @@ MonoBehaviour:
       there are still Buddha statues standing there. '
   - speaker: Friend
     content: Isn't this the very Buddha the old ones pray to, and our true salvation?
-  - speaker: Friend
-    content: ......the only salvation.
   - speaker: 
     content: "He turned, faced you with a hopeful smile, yet his eyes betrayed a
       familiar sadness\u2014that same helpless despair you recognized as a legacy
       from all those who came before, from all who were gone."
+  - speaker: Friend
+    content: ......And maybe the only salvation.
   - speaker: 
-    content: You wanna say something, but the night is deep and you all have to sleep.
+    content: You wanna say something, but the night is deep.
+  - speaker: 
+    content: You all have to sleep.
   - speaker: 
     content: He lay still, the ghost of that smile lingering, though his eyes were
       shut.
@@ -2244,11 +2246,12 @@ MonoBehaviour:
   - speaker: Unknow
     content: You seem not surprised.
   - speaker: 
-    content: A man in black suddenly talked to you, reavling his presence.
+    content: A man in black suddenly talked to you, reavling his presence. His voice
+      was low and deep as hell
   - speaker: Unknow
     content: And if you want to ask, no, it' s not me who killed him.
   - speaker: You
-    content: ......then who are you?
+    content: ......who are you?
   - speaker: Unknow
     content: You know the caves over there?
   - speaker: 
@@ -2256,13 +2259,28 @@ MonoBehaviour:
   - speaker: You
     content: Yeah.
   - speaker: Unknow
-    content: There are a settlement.I am the leader.Though it's still dark, maybe
-      you should come with me, and then we talk about your friend's death.
+    content: There is a settlement.I am the leader.
   - speaker: 
-    content: "His voice was low and deep as hell, but when he turned, you glimpsed
-      his eyes\u2014and within them, that same old sadness. "
+    content: ......not you, then who's the killer?
+  - speaker: Leader
+    content: I don't know......maybe someone in my place did this, or just an animal.
+  - speaker: 
+    content: He hesitated. Perhaps he lied. You stared at his face, but could never
+      see through the darkness.
+  - speaker: Leader
+    content: Though it's still dark out, you should come to my place. We can talk
+      about your friend's death there.
+  - speaker: 
+    content: He turned.
+  - speaker: 
+    content: "When he turned, you glimpsed his eyes \u2014\u2014 and within them,
+      that same old sadness. "
   - speaker: 
     content: And you might have no choice but to follow him.
+  - speaker: 
+    content: 'You look back at your friend:'
+  - speaker: 
+    content: He is dead.
   npcName: somebody
 --- !u!1 &2011272601
 GameObject:
@@ -2302,7 +2320,7 @@ MonoBehaviour:
   choiceButton2: {fileID: 1679382245}
   choiceText1: {fileID: 133816473}
   choiceText2: {fileID: 919002462}
-  typingSpeed: 0.05
+  typingSpeed: 0.015
 --- !u!224 &2011272603
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2333,7 +2351,7 @@ GameObject:
   - component: {fileID: 2101181086}
   - component: {fileID: 2101181085}
   m_Layer: 0
-  m_Name: start2 1
+  m_Name: start2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

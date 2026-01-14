@@ -22,6 +22,7 @@ public class NPCInteract2D : MonoBehaviour
 
     private bool playerInRange = false;
     private bool dialogOpen = false;
+    private bool ismoving = false;
 
     void Update()
     {
@@ -29,6 +30,24 @@ public class NPCInteract2D : MonoBehaviour
         if (playerInRange && !dialogOpen && Input.GetKeyDown(interactKey))
         {
             OpenDialog();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if(ismoving == true)
+        {
+            if (playerMovement != null)
+                playerMovement.EnableMove(false);
+            
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y +0.025f, gameObject.transform.position.z); 
+
+            if(gameObject.transform.position.y >= 0.25f)
+            {
+                ismoving = false;
+                if (playerMovement != null)
+                    playerMovement.EnableMove(true);
+            }
         }
     }
 
@@ -54,7 +73,12 @@ public class NPCInteract2D : MonoBehaviour
     // 对话文本全部播完后调用
     void OnDialogEnd()
     {
-        if (showBattleChoice && dialogController != null)
+        ismoving = true;
+        
+        if (dialogController != null)
+            dialogController.EndDialog();
+        FinishDialog();
+        /*if (showBattleChoice && dialogController != null)
         {
             dialogController.ShowChoices(
                 "准备好了",
@@ -68,7 +92,7 @@ public class NPCInteract2D : MonoBehaviour
             if (dialogController != null)
                 dialogController.EndDialog();
             FinishDialog();
-        }
+        }*/
     }
 
     // 选择“准备好了”
