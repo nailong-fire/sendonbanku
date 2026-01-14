@@ -17,6 +17,12 @@ public class StartMenu : MonoBehaviour
         Debug.Log("退出游戏！");
         
         // 退出应用程序
+#if UNITY_EDITOR
+        // 如果在 Unity 编辑器中运行，停止播放模式
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        // 如果是打包后的游戏，直接退出程序
         Application.Quit();
+#endif
     }
 }
