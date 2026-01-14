@@ -429,7 +429,7 @@ public class SelectionManager : MonoBehaviour
         if (selectedCard != null)
         {
             // 恢复原始大小
-            selectedCard.transform.localScale = Vector3.one * 0.2f;
+            selectedCard.transform.localScale = Vector3.one * 1.12f;
         }
         
         // 销毁高亮对象
