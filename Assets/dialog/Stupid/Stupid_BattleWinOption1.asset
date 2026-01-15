@@ -14,9 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogId: BattleWin_Option1
   lines:
-  - speaker: npc
-    content: test1.1
-  - speaker: npc
-    content: test1.2
-  - speaker: npc
-    content: test1.3
+  - speaker: The stupid
+    content: You stupid? The Four Heavenlu Kings, the strongest four here, obvious.
+  - speaker: You
+    content: How many people here play these ...... cards?
+  - speaker: The stupid
+    content: Four.
+  - speaker: You
+    content: And that means?
+  - speaker: The stupid
+    content: I am the wea......
+  - speaker: 
+    content: He figures it out.
+  - speaker: 
+    content: "He squats, head in hands, still can\u2019t process it, again."

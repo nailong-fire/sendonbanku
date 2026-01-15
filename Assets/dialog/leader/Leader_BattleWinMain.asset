@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: Leader_BattleWinMain
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: Leader
+    content: You...... beat me.
+  - speaker: Leader
+    content: "I\u2019ll tell you everything."
+  - speaker: Leader
+    content: Ask.

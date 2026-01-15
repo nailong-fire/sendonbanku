@@ -12,5 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f64cba195bb3564ab00d35ae0697b8f, type: 3}
   m_Name: Little_BattleWinOption1
   m_EditorClassIdentifier: 
-  dialogId: 
-  lines: []
+  dialogId: BattleWin_Option1
+  lines:
+  - speaker: The little
+    content: "Ugh, yeah. Papa and Mama both just want to stay in that cave. I don\u2019t
+      like the dark in there. So, that\u2019s why I\u2019m out here!"
+  - speaker: 
+    content: As she speaks, she lowers her head and scuffs her foot on the ground
+      without thinking.
+  - speaker: The little
+    content: "And I\u2019m just waiting on the sunrise, right now! Wanna see it together?"
+  - speaker: 
+    content: "She lifts her head and smiles at you \u2014 a smile you can\u2019t
+      help but return."
+  - speaker: 
+    content: I will be back when I'm done.
+  - speaker: The little
+    content: 'Deal! '
+  - speaker: 
+    content: She seals it with a proud little smile.

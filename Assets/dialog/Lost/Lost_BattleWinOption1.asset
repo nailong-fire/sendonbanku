@@ -13,4 +13,20 @@ MonoBehaviour:
   m_Name: Lost_BattleWinOption1
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: The lost
+    content: "Na, na, na\u2014you've got no idea what's really in there."
+  - speaker: The lost
+    content: "Walls, turns, dead ends, all that\u2026 and the dark. One man in, ten
+      years lost."
+  - speaker: You
+    content: How old are you?
+  - speaker: The lost
+    content: One hundred seven.
+  - speaker: You
+    content: That's pretty long.
+  - speaker: The lost
+    content: Right? And being in there... it ends up feeling like there's no way
+      out. Not that being out here is any better...
+  - speaker: 
+    content: "His smile disappears \u2014\u2014 for a second."

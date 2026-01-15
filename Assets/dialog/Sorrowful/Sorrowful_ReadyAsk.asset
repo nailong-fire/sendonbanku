@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Sorrowful_ReadyAsk
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: The sorrowful
+    content: I'll wait here.

@@ -8,11 +8,14 @@ public class NPCInteract : MonoBehaviour
     public DialogController dialogController;
     public Map.PlayerAnimController playerMovement;
 
+    [Header("NPC Info")]
+    public string npcName = "unknow";
+    public string option1 = null;
+    public string option2 = null;
+    public string leave = null;
+
     [Header("Dialog Data")]
     public List<DialogData> dialogs;
-
-    [Header("NPC Info")]
-    public string npcName = "VillageChief";
 
     [Tooltip("用于战斗返回后定位到这个 NPC。建议每个 NPC 唯一")]
     public string npcId = "VillageChief";
@@ -191,12 +194,12 @@ public class NPCInteract : MonoBehaviour
 
             case NPCStoryStage.BattleWinMain:
                 currentStage = NPCStoryStage.BattleWinMenu;
-                ShowBattleWinMenu();
+                ShowBattleWinMenu(option1, option2, leave);
                 break;
 
             case NPCStoryStage.BattleWinSubDialog:
                 currentStage = NPCStoryStage.BattleWinMenu;
-                ShowBattleWinMenu();
+                ShowBattleWinMenu(option1, option2, leave);
                 break;
 
             default:
@@ -227,16 +230,16 @@ public class NPCInteract : MonoBehaviour
     // =======================
     // 战斗胜利后的固定 3 按钮
     // =======================
-    void ShowBattleWinMenu()
+    void ShowBattleWinMenu(string option1 = "option1", string option2 = "option2", string leave = "leave")
     {
         dialogController.ShowChoices(
-            "询问过去",
+            option1,
             () => EnterBattleWinSubDialog("BattleWin_Option1"),
 
-            "询问真相",
+            option2,
             () => EnterBattleWinSubDialog("BattleWin_Option2"),
 
-            "离开",
+            leave,
             () => EndBattleWinConversation()
         );
     }
@@ -247,8 +250,6 @@ public class NPCInteract : MonoBehaviour
         {
             if (playerMovement != null)
                 playerMovement.EnableMove(false);
-            
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y +0.025f, gameObject.transform.position.z); 
 
             if(gameObject.transform.position.y - originalY >= 0.25f || gameObject.transform.position.y >= 0.25f)
             {
@@ -256,6 +257,8 @@ public class NPCInteract : MonoBehaviour
                 if (playerMovement != null)
                     playerMovement.EnableMove(true);
             }
+            if (ismoving == true)
+                gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y +0.025f, gameObject.transform.position.z); 
         }
     }
     

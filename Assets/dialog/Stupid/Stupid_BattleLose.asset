@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogId: BattleLose
   lines:
-  - speaker: npc
-    content: you loseeeeeeeeeeeeeeeeeeeeee
-  - speaker: npc
-    content: gunnnnnnnnnnnnn
+  - speaker: The stupid
+    content: Finally, I won......!
+  - speaker: The stupid
+    content: He raises his arms high, lost in the joy of victory.

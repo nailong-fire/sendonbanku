@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Lost_ReadyAsk
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: 
+    content: He smiles at you.

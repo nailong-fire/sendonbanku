@@ -12,5 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f64cba195bb3564ab00d35ae0697b8f, type: 3}
   m_Name: Little_BattleWinMain
   m_EditorClassIdentifier: 
-  dialogId: 
-  lines: []
+  dialogId: BattleWinMain
+  lines:
+  - speaker: The little
+    content: "Hmph, you\u2019re actually strong! I admit it!"
+  - speaker: 
+    content: Though she lost to you, she is happily checking her cards.
+  - speaker: The little
+    content: Can we go again? One more time?
+  - speaker: You
+    content: Sorry, I have something to do.
+  - speaker: The little
+    content: Ugh, fine. You looking for the leader? Just go straight!

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Leader_ReadyAsk
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: Leader
+    content: I'll tell you what I know after you beat me.

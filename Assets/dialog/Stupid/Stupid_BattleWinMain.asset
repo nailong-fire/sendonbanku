@@ -14,5 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogId: BattleWinMain
   lines:
-  - speaker: NPC
-    content: you winnnnnnnnn
+  - speaker: The stupid
+    content: I ...... lost to a newbie?
+  - speaker: 
+    content: "He squats, head in hands, still can\u2019t process it."
+  - speaker: 
+    content: Then, a shift. He works something out in his head and lumbers to his
+      feet, his pride newfound and unshakable.
+  - speaker: The stupid
+    content: Don't celebrate too soon! I just happen to be the weakest of the Four
+      Heavenly Kings.
+  - speaker: The stupid
+    content: And that means......
+  - speaker: 
+    content: He figures it out.
+  - speaker: The stupid
+    content: I ...... am the weakest?
+  - speaker: 
+    content: "He squats, head in hands, still can\u2019t process it, again."

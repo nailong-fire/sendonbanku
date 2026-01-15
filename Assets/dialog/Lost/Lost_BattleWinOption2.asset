@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: Lost_BattleWinOption2
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: The lost
+    content: Yessir!
+  - speaker: 
+    content: He didn't move a finger.

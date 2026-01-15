@@ -13,4 +13,14 @@ MonoBehaviour:
   m_Name: Sorrowful_BattleWinOption1
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: The sorrowful
+    content: "It\u2019s been too long. We should have left\u2026 long before now."
+  - speaker: You
+    content: Then why?
+  - speaker: The sorrowful
+    content: We came here for hope.
+  - speaker: The sorrowful
+    content: "The Buddha fell. They\u2019ve given up hope. They prefer the cave now."
+  - speaker: 
+    content: She gazes up at the cave, as she always did.

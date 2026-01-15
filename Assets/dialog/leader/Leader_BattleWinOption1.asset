@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: Leader_BattleWinOption1
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: Leader
+    content: We have no special history.
+  - speaker: Leader
+    content: Like you guys, we came here for the legend

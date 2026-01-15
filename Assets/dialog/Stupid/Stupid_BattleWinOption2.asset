@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogId: BattleWin_Option2
   lines:
-  - speaker: npc
-    content: test2.1
-  - speaker: npc
-    content: test2.2
-  - speaker: npc
-    content: test2.3
+  - speaker: The stupid
+    content: You stupid? What else is there to do around this place, besides duel?
+  - speaker: 
+    content: You look around. Nothing meets the eye but rocks and caves, and maybe
+      a shattered statue, its ruin old.

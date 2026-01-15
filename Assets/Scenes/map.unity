@@ -1367,7 +1367,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 1568406119}
+  npcName: VillageChief
+  option1: The Four Heavenly Kings?
+  option2: Why the duil?
+  leave: Leave him alone.
   dialogs:
   - {fileID: 11400000, guid: a8ddf5494174ee546a0770b993909b45, type: 2}
   - {fileID: 11400000, guid: f299a0ecbe9111547975f586aae7e79d, type: 2}
@@ -1375,7 +1379,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 522fc591fbcbe7b439817b140cc7f717, type: 2}
   - {fileID: 11400000, guid: 8dd688bf18c2d2044a18be1b6e6c0ea2, type: 2}
   - {fileID: 11400000, guid: a9f1012656cde5d4ea4bb89d68acb6e8, type: 2}
-  npcName: VillageChief
   npcId: VillageChief
   battleSceneName: CardBattle
   interactKey: 101
@@ -1613,7 +1616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2489,7 +2492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.23254535, g: 0.7207546, b: 0.6738747, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2946,10 +2949,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 1568406119}
+  npcName: VillageChief
+  option1: You alone?
+  option2: Pinch her little face.
+  leave: Pet her head.(leave)
   dialogs:
   - {fileID: 11400000, guid: 33c8925a1e93d594d88bf6d9d3673cbb, type: 2}
-  npcName: VillageChief
   npcId: VillageChief
   battleSceneName: cardbattle
   interactKey: 101
@@ -4703,10 +4709,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 1568406119}
+  npcName: VillageChief
+  option1: 'How long you lived here? '
+  option2: Do you believe in the Buddha?
+  leave: Bye.
   dialogs:
   - {fileID: 11400000, guid: 02430f8728fa61947879b84a59a70976, type: 2}
-  npcName: VillageChief
   npcId: VillageChief
   battleSceneName: cardbattle
   interactKey: 101
@@ -5207,10 +5216,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 1568406119}
+  npcName: VillageChief
+  option1: Afraid of darkness, too?
+  option2: Step back, soldier!
+  leave: See ya.
   dialogs:
   - {fileID: 11400000, guid: 9334fcbac0a376246b166e5d2e20b69a, type: 2}
-  npcName: VillageChief
   npcId: VillageChief
   battleSceneName: cardbattle
   interactKey: 101
@@ -5405,10 +5417,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 1568406119}
+  npcName: VillageChief
+  option1: The history.
+  option2: My friend.
+  leave: Leave
   dialogs:
   - {fileID: 11400000, guid: 8ccb6bd174245394db8ea175c3a9dca1, type: 2}
-  npcName: VillageChief
   npcId: VillageChief
   battleSceneName: cardbattle
   interactKey: 101

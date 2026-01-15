@@ -13,4 +13,12 @@ MonoBehaviour:
   m_Name: Sorrowful_BattleWinOption2
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: The sorrowful
+    content: They fell.
+  - speaker: The sorrowful
+    content: Only one left. Where the leader be.
+  - speaker: 
+    content: She look at you.
+  - speaker: The sorrowful
+    content: Maybe you can persuade him to leave. Before too late.

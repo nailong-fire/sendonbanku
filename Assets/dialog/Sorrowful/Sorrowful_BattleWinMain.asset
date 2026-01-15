@@ -13,4 +13,14 @@ MonoBehaviour:
   m_Name: Sorrowful_BattleWinMain
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: The sorrowful
+    content: Have fun?
+  - speaker: 
+    content: She's asking.
+  - speaker: You
+    content: Maybe.
+  - speaker: The sorrowful
+    content: Good.
+  - speaker: 
+    content: She seems happy.

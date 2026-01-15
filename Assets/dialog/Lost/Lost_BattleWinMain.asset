@@ -13,4 +13,14 @@ MonoBehaviour:
   m_Name: Lost_BattleWinMain
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: The lost
+    content: Yaaa, thought I would win easily.
+  - speaker: The lost
+    content: "Fine, you own my life now. What\u2019s your command, sir?"
+  - speaker: You
+    content: Go back to your cave.
+  - speaker: The lost
+    content: No.
+  - speaker: 
+    content: He just keeps smiling.

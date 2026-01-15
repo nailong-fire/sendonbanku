@@ -1738,8 +1738,7 @@ MonoBehaviour:
   - speaker: 
     content: This world, has been in ruins for a long time......
   - speaker: 
-    content: North. You wanderers, adrift and without a path, have only that one
-      direction.  that very direction.
+    content: North. You wanderers, adrift and without a path, have only one direction.
   - speaker: 
     content: "For the old legends speak of salvation coming from the North, and a
       miracle seems to prove them right: in certain caves, ancient Buddha statues
@@ -2318,8 +2317,10 @@ MonoBehaviour:
   choicePanel: {fileID: 1277959743}
   choiceButton1: {fileID: 925712664}
   choiceButton2: {fileID: 1679382245}
+  choiceButton3: {fileID: 0}
   choiceText1: {fileID: 133816473}
   choiceText2: {fileID: 919002462}
+  choiceText3: {fileID: 0}
   typingSpeed: 0.015
 --- !u!224 &2011272603
 RectTransform:

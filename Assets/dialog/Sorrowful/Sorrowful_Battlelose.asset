@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: Sorrowful_Battlelose
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: The sorrowful
+    content: I won... Would you consider playing again?
+  - speaker: 
+    content: It seems she's a little happy............ or not?

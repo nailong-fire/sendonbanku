@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Leader_BattleLose
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: Leader
+    content: ......

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Lost_BattleLose
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: The lost
+    content: A fun game, right?

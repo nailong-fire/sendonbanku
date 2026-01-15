@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f64cba195bb3564ab00d35ae0697b8f, type: 3}
   m_Name: Little_FirstMeet
   m_EditorClassIdentifier: 
-  dialogId: 
+  dialogId: FirstMeet
   lines:
   - speaker: The llittle
     content: "Hey!Hey!!! \u2014\u2014 Stop!!!!!!!!!!!"
@@ -31,7 +31,7 @@ MonoBehaviour:
     content: "Okay, fine, I forgive you! I saw you take down that dummy \u2014\u2014
       he's, like, the lamest one of us Four Heavenly Kings!"
   - speaker: 
-    content: She gave you a smile that was both cute and proud.
+    content: She gives you a smile that was both cute and proud.
   - speaker: The little
     content: "Not bad at all\u2026 for a beginner. But let\u2019s see if you can
       handle someone who\u2019s actually strong, like me!"
@@ -45,5 +45,3 @@ MonoBehaviour:
     content: ......
   - speaker: The little
     content: ......
-  - speaker: The little
-    content: ...you don't wanna play with me?
