@@ -324,8 +324,11 @@ public class UniversalController : MonoBehaviour
     // 战场卡牌移除事件
     protected virtual void OnBattlefieldCardRemoved(CardEntity card)
     {
-        card.guardedCard.isguarded = false;
-        card.guardedCard.guardian = null;
+        if(card.guardedCard != null)
+        {
+            card.guardedCard.isguarded = false;
+            card.guardedCard.guardian = null;
+        }
         // 卡牌被击败时减少Hope
         if (!card.IsOnHand)
         {
