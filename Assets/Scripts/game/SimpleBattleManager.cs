@@ -70,6 +70,20 @@ public class SimpleBattleManager : MonoBehaviour
         {
             if (!string.IsNullOrWhiteSpace(worldSceneName))
             {
+                if (GameState.Instance != null)
+                {
+                    if (playerWon)
+                    {
+                        GameState.Instance.story.battleWon = true;
+                        GameState.Instance.story.battleLostOnce = false;
+                    }
+                    else
+                    {
+                        GameState.Instance.story.battleLostOnce = true;
+                        GameState.Instance.story.battleWon = false;
+                    }
+                }
+
                 SceneManager.LoadScene(worldSceneName);
             }
             else

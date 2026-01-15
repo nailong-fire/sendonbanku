@@ -13,13 +13,22 @@ public class mapdialog1 : MonoBehaviour
 
     void Start()
     {
+        // ⭐ 已经见过 leader，就不再播放开场对话
+        if (GameState.Instance != null &&
+            GameState.Instance.story != null &&
+            GameState.Instance.story.metVillageChief)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         dialogController.StartDialog(
-                npcName,       // 保留作为默认名字（如果 DialogLine 没填 speaker 可以用）
-                dialogLines,
-                OnDialogEnd    // 关键：统一出口
-            );
-        
+            npcName,
+            dialogLines,
+            OnDialogEnd
+        );
     }
+
     void OnDialogEnd()
     {
         if (dialogController != null)

@@ -19,7 +19,7 @@ public class GameState : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         // ⭐ 每次启动游戏时，重置剧情
-        ResetStory();
+        // ResetStory();
     }
 
     public void ResetStory()
