@@ -10,16 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f64cba195bb3564ab00d35ae0697b8f, type: 3}
-  m_Name: leader_map
+  m_Name: Sorrowful_ReadyAsk
   m_EditorClassIdentifier: 
   dialogId: 
-  lines:
-  - speaker: 
-    content: The leader stands below the great Buddha.
-  - speaker: Leader
-    content: You finally here.
-  - speaker: Leader
-    content: You want ask me about your firend. But I guess you have already had
-      an answer.
-  - speaker: Leader
-    content: Let's play cards first.
+  lines: []
