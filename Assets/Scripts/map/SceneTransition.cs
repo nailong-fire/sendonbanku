@@ -92,7 +92,7 @@ public class SceneTransition : MonoBehaviour
     {
         isTransitioning = true;
 
-        if(sceneName == "Tmp Battle")
+        if(sceneName == "cardBattle")
         {
             player = GameObject.FindWithTag("Player");
             playerPosition = player.transform.position;
@@ -117,7 +117,7 @@ public class SceneTransition : MonoBehaviour
         // 等待一帧确保场景加载完成
         yield return null;
 
-        if(sceneName != "Tmp Battle" && playerPosition != new Vector3(0, -1, 0))
+        if(sceneName != "cardBattle" && playerPosition != new Vector3(0, -1, 0))
         {
             // 将玩家传送回原位置
             player = GameObject.FindWithTag("Player");

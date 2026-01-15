@@ -1373,7 +1373,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f299a0ecbe9111547975f586aae7e79d, type: 2}
   - {fileID: 11400000, guid: 1243e910313e0a74196ec481c82d481c, type: 2}
   npcName: VillageChief
-  battleSceneName: Tmp Battle
+  battleSceneName: cardBattle
   interactKey: 101
   talkHint: {fileID: 0}
 --- !u!1 &543644629
@@ -2095,6 +2095,7 @@ GameObject:
   - component: {fileID: 844163799}
   - component: {fileID: 844163798}
   - component: {fileID: 844163797}
+  - component: {fileID: 844163801}
   m_Layer: 5
   m_Name: PopupNotice_Root
   m_TagString: Untagged
@@ -2111,17 +2112,17 @@ RectTransform:
   m_GameObject: {fileID: 844163795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1770841855}
-  m_Father: {fileID: 1407549352}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &844163797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2193,6 +2194,29 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!223 &844163801
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844163795}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &994913589
 GameObject:
   m_ObjectHideFlags: 0
@@ -3094,7 +3118,6 @@ RectTransform:
   m_Children:
   - {fileID: 1189657072}
   - {fileID: 275334917}
-  - {fileID: 844163796}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5393,3 +5416,4 @@ SceneRoots:
   - {fileID: 2061647908}
   - {fileID: 1074913809}
   - {fileID: 570015268}
+  - {fileID: 844163796}
