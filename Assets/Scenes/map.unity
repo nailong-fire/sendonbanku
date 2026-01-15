@@ -1376,6 +1376,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8dd688bf18c2d2044a18be1b6e6c0ea2, type: 2}
   - {fileID: 11400000, guid: a9f1012656cde5d4ea4bb89d68acb6e8, type: 2}
   npcName: VillageChief
+  npcId: VillageChief
   battleSceneName: CardBattle
   interactKey: 101
   talkHint: {fileID: 0}
@@ -2317,7 +2318,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a29b04d8e32a5c459e8309d3cfe4676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npc: {fileID: 470206040}
+  npcs:
+  - {fileID: 470206040}
+  - {fileID: 1338226787}
+  - {fileID: 2096896958}
+  - {fileID: 2007353930}
+  - {fileID: 2138961307}
+  triggerDelay: 0.7
 --- !u!4 &1074913809
 Transform:
   m_ObjectHideFlags: 0
@@ -2943,6 +2950,7 @@ MonoBehaviour:
   dialogs:
   - {fileID: 11400000, guid: 33c8925a1e93d594d88bf6d9d3673cbb, type: 2}
   npcName: VillageChief
+  npcId: VillageChief
   battleSceneName: cardbattle
   interactKey: 101
   talkHint: {fileID: 0}
@@ -4698,6 +4706,7 @@ MonoBehaviour:
   dialogs:
   - {fileID: 11400000, guid: 02430f8728fa61947879b84a59a70976, type: 2}
   npcName: VillageChief
+  npcId: VillageChief
   battleSceneName: cardbattle
   interactKey: 101
   talkHint: {fileID: 0}
@@ -4857,6 +4866,7 @@ MonoBehaviour:
     battleUnlocked: 0
     battleWon: 0
     battleLostOnce: 0
+    lastBattleNpcId: 
 --- !u!4 &2061647908
 Transform:
   m_ObjectHideFlags: 0
@@ -5200,6 +5210,7 @@ MonoBehaviour:
   dialogs:
   - {fileID: 11400000, guid: 9334fcbac0a376246b166e5d2e20b69a, type: 2}
   npcName: VillageChief
+  npcId: VillageChief
   battleSceneName: cardbattle
   interactKey: 101
   talkHint: {fileID: 0}
@@ -5397,6 +5408,7 @@ MonoBehaviour:
   dialogs:
   - {fileID: 11400000, guid: 8ccb6bd174245394db8ea175c3a9dca1, type: 2}
   npcName: VillageChief
+  npcId: VillageChief
   battleSceneName: cardbattle
   interactKey: 101
   talkHint: {fileID: 0}

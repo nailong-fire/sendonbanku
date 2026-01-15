@@ -1179,6 +1179,11 @@ public class GameManager : MonoBehaviour
         {
             EndGame(false,"玩家主动退出");
         }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            EndGame(true,"玩家主动获胜");
+        }
     }
 
 }
