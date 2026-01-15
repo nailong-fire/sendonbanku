@@ -93,7 +93,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardBackground: {fileID: 0}
-  cardFrame: {fileID: 0}
   cardArt: {fileID: 0}
   healthText: {fileID: 6318659288487550828}
   powerText: {fileID: 2550337833821785348}
@@ -101,12 +100,14 @@ MonoBehaviour:
   costText: {fileID: 956426588301500860}
   nameText: {fileID: 8838053875342883481}
   descriptionText: {fileID: 4850713193273529437}
-  cardGlow: {fileID: 0}
   normalColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0}
   HasActedThisTurn: 0
   HasActionAbility: 1
   IsInFrontRow: 0
   positionindex: 0
+  isguarded: 0
+  guardian: {fileID: 0}
+  guardedCard: {fileID: 0}
   _owner: {fileID: 0}
 --- !u!212 &1822689782527335337
 SpriteRenderer:
@@ -435,7 +436,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -13.100006, y: 25}
+  m_AnchoredPosition: {x: -12.5, y: 26.7}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &7754855251864668707
