@@ -175,9 +175,9 @@ public class NPCInteract : MonoBehaviour
 
             case NPCStoryStage.ReadyAsk:
                 dialogController.ShowChoices(
-                    "准备好了",
+                    "Ready",
                     OnChoiceReady,
-                    "还没准备好",
+                    "Not Ready",
                     OnChoiceNotReady
                 );
                 break;
