@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
         GameOver           // 游戏结束
     }
     
+    [Header("Scene")]
+    public string worldSceneName = "map";
+
     [Header("游戏引用")]
     public PlayerController player;
     public EnemyController enemy;
@@ -1046,6 +1049,29 @@ public class GameManager : MonoBehaviour
         // 触发游戏结束事件
         OnPhaseChange?.Invoke(TurnPhase.GameOver);
         OnGameOver?.Invoke(playerWon);
+
+        if (!string.IsNullOrWhiteSpace(worldSceneName))
+        {
+            if (GameState.Instance != null)
+            {
+                if (playerWon)
+                {
+                    GameState.Instance.story.battleWon = true;
+                    GameState.Instance.story.battleLostOnce = false;
+                }
+                else
+                {
+                    GameState.Instance.story.battleLostOnce = true;
+                    GameState.Instance.story.battleWon = false;
+                }
+            }
+
+            SceneManager.LoadScene(worldSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("[SimpleBattleManager] worldSceneName is empty, not loading scene.");
+        }
 
         // 播放胜利/失败播报UI
         var announcer = FindObjectOfType<GameResultAnnouncer>();
