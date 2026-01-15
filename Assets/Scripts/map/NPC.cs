@@ -14,6 +14,9 @@ public class NPCInteract : MonoBehaviour
     [Header("NPC Info")]
     public string npcName = "VillageChief";
 
+    [Tooltip("用于战斗返回后定位到这个 NPC。建议每个 NPC 唯一")]
+    public string npcId = "VillageChief";
+
     [Header("Battle")]
     public string battleSceneName = "cardbattle";
 
@@ -197,6 +200,7 @@ public class NPCInteract : MonoBehaviour
     {
         GameState.Instance.story.readyForBattle = true;
         GameState.Instance.story.battleUnlocked = true;
+        GameState.Instance.story.lastBattleNpcId = npcId;
 
         dialogController.EndDialog();
         SceneTransition.Instance.LoadScene(battleSceneName);
