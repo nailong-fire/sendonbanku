@@ -5,7 +5,7 @@ public class NPCInteract2D : MonoBehaviour
 {
     [Header("References")]
     public DialogController dialogController;
-    public PlayerMovement2D playerMovement;
+    public Map.PlayerAnimController playerMovement;
 
     [Header("Dialog")]
     public DialogLine[] dialogLines;
@@ -24,6 +24,18 @@ public class NPCInteract2D : MonoBehaviour
     private bool dialogOpen = false;
     private bool ismoving = false;
     private float originalY;
+
+    void Start()
+    {
+        if (playerMovement == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                playerMovement = playerObj.GetComponent<Map.PlayerAnimController>();
+            }
+        }
+    }
 
     void Update()
     {

@@ -6,7 +6,7 @@ public class NPCInteract : MonoBehaviour
 {
     [Header("References")]
     public DialogController dialogController;
-    public PlayerMovement2D playerMovement;
+    public Map.PlayerAnimController playerMovement;
 
     [Header("Dialog Data")]
     public List<DialogData> dialogs;
@@ -43,6 +43,18 @@ public class NPCInteract : MonoBehaviour
     }
 
     private NPCStoryStage currentStage = NPCStoryStage.None;
+
+    void Start()
+    {
+        if (playerMovement == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                playerMovement = playerObj.GetComponent<Map.PlayerAnimController>();
+            }
+        }
+    }
 
     void Update()
     {
