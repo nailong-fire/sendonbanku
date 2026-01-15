@@ -9,6 +9,10 @@ public class BattleReturnDialogRouter : MonoBehaviour
     [Tooltip("主世界里的 NPCInteract（村长）")]
     public NPCInteract npc;
 
+    [Header("Timing")]
+    [Tooltip("回到地图后的淡入淡出时间，避免对话立刻弹出")]
+    public float triggerDelay = 0.6f;
+
     private bool triggered = false;
 
     private void Start()
@@ -16,20 +20,31 @@ public class BattleReturnDialogRouter : MonoBehaviour
         if (triggered)
             return;
 
+        StartCoroutine(TriggerAfterDelay());
+    }
+
+    private System.Collections.IEnumerator TriggerAfterDelay()
+    {
+        if (triggerDelay > 0f)
+            yield return new WaitForSeconds(triggerDelay);
+
+        if (triggered)
+            yield break;
+
         if (GameState.Instance == null || GameState.Instance.story == null)
-            return;
+            yield break;
 
         if (npc == null)
         {
             Debug.LogWarning("[BattleReturnDialogRouter] npc is null");
-            return;
+            yield break;
         }
 
         var story = GameState.Instance.story;
 
         // 必须是已经见过 NPC 才触发
         if (!story.metVillageChief)
-            return;
+            yield break;
 
         if (story.battleWon)
         {
