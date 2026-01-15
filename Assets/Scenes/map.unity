@@ -1367,7 +1367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 1568406113}
+  playerMovement: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: a8ddf5494174ee546a0770b993909b45, type: 2}
   - {fileID: 11400000, guid: f299a0ecbe9111547975f586aae7e79d, type: 2}
@@ -2318,6 +2318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npc: {fileID: 470206040}
+  triggerDelay: 0.6
 --- !u!4 &1074913809
 Transform:
   m_ObjectHideFlags: 0
@@ -2939,7 +2940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 1568406113}
+  playerMovement: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 33c8925a1e93d594d88bf6d9d3673cbb, type: 2}
   npcName: VillageChief
@@ -3551,10 +3552,10 @@ GameObject:
   - component: {fileID: 1568406116}
   - component: {fileID: 1568406115}
   - component: {fileID: 1568406114}
-  - component: {fileID: 1568406113}
   - component: {fileID: 1568406112}
   - component: {fileID: 1568406117}
   - component: {fileID: 1568406118}
+  - component: {fileID: 1568406119}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -3614,20 +3615,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1568406113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568406111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97dbfd5215b12fc47956e1e32a223588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  rb: {fileID: 1568406115}
 --- !u!61 &1568406114
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3663,7 +3650,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.4666667, y: -0.11111111}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.9375, y: 1.6875}
     newSize: {x: 0.9375, y: 1.6875}
     adaptiveTilingThreshold: 0.5
@@ -3750,7 +3737,7 @@ BoxCollider2D:
   m_Offset: {x: 0.03125, y: 1.03125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.4666667, y: -0.11111111}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.9375, y: 1.6875}
     newSize: {x: 0.9375, y: 1.6875}
     adaptiveTilingThreshold: 0.5
@@ -3781,6 +3768,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1568406119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568406111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93840400d8f06ce49a5bc2adfecc31b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  animator: {fileID: 1568406118}
+  rb: {fileID: 1568406115}
 --- !u!1 &1631012362
 GameObject:
   m_ObjectHideFlags: 0
@@ -4694,7 +4696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 1568406113}
+  playerMovement: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 02430f8728fa61947879b84a59a70976, type: 2}
   npcName: VillageChief
@@ -5196,7 +5198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 1568406113}
+  playerMovement: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 9334fcbac0a376246b166e5d2e20b69a, type: 2}
   npcName: VillageChief
@@ -5393,7 +5395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogController: {fileID: 275334918}
-  playerMovement: {fileID: 1568406113}
+  playerMovement: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 8ccb6bd174245394db8ea175c3a9dca1, type: 2}
   npcName: VillageChief

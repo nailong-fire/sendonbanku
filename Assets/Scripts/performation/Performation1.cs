@@ -9,7 +9,7 @@ public class Performation1 : MonoBehaviour
     public GameObject player;
     public GameObject wall;
     public GameObject dialog;
-    private PlayerMovement2D playerMovement;
+    private Map.PlayerAnimController playerMovement;
     private bool ismoving = false;
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class Performation1 : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         wall.SetActive(false);
-        playerMovement = player.GetComponent<PlayerMovement2D>();
+        playerMovement = player.GetComponent<Map.PlayerAnimController>();
 
         leader.transform.position = new Vector3(10.0f, leader.transform.position.y, leader.transform.position.z);
         player.transform.position = new Vector3(11.0f, player.transform.position.y, player.transform.position.z);
