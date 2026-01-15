@@ -344,20 +344,8 @@ public class UniversalController : MonoBehaviour
     
     // 计算卡牌被击败时的Hope损失
     protected virtual int CalculateHopeLossFromCard(CardEntity card)
-    {
-        int baseLoss = 1;
-        
-        if (card.CardData.FaithCost >= 3)
-        {
-            baseLoss += 1; // 高消耗卡牌多减1点
-        }
-
-        if (card.CardData.FaithCost >= 5)
-        {
-            baseLoss += 2; // 高消耗卡牌多减1点
-        }
-        
-        return baseLoss;
+    {  
+        return card.CardData.FaithCost;
     }
     
     // 获取当前手牌
