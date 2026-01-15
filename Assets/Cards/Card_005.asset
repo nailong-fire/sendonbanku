@@ -13,19 +13,16 @@ MonoBehaviour:
   m_Name: Card_005
   m_EditorClassIdentifier: 
   cardId: 005
-  cardName: 005
+  cardName: "\u98DE\u5929"
   description: 
-  cardType: 0
-  rarity: 0
   cardArt: {fileID: 21300000, guid: 3a2f3d716dd71de4a95bdb38ebbcd76a, type: 3}
-  cardFrame: {fileID: 0}
   cardBackground: {fileID: 0}
-  health: 5
-  power: 3
-  speed: 5
-  faithCost: 1
+  health: 2
+  power: 1
+  speed: 6
+  faithCost: 2
   canPlaceFront: 1
   canPlaceBack: 1
-  specialEffects: 
+  specialEffects: 01000000
   continuousEffects: 
   story: "\u8FD9\u662F\u5361\u724C\u7684\u80CC\u666F\u6545\u4E8B\u793A\u4F8B..."
