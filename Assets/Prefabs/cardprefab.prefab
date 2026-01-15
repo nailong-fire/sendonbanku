@@ -838,7 +838,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5.8, y: 0}
+  m_AnchoredPosition: {x: 2.399994, y: 1.8999939}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &18066711552790645
@@ -871,8 +871,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u540D\u79F0"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 35e799ccac445094881bee8acc1206f7, type: 2}
-  m_sharedMaterial: {fileID: -5588956487386389488, guid: 35e799ccac445094881bee8acc1206f7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c19af65de602c0f4cb75434b049d6b11, type: 2}
+  m_sharedMaterial: {fileID: -1558070701811389548, guid: c19af65de602c0f4cb75434b049d6b11, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -896,8 +896,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -932,7 +932,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 94.72394, y: -18.754007, z: 83.393776, w: -13.653553}
+  m_margin: {x: 94.72394, y: -18.754007, z: 74.65284, w: -50.091663}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
