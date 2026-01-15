@@ -1372,8 +1372,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a8ddf5494174ee546a0770b993909b45, type: 2}
   - {fileID: 11400000, guid: f299a0ecbe9111547975f586aae7e79d, type: 2}
   - {fileID: 11400000, guid: 1243e910313e0a74196ec481c82d481c, type: 2}
+  - {fileID: 11400000, guid: 522fc591fbcbe7b439817b140cc7f717, type: 2}
+  - {fileID: 11400000, guid: 8dd688bf18c2d2044a18be1b6e6c0ea2, type: 2}
+  - {fileID: 11400000, guid: a9f1012656cde5d4ea4bb89d68acb6e8, type: 2}
   npcName: VillageChief
-  battleSceneName: cardBattle
+  battleSceneName: CardBattle
   interactKey: 101
   talkHint: {fileID: 0}
 --- !u!1 &543644629

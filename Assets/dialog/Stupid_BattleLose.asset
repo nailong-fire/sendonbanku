@@ -10,7 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f64cba195bb3564ab00d35ae0697b8f, type: 3}
-  m_Name: TheStupidStoryDialog
+  m_Name: Stupid_BattleLose
   m_EditorClassIdentifier: 
-  npcName: 
-  dialogLines: []
+  dialogId: BattleLose
+  lines:
+  - speaker: npc
+    content: you loseeeeeeeeeeeeeeeeeeeeee
+  - speaker: npc
+    content: gunnnnnnnnnnnnn

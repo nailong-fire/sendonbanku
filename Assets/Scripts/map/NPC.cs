@@ -25,6 +25,8 @@ public class NPCInteract : MonoBehaviour
 
     private bool playerInRange;
     private bool dialogOpen;
+    private float originalY;
+    private bool ismoving = false;
 
     private enum NPCStoryStage
     {
@@ -165,6 +167,13 @@ public class NPCInteract : MonoBehaviour
                 );
                 break;
 
+            case NPCStoryStage.BattleLose:
+                // 播放完失败对白：立刻关闭对话框；等玩家再次靠近并按 E 才进入 ReadyAsk
+                GameState.Instance.story.battleLostOnce = false;
+                dialogController.EndDialog();
+                FinishDialog();
+                break;
+
             case NPCStoryStage.BattleWinMain:
                 currentStage = NPCStoryStage.BattleWinMenu;
                 ShowBattleWinMenu();
@@ -212,10 +221,28 @@ public class NPCInteract : MonoBehaviour
             () => EnterBattleWinSubDialog("BattleWin_Option2"),
 
             "离开",
-            EndBattleWinConversation
+            () => EndBattleWinConversation()
         );
     }
 
+    void FixedUpdate()
+    {
+        if(ismoving == true)
+        {
+            if (playerMovement != null)
+                playerMovement.EnableMove(false);
+            
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y +0.025f, gameObject.transform.position.z); 
+
+            if(gameObject.transform.position.y - originalY >= 0.25f || gameObject.transform.position.y >= 0.25f)
+            {
+                ismoving = false;
+                if (playerMovement != null)
+                    playerMovement.EnableMove(true);
+            }
+        }
+    }
+    
     void EnterBattleWinSubDialog(string dialogId)
     {
         currentStage = NPCStoryStage.BattleWinSubDialog;
@@ -226,6 +253,8 @@ public class NPCInteract : MonoBehaviour
     {
         // NPC 让路示例
         // GetComponent<Collider2D>().enabled = false;
+        originalY = gameObject.transform.position.y;
+        ismoving = true;
 
         dialogController.EndDialog();
         FinishDialog();
