@@ -8,7 +8,7 @@ public class NPCInteract : MonoBehaviour
     public DialogController dialogController;
     public PlayerMovement2D playerMovement;
 
-    [Header("Dialog Data（可拖多个 DialogData.asset）")]
+    [Header("Dialog Data")]
     public List<DialogData> dialogs;
 
     [Header("NPC Info")]
@@ -23,8 +23,8 @@ public class NPCInteract : MonoBehaviour
     [Header("UI")]
     public GameObject talkHint;
 
-    private bool playerInRange = false;
-    private bool dialogOpen = false;
+    private bool playerInRange;
+    private bool dialogOpen;
 
     private enum NPCStoryStage
     {
@@ -32,7 +32,9 @@ public class NPCInteract : MonoBehaviour
         FirstMeet,
         ReadyAsk,
         BattleLose,
-        BattleWinMain
+        BattleWinMain,
+        BattleWinMenu,
+        BattleWinSubDialog
     }
 
     private NPCStoryStage currentStage = NPCStoryStage.None;
@@ -47,32 +49,26 @@ public class NPCInteract : MonoBehaviour
     }
 
     // =======================
-    // 玩家交互入口
+    // 入口
     // =======================
     void OpenDialog()
     {
-        if (dialogOpen)
-            return;
+        if (dialogOpen) return;
 
-        dialogOpen = true;
-
-        if (playerMovement != null)
-            playerMovement.EnableMove(false);
-
-        if (talkHint != null)
-            talkHint.SetActive(false);
-
+        BeginDialog();
         StartDialogByCurrentStage();
     }
 
-    // =======================
-    // 自动触发入口（给 Router 用）
-    // =======================
     public void TriggerImmediateDialog()
     {
-        if (dialogOpen)
-            return;
+        if (dialogOpen) return;
 
+        BeginDialog();
+        StartDialogByCurrentStage();
+    }
+
+    void BeginDialog()
+    {
         dialogOpen = true;
 
         if (playerMovement != null)
@@ -80,41 +76,32 @@ public class NPCInteract : MonoBehaviour
 
         if (talkHint != null)
             talkHint.SetActive(false);
-
-        StartDialogByCurrentStage();
     }
 
     // =======================
-    // 对外接口：战斗结果通知
+    // 战斗结果通知（Router 调）
     // =======================
     public void TriggerBattleWinMain()
     {
-        if (GameState.Instance == null) return;
-
         GameState.Instance.story.battleWon = true;
         GameState.Instance.story.battleLostOnce = false;
-
         currentStage = NPCStoryStage.BattleWinMain;
     }
 
     public void TriggerBattleLose()
     {
-        if (GameState.Instance == null) return;
-
         GameState.Instance.story.battleLostOnce = true;
         GameState.Instance.story.battleWon = false;
-
         currentStage = NPCStoryStage.BattleLose;
     }
 
     // =======================
-    // 核心：根据当前状态选择对白
+    // 根据状态选对白
     // =======================
     void StartDialogByCurrentStage()
     {
         var story = GameState.Instance.story;
 
-        // ① 战斗胜利（最高优先级）
         if (story.battleWon)
         {
             currentStage = NPCStoryStage.BattleWinMain;
@@ -122,7 +109,6 @@ public class NPCInteract : MonoBehaviour
             return;
         }
 
-        // ② 战斗失败
         if (story.battleLostOnce)
         {
             currentStage = NPCStoryStage.BattleLose;
@@ -130,7 +116,6 @@ public class NPCInteract : MonoBehaviour
             return;
         }
 
-        // ③ 第一次见面
         if (!story.metVillageChief)
         {
             story.metVillageChief = true;
@@ -139,7 +124,6 @@ public class NPCInteract : MonoBehaviour
             return;
         }
 
-        // ④ 默认询问是否准备好
         currentStage = NPCStoryStage.ReadyAsk;
         PlayDialog("ReadyAsk");
     }
@@ -165,28 +149,41 @@ public class NPCInteract : MonoBehaviour
     // =======================
     void OnDialogEnd()
     {
-        if (currentStage == NPCStoryStage.FirstMeet)
+        switch (currentStage)
         {
-            currentStage = NPCStoryStage.ReadyAsk;
-            PlayDialog("ReadyAsk");
-            return;
-        }
+            case NPCStoryStage.FirstMeet:
+                currentStage = NPCStoryStage.ReadyAsk;
+                PlayDialog("ReadyAsk");
+                break;
 
-        if (currentStage == NPCStoryStage.ReadyAsk)
-        {
-            dialogController.ShowChoices(
-                "准备好了",
-                OnChoiceReady,
-                "还没准备好",
-                OnChoiceNotReady
-            );
-        }
-        else
-        {
-            FinishDialog();
+            case NPCStoryStage.ReadyAsk:
+                dialogController.ShowChoices(
+                    "准备好了",
+                    OnChoiceReady,
+                    "还没准备好",
+                    OnChoiceNotReady
+                );
+                break;
+
+            case NPCStoryStage.BattleWinMain:
+                currentStage = NPCStoryStage.BattleWinMenu;
+                ShowBattleWinMenu();
+                break;
+
+            case NPCStoryStage.BattleWinSubDialog:
+                currentStage = NPCStoryStage.BattleWinMenu;
+                ShowBattleWinMenu();
+                break;
+
+            default:
+                FinishDialog();
+                break;
         }
     }
 
+    // =======================
+    // ReadyAsk
+    // =======================
     void OnChoiceReady()
     {
         GameState.Instance.story.readyForBattle = true;
@@ -202,6 +199,41 @@ public class NPCInteract : MonoBehaviour
         FinishDialog();
     }
 
+    // =======================
+    // 战斗胜利后的固定 3 按钮
+    // =======================
+    void ShowBattleWinMenu()
+    {
+        dialogController.ShowChoices(
+            "询问过去",
+            () => EnterBattleWinSubDialog("BattleWin_Option1"),
+
+            "询问真相",
+            () => EnterBattleWinSubDialog("BattleWin_Option2"),
+
+            "离开",
+            EndBattleWinConversation
+        );
+    }
+
+    void EnterBattleWinSubDialog(string dialogId)
+    {
+        currentStage = NPCStoryStage.BattleWinSubDialog;
+        PlayDialog(dialogId);
+    }
+
+    void EndBattleWinConversation()
+    {
+        // NPC 让路示例
+        // GetComponent<Collider2D>().enabled = false;
+
+        dialogController.EndDialog();
+        FinishDialog();
+    }
+
+    // =======================
+    // 清理
+    // =======================
     void ForceCloseDialog()
     {
         dialogController.EndDialog();
