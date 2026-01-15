@@ -91,12 +91,15 @@ public class SceneTransition : MonoBehaviour
     IEnumerator TransitionToScene(string sceneName)
     {
         isTransitioning = true;
+        Debug.Log("切换场景到：" + sceneName);
 
-        if(sceneName == "cardBattle")
+        if(sceneName == "CardBattle")
         {
             player = GameObject.FindWithTag("Player");
             playerPosition = player.transform.position;
             cameraPosition = Camera.main.transform.position;
+            Debug.Log("记录玩家位置：" + playerPosition);
+            Debug.Log("记录相机位置：" + cameraPosition);
         }
 
         // 淡出（画面变黑）
@@ -105,7 +108,7 @@ public class SceneTransition : MonoBehaviour
         // ⭐ 在黑屏时切BGM（听感最好）
         if (MusicManager.Instance != null)
         {
-            if (sceneName == "Tmp Battle")
+            if (sceneName == "CardBattle")
                 MusicManager.Instance.PlayBattleMusic();
             else
                 MusicManager.Instance.PlayMapMusic();
@@ -117,7 +120,7 @@ public class SceneTransition : MonoBehaviour
         // 等待一帧确保场景加载完成
         yield return null;
 
-        if(sceneName != "cardBattle" && playerPosition != new Vector3(0, -1, 0))
+        if(sceneName != "CardBattle" && playerPosition != new Vector3(0, -1, 0))
         {
             // 将玩家传送回原位置
             player = GameObject.FindWithTag("Player");

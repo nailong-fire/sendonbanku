@@ -1066,7 +1066,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            SceneManager.LoadScene(worldSceneName);
+            //SceneManager.LoadScene(worldSceneName);
         }
         else
         {
@@ -1097,7 +1097,7 @@ public class GameManager : MonoBehaviour
         }
         SceneTransition.Instance.LoadScene("map");
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
     
     // 公共方法：获取当前阶段信息
