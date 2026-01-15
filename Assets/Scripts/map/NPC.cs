@@ -42,7 +42,8 @@ public class NPCInteract : MonoBehaviour
         BattleLose,
         BattleWinMain,
         BattleWinMenu,
-        BattleWinSubDialog
+        BattleWinSubDialog,
+        TheEnd
     }
 
     private NPCStoryStage currentStage = NPCStoryStage.None;
@@ -160,7 +161,8 @@ public class NPCInteract : MonoBehaviour
             FinishDialog();
             return;
         }
-
+        if (dialogId == "BattleWin_Option2" && npcName == "leader")
+            currentStage = NPCStoryStage.TheEnd;
         dialogController.StartDialog(npcName, dialog.lines, OnDialogEnd);
     }
 
@@ -201,6 +203,8 @@ public class NPCInteract : MonoBehaviour
                 currentStage = NPCStoryStage.BattleWinMenu;
                 ShowBattleWinMenu(option1, option2, leave);
                 break;
+            
+            case NPCStoryStage.TheEnd:
 
             default:
                 FinishDialog();
