@@ -1,21 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using UnityEngine;
 
 public class stupidai : MonoBehaviour
 {
     private int turn = 0;
 
-    private Cardenetity AIDrawCard()
+    private CardEntity AIDrawCard()
     {
-        var handCards = GetComponent<UniversalController>().GetHandCards();
-        if (handCards.Count == 0)
-            return null;
+        return null;
+    }
 
-        // 简单策略：随机选择一张手牌
-        int randomIndex = Random.Range(0, handCards.Count);
-        return handCards[randomIndex];
+    private CardEntity AIPlayCard()
+    {
+        List<CardEntity> battlefieldCards = GetComponent<UniversalController>().GetBattlefieldCards();
+        foreach (var card in battlefieldCards)
+        {
+            if (card.CardData.Power > 0 && !card.HasActedThisTurn && card.HasActionAbility)
+            {
+                return card;
+            }
+        }
+        return null;
     }
     // Start is called before the first frame update
     void Start()
