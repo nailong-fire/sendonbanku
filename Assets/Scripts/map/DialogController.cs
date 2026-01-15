@@ -1,23 +1,26 @@
-using System.Collections;
-using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
+using TMPro;
 
 public class DialogController : MonoBehaviour
 {
-    [Header("UI")]
+    [Header("Dialog UI")]
     public GameObject dialogUI;
     public TMP_Text nameText;
     public TMP_Text dialogText;
     public GameObject nextArrow;
 
-    [Header("Choice Buttons")]
-    public GameObject choicePanel;          // 选项面板（包含两个按钮）
-    public Button choiceButton1;            // 第一个选项按钮
-    public Button choiceButton2;            // 第二个选项按钮
-    public TMP_Text choiceText1;            // 第一个选项文字
-    public TMP_Text choiceText2;            // 第二个选项文字
+    [Header("Choice UI")]
+    public GameObject choicePanel;
+
+    public Button choiceButton1;
+    public Button choiceButton2;
+    public Button choiceButton3;
+
+    public TMP_Text choiceText1;
+    public TMP_Text choiceText2;
+    public TMP_Text choiceText3;
 
     [Header("Typing")]
     public float typingSpeed = 0.04f;
@@ -26,17 +29,17 @@ public class DialogController : MonoBehaviour
     private int index;
     private bool isTyping;
     private bool dialogActive;
-    private bool waitingForChoice = false;  // 是否正在等待玩家选择
+    private bool waitingForChoice;
 
-    public Action onDialogEnd;
     private Action onChoice1;
     private Action onChoice2;
+    private Action onChoice3;
+
+    private Action onDialogEnd;
 
     void Update()
     {
-        if (!dialogActive) return;
-        if (waitingForChoice) return;
-        if (lines == null || lines.Length == 0) return;
+        if (!dialogActive || waitingForChoice) return;
 
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
@@ -51,9 +54,7 @@ public class DialogController : MonoBehaviour
             StopAllCoroutines();
             dialogText.text = lines[index].content;
             isTyping = false;
-
-            if (nextArrow != null)
-                nextArrow.SetActive(true);
+            nextArrow.SetActive(true);
         }
         else
         {
@@ -63,68 +64,43 @@ public class DialogController : MonoBehaviour
 
     public void StartDialog(string speaker, DialogLine[] dialogLines, Action onEnd = null)
     {
-        if (dialogUI == null || nameText == null || dialogText == null)
-        {
-            Debug.LogError("DialogController：UI 引用未绑定");
-            return;
-        }
-
         dialogUI.SetActive(true);
         dialogActive = true;
         waitingForChoice = false;
 
-        dialogText.text = "";
-
         lines = dialogLines;
         index = 0;
-        isTyping = false;
         onDialogEnd = onEnd;
 
-        if (nextArrow != null)
-            nextArrow.SetActive(false);
+        nextArrow.SetActive(false);
+        choicePanel.SetActive(false);
 
-        if (choicePanel != null)
-            choicePanel.SetActive(false);
-
-        StartCoroutine(DelayedShowFirstLine());
-    }
-
-    IEnumerator DelayedShowFirstLine()
-    {
-        yield return null;
-        ShowCurrentLine();
+        ShowLine();
     }
 
     void NextLine()
     {
         index++;
-
-        if (nextArrow != null)
-            nextArrow.SetActive(false);
+        nextArrow.SetActive(false);
 
         if (index < lines.Length)
         {
-            ShowCurrentLine();
+            ShowLine();
         }
         else
         {
-            OnAllLinesFinished();
+            onDialogEnd?.Invoke();
         }
     }
 
-    void OnAllLinesFinished()
-    {
-        onDialogEnd?.Invoke();
-    }
-
-    void ShowCurrentLine()
+    void ShowLine()
     {
         nameText.text = lines[index].speaker;
         StopAllCoroutines();
         StartCoroutine(TypeLine(lines[index].content));
     }
 
-    IEnumerator TypeLine(string content)
+    System.Collections.IEnumerator TypeLine(string content)
     {
         isTyping = true;
         dialogText.text = "";
@@ -136,75 +112,76 @@ public class DialogController : MonoBehaviour
         }
 
         isTyping = false;
-
-        if (nextArrow != null)
-            nextArrow.SetActive(true);
+        nextArrow.SetActive(true);
     }
 
     public void EndDialog()
     {
-        StopAllCoroutines();
         dialogActive = false;
         waitingForChoice = false;
-        isTyping = false;
-
-        if (dialogUI != null)
-            dialogUI.SetActive(false);
-
-        if (choicePanel != null)
-            choicePanel.SetActive(false);
-
-        if (nextArrow != null)
-            nextArrow.SetActive(false);
+        dialogUI.SetActive(false);
+        choicePanel.SetActive(false);
     }
 
-    // 显示两个选项
-    public void ShowChoices(string text1, Action callback1, string text2, Action callback2)
+    // =========================
+    // 2 个按钮（ReadyAsk）
+    // =========================
+    public void ShowChoices(
+        string text1, Action callback1,
+        string text2, Action callback2)
     {
         waitingForChoice = true;
+        nextArrow.SetActive(false);
 
-        if (nextArrow != null)
-            nextArrow.SetActive(false);
+        choicePanel.SetActive(true);
 
-        if (choiceText1 != null)
-            choiceText1.text = text1;
-        if (choiceText2 != null)
-            choiceText2.text = text2;
+        choiceButton1.gameObject.SetActive(true);
+        choiceButton2.gameObject.SetActive(true);
+        choiceButton3.gameObject.SetActive(false);
 
-        onChoice1 = callback1;
-        onChoice2 = callback2;
+        choiceText1.text = text1;
+        choiceText2.text = text2;
 
-        if (choiceButton1 != null)
-        {
-            choiceButton1.onClick.RemoveAllListeners();
-            choiceButton1.onClick.AddListener(OnClickChoice1);
-        }
-        if (choiceButton2 != null)
-        {
-            choiceButton2.onClick.RemoveAllListeners();
-            choiceButton2.onClick.AddListener(OnClickChoice2);
-        }
+        choiceButton1.onClick.RemoveAllListeners();
+        choiceButton2.onClick.RemoveAllListeners();
 
-        if (choicePanel != null)
-            choicePanel.SetActive(true);
+        choiceButton1.onClick.AddListener(() => { CloseChoice(); callback1?.Invoke(); });
+        choiceButton2.onClick.AddListener(() => { CloseChoice(); callback2?.Invoke(); });
     }
 
-    void OnClickChoice1()
+    // =========================
+    // 3 个按钮（战斗胜利）
+    // =========================
+    public void ShowChoices(
+        string text1, Action callback1,
+        string text2, Action callback2,
+        string text3, Action callback3)
     {
-        HideChoices();
-        onChoice1?.Invoke();
+        waitingForChoice = true;
+        nextArrow.SetActive(false);
+
+        choicePanel.SetActive(true);
+
+        choiceButton1.gameObject.SetActive(true);
+        choiceButton2.gameObject.SetActive(true);
+        choiceButton3.gameObject.SetActive(true);
+
+        choiceText1.text = text1;
+        choiceText2.text = text2;
+        choiceText3.text = text3;
+
+        choiceButton1.onClick.RemoveAllListeners();
+        choiceButton2.onClick.RemoveAllListeners();
+        choiceButton3.onClick.RemoveAllListeners();
+
+        choiceButton1.onClick.AddListener(() => { CloseChoice(); callback1?.Invoke(); });
+        choiceButton2.onClick.AddListener(() => { CloseChoice(); callback2?.Invoke(); });
+        choiceButton3.onClick.AddListener(() => { CloseChoice(); callback3?.Invoke(); });
     }
 
-    void OnClickChoice2()
-    {
-        HideChoices();
-        onChoice2?.Invoke();
-    }
-
-    void HideChoices()
+    void CloseChoice()
     {
         waitingForChoice = false;
-        if (choicePanel != null)
-            choicePanel.SetActive(false);
+        choicePanel.SetActive(false);
     }
 }
