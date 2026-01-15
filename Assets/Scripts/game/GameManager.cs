@@ -330,18 +330,42 @@ public class GameManager : MonoBehaviour
     private IEnumerator PerformCardAction(CardEntity card)
     {
         // 这里调用卡牌自身的行动逻辑
-        // 例如：攻击、治疗、施法等
         if (card.HasActionAbility)
         {
             if(card.CardData.HasEffect(SpecialEffect.MeleeAttack))
             {
                 StartCoroutine(PerformMeleeAttack(card));
             }
-
+            if(card.CardData.HasEffect(SpecialEffect.RangedAttack))
+            {
+                StartCoroutine(PerformRangedAttack(card));
+            }
+            if(card.CardData.HasEffect(SpecialEffect.Healer))
+            {
+                StartCoroutine(PerformHealAction(card));
+            }
+            if(card.CardData.HasEffect(SpecialEffect.MeleeAreaAttack))
+            {
+                StartCoroutine(PerformMeleeAreaAttack(card));
+            }
+            if(card.CardData.HasEffect(SpecialEffect.RangedAreaAttack))
+            {
+                StartCoroutine(PerformRangeAreaAttack(card));
+            }
+            if(card.CardData.HasEffect(SpecialEffect.AllAreaAttack))
+            {
+                StartCoroutine(PerformAllAreaAttack(card));
+            }
+            if(card.CardData.HasEffect(SpecialEffect.Guardian))
+            {
+                StartCoroutine(PerformGuardAction(card));
+            }
         }
         yield return null;
     }
-    
+// =============================================================================================
+//      ================================= 卡牌行动具体实现 =================================
+// =============================================================================================
     // 近战攻击行动
     private IEnumerator PerformMeleeAttack(CardEntity attacker)
     {
@@ -358,17 +382,11 @@ public class GameManager : MonoBehaviour
             // 应用伤害
             target.TakeDamage(damage);
             
-            // 显示伤害数字等效果
-            //ShowDamageEffect(attacker.transform.position, target.transform.position, damage);
-            
-            // 等待效果播放
             yield return new WaitForSeconds(0.5f);
         }
-        else
-        {
-        }
+
     }
-    
+
     // 查找攻击目标
     private CardEntity FindMeleeAttackTarget(CardEntity attacker)
     {
@@ -381,7 +399,6 @@ public class GameManager : MonoBehaviour
         if (opponentBattlefield == null || opponentBattlefield.GetAllCards().Count == 0)
             return null;
         
-        // 简单策略：攻击前排卡牌，或随机选择
         List<CardEntity> targets = new List<CardEntity>(opponentBattlefield.GetAllCards());
         
         // 移除已经死亡的卡牌
@@ -395,11 +412,11 @@ public class GameManager : MonoBehaviour
         {
             if(attacker.positionindex == 0)
             {
-                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 2);
+                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 1);
                 if(target != null)
                 return target;
 
-                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 1);
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 2);
                 if(target != null)
                 return target;
             }
@@ -413,16 +430,20 @@ public class GameManager : MonoBehaviour
                 if(target != null)
                 return target;
 
-                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 1);
+                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 0);
                 if(target != null)
                 return target;
 
-                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 0);
+                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 1);
                 if(target != null)
                 return target;
             }
             if(attacker.positionindex == 2)
             {
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 2);
+                if(target != null)
+                return target;
+
                 target = targets.Find(card => card.IsInFrontRow && card.positionindex == 1);
                 if(target != null)
                 return target;
@@ -434,27 +455,8 @@ public class GameManager : MonoBehaviour
                 target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 0);
                 if(target != null)
                 return target;
-            }
-        }
-        else
-        {
-            if(attacker.positionindex == 0)
-            {
-                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 2);
-                if(target != null)
-                return target;
 
-                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 1);
-                if(target != null)
-                return target;
-            }
-            if(attacker.positionindex == 1)
-            {
-                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 1);
-                if(target != null)
-                return target;
-                
-                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 0);
+                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 1);
                 if(target != null)
                 return target;
             }
@@ -463,27 +465,360 @@ public class GameManager : MonoBehaviour
         return target;
     }
     
-    
+    // 治疗行动
+    private IEnumerator PerformHealAction(CardEntity healer)
+    {
+        // 确定治疗目标
+        CardEntity target = FindHealTarget(healer);
+        
+        if (target != null)
+        {
+            Debug.Log($"{healer.CardData.CardName} 治疗 {target.CardData.CardName}");
+            
+            // 计算治疗量
+            int healAmount = healer.CardData.Power; // 示例：使用卡牌的力量作为治疗量
+            
+            // 应用治疗
+            target.Heal(healAmount);
+            
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    // 查找治疗目标
+    private CardEntity FindHealTarget(CardEntity healer)
+    {
+        // 确定治疗方是玩家还是敌人
+        bool isHealerPlayer = healer.Owner == player;
+        
+        // 获取己方战场
+        CardZone allyBattlefield = isHealerPlayer ? playerBattlefield : enemyBattlefield;
+        
+        if (allyBattlefield == null || allyBattlefield.GetAllCards().Count == 0)
+            return null;
+        
+        List<CardEntity> targets = new List<CardEntity>(allyBattlefield.GetAllCards());
+        
+        // 移除已经满血的卡牌
+        targets.RemoveAll(card => card.CardData.CurrentHealth >= card.CardData.MaxHealth);
+        
+        if (targets.Count == 0) return null;
+
+        CardEntity target = null;
+        
+        if(!healer.IsInFrontRow)
+        {
+            if(healer.positionindex == 0)
+            {
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 1);
+                if(target != null)
+                return target;
+
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 2);
+                if(target != null)
+                return target;
+            }
+            if(healer.positionindex == 1)
+            {
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 2);
+                if(target != null)
+                return target;
+                
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 1);
+                if(target != null)
+                return target;
+            }
+        }
+        
+        return target;
+    }
+
+    // 远程攻击行动
+    private IEnumerator PerformRangedAttack(CardEntity attacker)
+    {
+        // 确定攻击目标
+        CardEntity target = FindRangedAttackTarget(attacker);
+        
+        if (target != null)
+        {
+            Debug.Log($"{attacker.CardData.CardName} 远程攻击 {target.CardData.CardName}");
+            
+            // 计算伤害
+            int damage = CalculateDamage(attacker, target);
+            
+            // 应用伤害
+            target.TakeDamage(damage);
+            
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+    // 查找远程攻击目标
+    private CardEntity FindRangedAttackTarget(CardEntity attacker)
+    {
+        // 确定攻击方是玩家还是敌人
+        bool isAttackerPlayer = attacker.Owner == player;
+        
+        // 获取对方战场
+        CardZone opponentBattlefield = isAttackerPlayer ? enemyBattlefield : playerBattlefield;
+        
+        if (opponentBattlefield == null || opponentBattlefield.GetAllCards().Count == 0)
+            return null;
+        
+        List<CardEntity> targets = new List<CardEntity>(opponentBattlefield.GetAllCards());
+        
+        // 移除已经死亡的卡牌
+        targets.RemoveAll(card => !card.CardData.IsAlive);
+        
+        if (targets.Count == 0) return null;
+
+        
+        CardEntity target = null;
+
+        if(!attacker.IsInFrontRow)
+        {
+            if(attacker.positionindex == 0)
+            {
+                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 1);
+                if(target != null)
+                return target;
+
+                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 0);
+                if(target != null)
+                return target;
+
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 1);
+                if(target != null)
+                return target;
+
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 2);
+                if(target != null)
+                return target;
+            }
+            if(attacker.positionindex == 1)
+            {
+                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 1);
+                if(target != null)
+                return target;
+                
+                target = targets.Find(card => !card.IsInFrontRow && card.positionindex == 0);
+                if(target != null)
+                return target;
+
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 0);
+                if(target != null)
+                return target;
+
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 1);
+                if(target != null)
+                return target;
+
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 2);
+                if(target != null)
+                return target;
+            }
+        }
+
+        return target;
+        
+    }
+
+    // 近战范围攻击行动
+    private IEnumerator PerformMeleeAreaAttack(CardEntity attacker)
+    {
+        // 确定攻击目标
+        // 确定攻击方是玩家还是敌人
+
+        List<CardEntity> targets = new List<CardEntity>();
+        bool isAttackerPlayer = attacker.Owner == player;
+        
+        // 获取对方战场
+        CardZone opponentBattlefield = isAttackerPlayer ? enemyBattlefield : playerBattlefield;
+        
+        if (opponentBattlefield == null || opponentBattlefield.GetAllCards().Count == 0)
+            targets = null;
+        else
+            targets = opponentBattlefield.GetAllCards();
+        
+        // 移除已经死亡的卡牌
+        targets.RemoveAll(card => !card.CardData.IsAlive);
+        
+        if (targets != null)
+        {
+            foreach(CardEntity target in targets)
+            {
+                if(target.IsInFrontRow)
+                {
+                    Debug.Log($"{attacker.CardData.CardName} 近战范围攻击 {target.CardData.CardName}");
+                
+                    // 计算伤害
+                    int damage = CalculateDamage(attacker, target);
+                
+                    // 应用伤害
+                    target.TakeDamage(damage);
+                }
+                yield return new WaitForSeconds(0.5f);
+            }         
+        }
+    }
+
+    // 远程范围攻击行动
+    private IEnumerator PerformRangeAreaAttack(CardEntity attacker)
+    {
+        // 确定攻击目标
+        // 确定攻击方是玩家还是敌人
+
+        List<CardEntity> targets = new List<CardEntity>();
+        bool isAttackerPlayer = attacker.Owner == player;
+        
+        // 获取对方战场
+        CardZone opponentBattlefield = isAttackerPlayer ? enemyBattlefield : playerBattlefield;
+        
+        if (opponentBattlefield == null || opponentBattlefield.GetAllCards().Count == 0)
+            targets = null;
+        else
+            targets = opponentBattlefield.GetAllCards();
+        
+        // 移除已经死亡的卡牌
+        targets.RemoveAll(card => !card.CardData.IsAlive);
+        
+        if (targets != null)
+        {
+            foreach(CardEntity target in targets)
+            {
+                if(!target.IsInFrontRow)
+                {
+                    Debug.Log($"{attacker.CardData.CardName} 远程范围攻击 {target.CardData.CardName}");
+                
+                    // 计算伤害
+                    int damage = CalculateDamage(attacker, target);
+                
+                    // 应用伤害
+                    target.TakeDamage(damage);
+                }
+                yield return new WaitForSeconds(0.5f);
+            }         
+        }
+    }
+
+    // 全体范围攻击行动
+    private IEnumerator PerformAllAreaAttack(CardEntity attacker)
+    {
+        // 确定攻击目标
+        // 确定攻击方是玩家还是敌人
+
+        List<CardEntity> targets = new List<CardEntity>();
+        bool isAttackerPlayer = attacker.Owner == player;
+        
+        // 获取对方战场
+        CardZone opponentBattlefield = isAttackerPlayer ? enemyBattlefield : playerBattlefield;
+        
+        if (opponentBattlefield == null || opponentBattlefield.GetAllCards().Count == 0)
+            targets = null;
+        else
+            targets = opponentBattlefield.GetAllCards();
+        
+        // 移除已经死亡的卡牌
+        targets.RemoveAll(card => !card.CardData.IsAlive);
+        
+        if (targets != null)
+        {
+            foreach(CardEntity target in targets)
+            {
+                Debug.Log($"{attacker.CardData.CardName} 全体范围攻击 {target.CardData.CardName}");
+                
+                // 计算伤害
+                int damage = CalculateDamage(attacker, target);
+                
+                // 应用伤害
+                target.TakeDamage(damage);
+                
+                yield return new WaitForSeconds(0.5f);
+            }         
+        }         
+        
+    }
+
+    // 保护行动
+    private IEnumerator PerformGuardAction(CardEntity guardian)
+    {
+        guardian.guardedCard.guardian = null;
+        guardian.guardedCard.isguarded = false;
+
+        CardEntity target = FindGuardTarget(guardian);
+        if (target != null)
+        {
+            Debug.Log($"{guardian.CardData.CardName} 保护 {target.CardData.CardName}");
+            guardian.guardedCard = target;
+            target.isguarded = true;
+            target.guardian = guardian;
+        
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    // 寻找保护目标
+    private CardEntity FindGuardTarget(CardEntity guardian)
+    {
+        // 确定保护方是玩家还是敌人
+        bool isGuardianPlayer = guardian.Owner == player;
+        
+        // 获取己方战场
+        CardZone allyBattlefield = isGuardianPlayer ? playerBattlefield : enemyBattlefield;
+        
+        if (allyBattlefield == null || allyBattlefield.GetAllCards().Count == 0)
+            return null;
+        
+        List<CardEntity> targets = new List<CardEntity>(allyBattlefield.GetAllCards());
+        
+        if (targets.Count == 0) return null;
+
+        CardEntity target = null;
+        
+        if(guardian.IsInFrontRow)
+        {
+            if(guardian.positionindex == 1)
+            {
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 0);
+                if(target != null)
+                return target;
+
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 1);
+                if(target != null)
+                return target;
+            }
+            if(guardian.positionindex == 2)
+            {
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 1);
+                if(target != null)
+                return target;
+                
+                target = targets.Find(card => card.IsInFrontRow && card.positionindex == 0);
+                if(target != null)
+                return target;
+            }
+        }
+        
+        return target;
+    }
+// =============================================================================================
+// =============================================================================================
+// =============================================================================================
+
     // 计算伤害
     private int CalculateDamage(CardEntity attacker, CardEntity defender)
     {
         int attackPower = attacker.CardData.Power;
 
-        int damage = Mathf.Max(0, attackPower);
+        int damage = attackPower;
+
+        if (defender.isguarded)
+        {
+            int guardeddamage = damage - damage / 2;
+            damage /= guardeddamage;
+            defender.guardian.TakeDamage(guardeddamage);
+        }
         
         return damage;
-    }
-       
-    // 显示伤害效果
-    private void ShowDamageEffect(Vector3 from, Vector3 to, int damage)
-    {
-        // 可以在这里实例化伤害数字、攻击特效等
-        Debug.Log($"伤害: {damage}");
-        
-        // 示例：创建伤害数字
-        GameObject damageText = new GameObject("DamageText");
-        damageText.transform.position = to + Vector3.up;
-        // 这里可以添加TextMeshPro等组件显示伤害数字
     }
     
     // 移除死亡的卡牌

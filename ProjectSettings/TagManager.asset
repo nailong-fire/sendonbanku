@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Card
   - Battlefield
+  - Discard
   layers:
   - Default
   - TransparentFX

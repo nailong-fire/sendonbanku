@@ -30,17 +30,6 @@ public class CardDatabaseSO : ScriptableObject
         return allCards.Find(card => card.cardId == cardId);
     }
 
-    // 获取指定类型的卡牌
-    public List<CardDataSO> GetCardsByType(CardType type)
-    {
-        return allCards.FindAll(card => card.cardType == type);
-    }
-
-    // 获取指定稀有度的卡牌
-    public List<CardDataSO> GetCardsByRarity(Rarity rarity)
-    {
-        return allCards.FindAll(card => card.rarity == rarity);
-    }
 
     // 获取费用在指定范围内的卡牌
     public List<CardDataSO> GetCardsByCost(int minCost, int maxCost)

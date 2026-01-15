@@ -11,14 +11,13 @@ public class CardEntity : MonoBehaviour
 {
     [Header("组件引用")]
     [SerializeField] private SpriteRenderer cardBackground;
-    [SerializeField] private SpriteRenderer cardFrame;
     [SerializeField] private SpriteRenderer cardArt;
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI powerText;
+    [SerializeField] private TextMeshProUGUI speedText;
     [SerializeField] private TextMeshProUGUI costText;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
-    [SerializeField] private ParticleSystem cardGlow;
 
     [Header("状态颜色")]
     [SerializeField] private Color normalColor = Color.white;
@@ -30,6 +29,12 @@ public class CardEntity : MonoBehaviour
     [Header("位置属性")]
     public bool IsInFrontRow = false;
     public int positionindex = 0;
+
+    [Header("特效属性")]
+    public bool isguarded = false;
+    public CardEntity guardian = null;
+    public CardEntity guardedCard = null;
+
 
     // 卡牌运行时数据
     private CardRuntimeData _cardData;
@@ -62,7 +67,6 @@ public class CardEntity : MonoBehaviour
         _owner = owner;
 
         UpdateCardVisuals();
-        UpdateRarityEffects();
     }
 
     // 使用运行时数据初始化
@@ -74,7 +78,6 @@ public class CardEntity : MonoBehaviour
         // TODO: 若需要可根据ID查找并缓存对应的 CardDataSO
 
         UpdateCardVisuals();
-        UpdateRarityEffects();
     }
 
     // 更新卡牌可视化
@@ -85,6 +88,7 @@ public class CardEntity : MonoBehaviour
         // 更新文字
         if (healthText) healthText.text = _cardData.CurrentHealth.ToString();
         if (powerText) powerText.text = _cardData.Power.ToString();
+        if (speedText) speedText.text = _cardData.Speed.ToString();
         if (costText) costText.text = _cardData.FaithCost.ToString();
         if (nameText) nameText.text = _cardData.CardName;
         if (descriptionText) descriptionText.text = _cardData.Description;
@@ -95,60 +99,10 @@ public class CardEntity : MonoBehaviour
             cardArt.sprite = _cardData.CardArt;
         }
 
-        // 更新边框颜色（稀有度）
-        UpdateFrameColor();
-
         // 更新状态颜色
         UpdateStateColor();
     }
 
-    // 根据稀有度更新边框颜色
-    private void UpdateFrameColor()
-    {
-        if (!cardFrame) return;
-
-        Color frameColor = _cardData.Rarity switch
-        {
-            Rarity.Common => Color.gray,
-            Rarity.Uncommon => Color.green,
-            Rarity.Rare => Color.blue,
-            Rarity.Epic => Color.magenta,
-            Rarity.Legendary => Color.yellow,
-            _ => Color.white
-        };
-
-        cardFrame.color = frameColor;
-    }
-
-    // 更新稀有度特效
-    private void UpdateRarityEffects()
-    {
-        if (!cardGlow) return;
-
-        // 根据稀有度开启/关闭特效
-        bool shouldGlow = _cardData.Rarity >= Rarity.Rare;
-
-        if (shouldGlow && !cardGlow.isPlaying)
-        {
-            cardGlow.Play();
-
-            // 设置发光颜色
-            var main = cardGlow.main;
-            Color glowColor = _cardData.Rarity switch
-            {
-                Rarity.Rare => Color.blue,
-                Rarity.Epic => Color.magenta,
-                Rarity.Legendary => Color.yellow,
-                _ => Color.white
-            };
-
-            main.startColor = new ParticleSystem.MinMaxGradient(glowColor);
-        }
-        else if (!shouldGlow && cardGlow.isPlaying)
-        {
-            cardGlow.Stop();
-        }
-    }
 
     // 更新状态颜色（背景）
     private void UpdateStateColor()
@@ -271,20 +225,6 @@ public class CardEntity : MonoBehaviour
     {
         _isOnHand = onHand;
         UpdateStateColor();
-    }
-
-
-    // 是否可以攻击目标
-    public bool CanAttackTarget(CardEntity target)
-    {
-        if (target == null || !target.CardData.IsAlive) return false;
-
-        // 如果具有远程攻击效果，则可以攻击任意目标
-        if (_cardData.HasEffect(SpecialEffect.RangedAttack))
-            return true;
-
-        // 暂时返回 true，具体规则由游戏逻辑决定
-        return true;
     }
 
     // 获取攻击力

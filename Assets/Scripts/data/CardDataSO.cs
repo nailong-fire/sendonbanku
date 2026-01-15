@@ -1,27 +1,20 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-// 卡牌类型枚举
-public enum CardType
-{
-    Buddha,        // 佛陀
-    Bodhisattva,   // 菩萨
-    Vajra,         // 金刚
-    Apsara,        // 飞天（仙女）
-    Monk,          // 僧侣
-    Effect         // 效果类
-}
-
 // 特殊效果枚举
 public enum SpecialEffect
 {
     MeleeAttack,       // 近战攻击
     RangedAttack,      // 远程攻击
-    IgnoreLowDamage,   // 忽略低伤害（小于2的伤害无效）
+    Tough,   // 减伤
     Healer,            // 治疗者
     Guardian,          // 守护
-    QuickStrike,       // 迅捷
-    Taunt              // 嘲讽
+    MeleeAreaAttack,       // 近战范围攻击
+    RangedAreaAttack,      // 远程范围攻击
+    AllAreaAttack,        // 全体范围攻击
+
+    Star,              // 星星
+    Moon,             // 月亮
 }
 
 //持续效果枚举
@@ -30,16 +23,6 @@ public enum ContinuousEffect
     Poison,
     Regeneration
     
-}
-
-// 稀有度枚举
-public enum Rarity
-{
-    Common,      // 普通
-    Uncommon,    // 非凡
-    Rare,        // 稀有
-    Epic,        // 史诗
-    Legendary    // 传说
 }
 
 [CreateAssetMenu(fileName = "Card_", menuName = "卡牌/卡牌数据")]
@@ -56,18 +39,9 @@ public class CardDataSO : ScriptableObject
     [TextArea(2, 4)]
     public string description = "卡牌描述";
 
-    [Tooltip("卡牌类型")]
-    public CardType cardType = CardType.Buddha;
-
-    [Tooltip("卡牌稀有度")]
-    public Rarity rarity = Rarity.Common;
-
     [Header("视觉资源")]
     [Tooltip("卡牌头像或立绘")]
     public Sprite cardArt;
-
-    [Tooltip("卡牌边框（可根据稀有度更换）")]
-    public Sprite cardFrame;
 
     [Tooltip("卡牌背景图")]
     public Sprite cardBackground;
@@ -137,8 +111,6 @@ public class CardRuntimeData
 {
     public string CardId;
     public string CardName;
-    public CardType Type;
-    public Rarity Rarity;
     public int MaxHealth;
     public int CurrentHealth;
     public int Power;
@@ -157,8 +129,6 @@ public class CardRuntimeData
     {
         CardId = so.cardId;
         CardName = so.cardName;
-        Type = so.cardType;
-        Rarity = so.rarity;
         MaxHealth = so.health;
         CurrentHealth = so.health;
         Power = so.power;
@@ -174,9 +144,12 @@ public class CardRuntimeData
 
     public void TakeDamage(int damage)
     {
-        // 如果包含忽略小额伤害效果且伤害小于2，则不减少生命
-        if (SpecialEffects.Contains(SpecialEffect.IgnoreLowDamage) && damage < 2)
-            return;
+        if (SpecialEffects.Contains(SpecialEffect.Tough))
+        {
+            damage -= Power;
+            if (damage <= 0)
+                return;
+        }
 
         CurrentHealth -= damage;
         CurrentHealth = Mathf.Max(0, CurrentHealth);

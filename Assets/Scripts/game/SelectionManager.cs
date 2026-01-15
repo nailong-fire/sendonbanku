@@ -117,6 +117,19 @@ public class SelectionManager : MonoBehaviour
                     OnBattlefieldClicked(player, zone, tf.position);
                 }
             }
+            // 检查点击的弃牌
+            else if (clickedObject.CompareTag("Discard"))
+            {
+                Debug.Log("点击到弃牌堆");
+                if (selectedCard != null)
+                {
+                    UniversalController player = GameManager.Instance.player;
+                    CardZone playerBattlefield = GameManager.Instance.playerBattlefield;
+                    playerBattlefield.RemoveCard(selectedCard);
+                    Destroy(selectedCard.gameObject);
+                }
+                // 可以添加查看弃牌堆的逻辑
+            }
         }
         else
         {
@@ -228,12 +241,6 @@ public class SelectionManager : MonoBehaviour
         
         selectedCard = card;
         isSelectingCard = true;
-        
-        // 高亮选中的卡牌
-        //HighlightSelectedCard();
-        
-        // 播放音效（可选）
-        // AudioManager.Instance.PlaySound("card_select");
     }
     
     // 取消选择
@@ -357,52 +364,6 @@ public class SelectionManager : MonoBehaviour
         yield return null;
     }
     
-    // 卡牌移动动画
-    //IEnumerator PlayCardMoveAnimation(CardEntity card, Vector3 targetPos)
-    //{
-    //    float elapsed = 0f;
-    //    Vector3 startPos = card.transform.position;
-    //    Vector3 startScale = card.transform.localScale;
-    //    
-    //    // 先稍微抬高
-    //    Vector3 midPos = (startPos + targetPos) / 2 + Vector3.up * 2f;
-    //    
-    //    while (elapsed < cardMoveDuration)
-    //    {
-    //        elapsed += Time.deltaTime;
-    //        float t = elapsed / cardMoveDuration;
-    //        t = cardMoveCurve.Evaluate(t);
-    //        
-    //        // 贝塞尔曲线移动
-    //        Vector3 position = CalculateBezierPoint(t, startPos, midPos, targetPos);
-    //        card.transform.position = position;
-    //        
-    //        // 轻微旋转
-    //        card.transform.rotation = Quaternion.Euler(0, t * 360, 0);
-    //        
-    //        yield return null;
-    //    }
-    //    
-    //    // 确保最终位置正确
-    //    card.transform.position = targetPos;
-    //    card.transform.rotation = Quaternion.identity;
-    //    card.transform.localScale = startScale;
-    //}
-    
-    // 计算贝塞尔曲线点
-    //Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
-    //{
-    //    float u = 1 - t;
-    //    float tt = t * t;
-    //    float uu = u * u;
-    //    
-    //    Vector3 p = uu * p0;
-    //    p += 2 * u * t * p1;
-    //    p += tt * p2;
-    //    
-    //    return p;
-    //}
-    
     // 清除选择
     void ClearSelection()
     {
@@ -475,7 +436,6 @@ public class SelectionManager : MonoBehaviour
     {
         Debug.Log($"=== 卡牌详情 ===");
         Debug.Log($"名称: {card.CardData.CardName}");
-        Debug.Log($"类型: {card.CardData.Type}");
         Debug.Log($"费用: {card.CardData.FaithCost} Faith");
         Debug.Log($"攻击: {card.CardData.Power}");
         Debug.Log($"速度: {card.CardData.Speed}");

@@ -325,10 +325,16 @@ public class UniversalController : MonoBehaviour
     protected virtual void OnBattlefieldCardRemoved(CardEntity card)
     {
         // 卡牌被击败时减少Hope
-        int hopeLoss = CalculateHopeLossFromCard(card);
-        resourceSystem.CurrentHope -= hopeLoss;
-        
-        Debug.Log($"{characterName} 的战场移除了卡牌: {card.CardData.CardName}, Hope -{hopeLoss}");
+        if (!card.IsOnHand)
+        {
+            int hopeLoss = CalculateHopeLossFromCard(card);
+            resourceSystem.CurrentHope -= hopeLoss;
+            Debug.Log($"{characterName} 的战场移除了卡牌: {card.CardData.CardName}, Hope -{hopeLoss}");
+        }
+        else
+        {
+            Debug.Log($"{characterName} 的手牌区移除了卡牌: {card.CardData.CardName}");
+        }
     }
     
     // 计算卡牌被击败时的Hope损失
