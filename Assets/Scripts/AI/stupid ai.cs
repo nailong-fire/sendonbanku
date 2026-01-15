@@ -13,14 +13,10 @@ public class stupidai : MonoBehaviour
 
     private CardEntity AIPlayCard()
     {
-        List<CardEntity> battlefieldCards = GetComponent<UniversalController>().GetBattlefieldCards();
-        foreach (var card in battlefieldCards)
-        {
-            if (card.CardData.Power > 0 && !card.HasActedThisTurn && card.HasActionAbility)
-            {
-                return card;
-            }
-        }
+        turn++;
+        UniversalController enemy = GameManager.Instance.enemy;
+        List<CardEntity> playableCards = enemy.handZone.GetAllCards();
+
         return null;
     }
     // Start is called before the first frame update

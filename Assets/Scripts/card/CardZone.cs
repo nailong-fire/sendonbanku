@@ -399,64 +399,6 @@ public class CardZone : MonoBehaviour
         return removedCards;
     }
     
-    // 交换两个位置的卡牌
-    public bool SwapCards(CardPosition position1, CardPosition position2)
-    {
-        if (position1 == null || position2 == null)
-            return false;
-            
-        if (!position1.isOccupied || !position2.isOccupied)
-            return false;
-            
-        // 交换卡牌
-        CardEntity tempCard = position1.occupiedCard;
-        position1.occupiedCard = position2.occupiedCard;
-        position2.occupiedCard = tempCard;
-        
-        // 更新位置
-        if (position1.positionTransform != null)
-        {
-            position2.occupiedCard.transform.position = position1.positionTransform.position;
-        }
-        
-        if (position2.positionTransform != null)
-        {
-            position1.occupiedCard.transform.position = position2.positionTransform.position;
-        }
-        
-        onZoneUpdated?.Invoke();
-        return true;
-    }
-    
-    // 移动卡牌到新位置
-    public bool MoveCardToPosition(CardEntity card, bool newFrontRow, int newPositionIndex)
-    {
-        CardPosition currentPosition = GetCardPosition(card);
-        CardPosition targetPosition = FindPosition(newFrontRow, newPositionIndex);
-        
-        if (currentPosition == null || targetPosition == null)
-            return false;
-            
-        if (targetPosition.isOccupied)
-            return false;
-            
-        // 移动卡牌
-        currentPosition.isOccupied = false;
-        currentPosition.occupiedCard = null;
-        
-        targetPosition.isOccupied = true;
-        targetPosition.occupiedCard = card;
-        
-        // 更新位置
-        if (targetPosition.positionTransform != null)
-        {
-            card.transform.position = targetPosition.positionTransform.position;
-        }
-        
-        onZoneUpdated?.Invoke();
-        return true;
-    }
-    
     // 在编辑器中可视化位置点
     private void OnDrawGizmosSelected()
     {

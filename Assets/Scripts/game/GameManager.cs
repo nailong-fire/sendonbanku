@@ -169,17 +169,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("敌人AI开始行动...");
         
-        // 敌人抽卡
-        //if (enemy != null)
-        //{
-        //    CardEntity drawnCard = enemy.DrawCard();
-        //    if (drawnCard != null)
-        //    {
-        //        Debug.Log($"敌人抽到: {drawnCard.CardData.CardName}");
-        //        yield return new WaitForSeconds(0.5f);
-        //    }
-        //}
-        
         // 敌人出牌逻辑（简单示例）
         if(enemy.handZone.GetCardCount() != 0)
         {
