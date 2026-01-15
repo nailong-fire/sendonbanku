@@ -35,6 +35,9 @@ public class CardEntity : MonoBehaviour
     public CardEntity guardian = null;
     public CardEntity guardedCard = null;
 
+    [Header("动画引用")]
+    [SerializeField] private Animator animator;
+
 
     // 卡牌运行时数据
     private CardRuntimeData _cardData;
@@ -48,6 +51,26 @@ public class CardEntity : MonoBehaviour
     // 所有者
     [SerializeField]
     private UniversalController _owner;
+
+    private void Awake()
+    {
+        if (animator == null)
+        {
+            // 尝试从自身或子物体查找 Animator
+            animator = GetComponentInChildren<Animator>();
+        }
+
+        // 初始化：如果 Animator 绑在特效层上，确保证它是透明的
+        if (animator != null)
+        {
+            SpriteRenderer effectSR = animator.GetComponent<SpriteRenderer>();
+            // 只有当这个 SR 不是卡牌自身的主 SR 时（防止把卡面清空了）
+            if (effectSR != null && effectSR != cardBackground && effectSR != cardArt)
+            {
+                effectSR.sprite = null; 
+            }
+        }
+    }
 
     // 事件
     public System.Action<CardEntity> OnCardDestroyed;
@@ -119,10 +142,16 @@ public class CardEntity : MonoBehaviour
     {
         if (_cardData == null || !_cardData.IsAlive) return;
 
+        // 触发动画: 确保你在 Animator 面板里设置了一个叫 "Hurt" 的 Trigger
+        if (animator != null)
+        {
+            animator.SetTrigger("Hurt");
+        }
+
         _cardData.TakeDamage(damage);
         UpdateCardVisuals();
 
-        // 播放受伤特效
+        // 播放受伤特效 (代码控制的简单特效，可保留作为叠加)
         StartCoroutine(DamageEffect());
 
         //if (!_cardData.IsAlive)
