@@ -25,8 +25,11 @@ public class GameState : MonoBehaviour
     public void ResetStory()
     {
         story.metVillageChief = false;
-        story.battleUnlocked = false;
         story.readyForBattle = false;
+        story.battleUnlocked = false;
+
+        story.battleWon = false;
+        story.battleLostOnce = false;
 
         Debug.Log("Story reset: new game started");
     }
