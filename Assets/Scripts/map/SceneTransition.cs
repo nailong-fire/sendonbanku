@@ -100,6 +100,31 @@ public class SceneTransition : MonoBehaviour
             cameraPosition = Camera.main.transform.position;
             Debug.Log("记录玩家位置：" + playerPosition);
             Debug.Log("记录相机位置：" + cameraPosition);
+            // 进入战斗前：根据玩家拥有的卡牌随机构建牌组（10 张）
+            if (player != null)
+            {
+                var uc = player.GetComponent<UniversalController>();
+                if (uc != null && uc.cardDatabase != null)
+                {
+                    uc.cardDatabase.PopulatePlayerDeckFromOwnedRandom(10, true);
+                    Debug.Log("通过玩家的 cardDatabase 填充战斗牌组");
+                }
+                else
+                {
+                    // 兜底：尝试直接在资源中找到 CardDatabaseSO 实例
+                    var dbs = Resources.FindObjectsOfTypeAll<CardDatabaseSO>();
+                    if (dbs != null && dbs.Length > 0)
+                    {
+                        // 取第一个可用的
+                        dbs[0].PopulatePlayerDeckFromOwnedRandom(10, true);
+                        Debug.Log("通过 Resources 的 CardDatabaseSO 填充战斗牌组（兜底）");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("找不到可用的 CardDatabaseSO 来填充战斗牌组");
+                    }
+                }
+            }
         }
 
         // 淡出（画面变黑）
