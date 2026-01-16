@@ -186,6 +186,8 @@ public class GameInitializer : MonoBehaviour
                 Debug.LogError("敌人预制体上没有EnemyController组件！");
                 yield break;
             }
+            _enemy.cardDatabase = EnemyImformation.instance.enemyCardDatabase;
+            Debug.Log($"敌人卡牌数据库已设置为 {EnemyImformation.instance.enemyCardDatabase}");
             _enemy.Initialize(name: "敌人", isPlayer: false, startingHope: settings.enemyStartingHope, startingFaith: settings.enemyStartingFaith);
             Debug.Log($"敌人初始faith: {settings.enemyStartingFaith}, hope: {settings.enemyStartingHope}");
 

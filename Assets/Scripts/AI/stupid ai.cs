@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class stupidai : MonoBehaviour
+public class stupidai : enemyai
 {
     private int turn = 0;
 
@@ -11,13 +11,29 @@ public class stupidai : MonoBehaviour
         return null;
     }
 
-    private CardEntity AIPlayCard()
+    public override void AIPlayCard()
     {
         turn++;
         UniversalController enemy = GameManager.Instance.enemy;
+        CardZone enemyBattlefield = enemy.battlefield;
+        CardZone enemyHandZone = enemy.handZone;
         List<CardEntity> playableCards = enemy.handZone.GetAllCards();
-
-        return null;
+        CardEntity targetCard = null;
+        if (playableCards.Count > 0)
+            targetCard = playableCards[0];
+        if (enemy.resourceSystem.CurrentFaith >= 3 && targetCard != null)
+        {
+            int i = 2; 
+            while (i >= 0)
+            {
+                if (enemyBattlefield.PlaceCardAtPosition(targetCard, true, i, enemyHandZone))
+                {
+                    return;
+                }
+                i--;
+            }
+        }
+        return;
     }
     // Start is called before the first frame update
     void Start()

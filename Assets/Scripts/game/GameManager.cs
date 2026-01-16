@@ -171,6 +171,8 @@ public class GameManager : MonoBehaviour
     private IEnumerator EnemyAIAction()
     {
         Debug.Log("敌人AI开始行动...");
+
+        EnemyImformation.instance.enemyAI.AIPlayCard();
         
         // 敌人出牌逻辑（简单示例）
         /*if(enemy.handZone.GetCardCount() != 0)

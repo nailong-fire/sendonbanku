@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bde68c0377d783e40b4909686769a129, type: 3}
-  m_Name: "\u6587\u6B8A\u83E9\u8428\uFF08\u5251\uFF09"
+  m_Name: "\u6258\u625B\u529B\u58EB"
   m_EditorClassIdentifier: 
-  cardId: 012
-  cardName: "\u6587\u6B8A\u83E9\u8428"
-  description: 
+  cardId: 008
+  cardName: "\u6258\u625B\u529B\u58EB"
+  description: "\u5361\u724C\u63CF\u8FF0"
   cardArt: {fileID: 0}
   cardBackground: {fileID: 0}
-  health: 5
-  power: 2
-  speed: 4
-  faithCost: 4
+  health: 3
+  power: 1
+  speed: 3
+  faithCost: 3
   canPlaceFront: 1
   canPlaceBack: 1
-  specialEffects: 00000000
+  specialEffects: 0000000004000000
   continuousEffects: 
   story: "\u8FD9\u662F\u5361\u724C\u7684\u80CC\u666F\u6545\u4E8B\u793A\u4F8B..."

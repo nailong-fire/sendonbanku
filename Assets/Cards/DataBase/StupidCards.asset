@@ -14,5 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allCards: []
   playerOwnedCardIds: []
-  playerDeckCardIds: []
+  playerDeckCardIds:
+  - 006
+  - 006
+  - 006
+  - 006
+  - 006
+  - 006
+  - 006
+  - 006
+  - 006
+  - 006
   playerDiscardPileCardIds: []
