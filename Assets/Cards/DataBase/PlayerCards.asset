@@ -19,16 +19,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9c90c29a2882c194a84859deac0c1946, type: 2}
   - {fileID: 11400000, guid: ab61a35ebb124de4295a693af44685ab, type: 2}
   - {fileID: 11400000, guid: 8bc789e086e5c5641a9d9e161f8bd348, type: 2}
+  - {fileID: 11400000, guid: 91c34df02a2f8334bbf63467294722d3, type: 2}
+  - {fileID: 11400000, guid: 61da3577827b3114c96cae4e38602424, type: 2}
+  - {fileID: 11400000, guid: 64e89b86d764aaf4489f88841f99bb4d, type: 2}
+  - {fileID: 11400000, guid: 45482d45b0d28304996a9fb7f2dae009, type: 2}
+  - {fileID: 11400000, guid: 6410e2358055e1c4fb945a13dd71f1bd, type: 2}
+  - {fileID: 11400000, guid: 50e847a68fadecf4eb2f697c03ff18a9, type: 2}
+  - {fileID: 11400000, guid: 04e204c206503fb4eb7ecd1ce6c7fe7c, type: 2}
+  - {fileID: 11400000, guid: 891007521d8890e409b72de5445643de, type: 2}
+  - {fileID: 11400000, guid: 621c73cb8ae4500428bb2715e16faa95, type: 2}
+  - {fileID: 11400000, guid: a0fd4a9e4335adc468f8aa0ab64c61b9, type: 2}
+  - {fileID: 11400000, guid: c4a92a5e0f120784b8d9b14063dc06bd, type: 2}
   playerOwnedCardIds: []
-  playerDeckCardIds:
-  - 001
-  - 001
-  - 001
-  - 001
-  - 001
-  - 002
-  - 002
-  - 002
-  - 010
-  - 010
+  playerDeckCardIds: []
   playerDiscardPileCardIds: []

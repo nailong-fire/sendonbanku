@@ -868,12 +868,15 @@ MonoBehaviour:
   enemyCardDatabase: {fileID: 0}
   card1: 
   card2: 
+  num_card1: 0
+  num_card2: 0
   dialogs:
   - {fileID: 11400000, guid: 9334fcbac0a376246b166e5d2e20b69a, type: 2}
   npcId: VillageChief
   battleSceneName: cardbattle
   interactKey: 101
   talkHint: {fileID: 0}
+  playercardDatabase: {fileID: 0}
 --- !u!212 &267036966
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1556,9 +1559,11 @@ MonoBehaviour:
   option1: The Four Heavenly Kings?
   option2: Why the duel?
   leave: Leave him alone.
-  enemyCardDatabase: {fileID: 11400000, guid: 394561a2518cce041a7af7943540646d, type: 2}
-  card1: 
-  card2: 
+  enemyCardDatabase: {fileID: 11400000, guid: c3172afee12a5994f9d4956f5c365791, type: 2}
+  card1: 004
+  card2: 006
+  num_card1: 2
+  num_card2: 1
   dialogs:
   - {fileID: 11400000, guid: a8ddf5494174ee546a0770b993909b45, type: 2}
   - {fileID: 11400000, guid: f299a0ecbe9111547975f586aae7e79d, type: 2}
@@ -1570,6 +1575,7 @@ MonoBehaviour:
   battleSceneName: CardBattle
   interactKey: 101
   talkHint: {fileID: 459342440}
+  playercardDatabase: {fileID: 11400000, guid: 21e01924635ef614da761e0aa78c3125, type: 2}
 --- !u!1 &476640929
 GameObject:
   m_ObjectHideFlags: 0
@@ -3648,8 +3654,10 @@ MonoBehaviour:
   option2: Pinch her little face.
   leave: Pet her head.(leave)
   enemyCardDatabase: {fileID: 11400000, guid: 179ae506ce712df4d920ec8aa7793f89, type: 2}
-  card1: 
-  card2: 
+  card1: 005
+  card2: 009
+  num_card1: 2
+  num_card2: 1
   dialogs:
   - {fileID: 11400000, guid: 33c8925a1e93d594d88bf6d9d3673cbb, type: 2}
   - {fileID: 11400000, guid: c2bf5f9c1daec164da176d38d5ddf1da, type: 2}
@@ -3661,6 +3669,7 @@ MonoBehaviour:
   battleSceneName: cardbattle
   interactKey: 101
   talkHint: {fileID: 0}
+  playercardDatabase: {fileID: 11400000, guid: 21e01924635ef614da761e0aa78c3125, type: 2}
 --- !u!1 &1359509739
 GameObject:
   m_ObjectHideFlags: 0
@@ -3899,12 +3908,15 @@ MonoBehaviour:
   enemyCardDatabase: {fileID: 0}
   card1: 
   card2: 
+  num_card1: 0
+  num_card2: 0
   dialogs:
   - {fileID: 11400000, guid: 02430f8728fa61947879b84a59a70976, type: 2}
   npcId: VillageChief
   battleSceneName: cardbattle
   interactKey: 101
   talkHint: {fileID: 0}
+  playercardDatabase: {fileID: 0}
 --- !u!212 &1369836280
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6213,9 +6225,11 @@ MonoBehaviour:
   option1: 'How long you lived here? '
   option2: Do you believe in the Buddha?
   leave: Bye.
-  enemyCardDatabase: {fileID: 0}
-  card1: 
-  card2: 
+  enemyCardDatabase: {fileID: 11400000, guid: 570068120bbb370429262b0a389a96d6, type: 2}
+  card1: 012
+  card2: 013
+  num_card1: 1
+  num_card2: 1
   dialogs:
   - {fileID: 11400000, guid: 02430f8728fa61947879b84a59a70976, type: 2}
   - {fileID: 11400000, guid: bcbbc52b8f42e124f918f0f85d17dcc0, type: 2}
@@ -6227,6 +6241,7 @@ MonoBehaviour:
   battleSceneName: cardbattle
   interactKey: 101
   talkHint: {fileID: 0}
+  playercardDatabase: {fileID: 11400000, guid: 21e01924635ef614da761e0aa78c3125, type: 2}
 --- !u!1 &2052165691
 GameObject:
   m_ObjectHideFlags: 0
@@ -6812,9 +6827,11 @@ MonoBehaviour:
   option1: Afraid of darkness, too?
   option2: Step back, soldier!
   leave: See ya.
-  enemyCardDatabase: {fileID: 0}
-  card1: 
-  card2: 
+  enemyCardDatabase: {fileID: 11400000, guid: 179ae506ce712df4d920ec8aa7793f89, type: 2}
+  card1: 007
+  card2: 005
+  num_card1: 1
+  num_card2: 2
   dialogs:
   - {fileID: 11400000, guid: 9334fcbac0a376246b166e5d2e20b69a, type: 2}
   - {fileID: 11400000, guid: 603c6032ff953c541a7a71c5a70ee156, type: 2}
@@ -6826,6 +6843,7 @@ MonoBehaviour:
   battleSceneName: cardbattle
   interactKey: 101
   talkHint: {fileID: 0}
+  playercardDatabase: {fileID: 11400000, guid: 21e01924635ef614da761e0aa78c3125, type: 2}
 --- !u!1 &2138961301
 GameObject:
   m_ObjectHideFlags: 0
@@ -7021,9 +7039,11 @@ MonoBehaviour:
   option1: The history.
   option2: My friend.
   leave: Leave
-  enemyCardDatabase: {fileID: 0}
-  card1: 
-  card2: 
+  enemyCardDatabase: {fileID: 11400000, guid: d5ebcd0fadffb7c49b60bf47d3828a1a, type: 2}
+  card1: 001
+  card2: 001
+  num_card1: 0
+  num_card2: 0
   dialogs:
   - {fileID: 11400000, guid: 8ccb6bd174245394db8ea175c3a9dca1, type: 2}
   - {fileID: 11400000, guid: 0b0106d1702c4ec4dbcb238104dde259, type: 2}
@@ -7035,6 +7055,7 @@ MonoBehaviour:
   battleSceneName: cardbattle
   interactKey: 101
   talkHint: {fileID: 0}
+  playercardDatabase: {fileID: 11400000, guid: 21e01924635ef614da761e0aa78c3125, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

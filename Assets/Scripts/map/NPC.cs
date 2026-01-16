@@ -17,6 +17,8 @@ public class NPCInteract : MonoBehaviour
     public CardDatabaseSO enemyCardDatabase;
     public string card1;
     public string card2;
+    public int num_card1;
+    public int num_card2;
 
     [Header("Dialog Data")]
     public List<DialogData> dialogs;
@@ -32,6 +34,8 @@ public class NPCInteract : MonoBehaviour
 
     [Header("UI")]
     public GameObject talkHint;
+
+    [SerializeField] private CardDatabaseSO playercardDatabase;
 
     private bool playerInRange;
     private bool dialogOpen;
@@ -130,6 +134,8 @@ public class NPCInteract : MonoBehaviour
         if (story.battleWon)
         {
             currentStage = NPCStoryStage.BattleWinMain;
+            playercardDatabase.AddCardToPlayerOwnedPile(card1, num_card1);
+            playercardDatabase.AddCardToPlayerOwnedPile(card2, num_card2);
             PlayDialog("BattleWinMain");
             return;
         }
