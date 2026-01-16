@@ -30,7 +30,10 @@ public class enddialog1 : MonoBehaviour
 
     IEnumerator PlayAnim()
     {
+        Stage6AnimTrigger.playani();
+
        yield return new WaitForSeconds(1f);
+       
        if (nextdialog != null)
             nextdialog.SetActive(true);
 
