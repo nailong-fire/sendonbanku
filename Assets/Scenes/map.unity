@@ -4436,6 +4436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAI: {fileID: 0}
   enemyCardDatabase: {fileID: 0}
+  playerCardDatabase: {fileID: 0}
 --- !u!4 &1556126972
 Transform:
   m_ObjectHideFlags: 0

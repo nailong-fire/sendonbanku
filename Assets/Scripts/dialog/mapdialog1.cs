@@ -39,9 +39,9 @@ public class mapdialog1 : MonoBehaviour
 
         leader.transform.position = new Vector3(-205.0f, 0.25f, leader.transform.position.z);
 
-        playercardDatabase.AddCardToPlayerOwnedPile("001", 10);
-        playercardDatabase.AddCardToPlayerOwnedPile("002", 5);
-        playercardDatabase.AddCardToPlayerOwnedPile("010", 5);
+        playercardDatabase.AddCardToPlayerOwnedPile("001", 5);
+        playercardDatabase.AddCardToPlayerOwnedPile("002", 3);
+        playercardDatabase.AddCardToPlayerOwnedPile("010", 2);
         
         if (nextdialog != null)
             nextdialog.SetActive(true);

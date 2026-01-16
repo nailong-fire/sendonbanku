@@ -8,6 +8,7 @@ public class EnemyImformation : MonoBehaviour
 
     public enemyai enemyAI = null;
     public CardDatabaseSO enemyCardDatabase = null;
+    public CardDatabaseSO playerCardDatabase = null;
 
     private void Awake()
     {
@@ -21,6 +22,9 @@ public class EnemyImformation : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        playerCardDatabase.playerDeckCardIds.Clear();
+        playerCardDatabase.playerOwnedCardIds.Clear();
     }
 
     void Start()
