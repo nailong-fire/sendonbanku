@@ -3582,7 +3582,7 @@ MonoBehaviour:
   option1: You alone?
   option2: Pinch her little face.
   leave: Pet her head.(leave)
-  enemyCardDatabase: {fileID: 0}
+  enemyCardDatabase: {fileID: 11400000, guid: 179ae506ce712df4d920ec8aa7793f89, type: 2}
   dialogs:
   - {fileID: 11400000, guid: 33c8925a1e93d594d88bf6d9d3673cbb, type: 2}
   - {fileID: 11400000, guid: c2bf5f9c1daec164da176d38d5ddf1da, type: 2}
@@ -3937,10 +3937,14 @@ MonoBehaviour:
   dialogLines:
   - speaker: leader
     content: Here is our cave.
-  - speaker: 
-    content: He suddenly turned, handed you a deck of cards.
   - speaker: leader
     content: These are the must here.
+  - speaker: 
+    content: He suddenly turned, handed you a deck of cards.
+  - speaker: 
+    content: You got 10 Monks, 5 Warrior Monks, 5 Healer Monks.
+  - speaker: 
+    content: When you checked your cards, the leader disappeared.
   npcName: leader
   nextdialog: {fileID: 0}
 --- !u!1 &1447151530
