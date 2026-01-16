@@ -4,29 +4,38 @@ using UnityEngine;
 
 public class EnemyImformation : MonoBehaviour
 {
-    public static EnemyImformation instance { get; set; }  // ← 单例
+    public static EnemyImformation instance { get; set; }
 
     public enemyai enemyAI = null;
     public CardDatabaseSO enemyCardDatabase = null;
     public CardDatabaseSO playerCardDatabase = null;
     public string enemyName = "unknow";
+    
+    // 备份敌人卡牌数据库
+    private List<string> backupEnemyDeckCardIds = new List<string>();
+    private List<string> backupEnemyOwnedCardIds = new List<string>();
 
     private void Awake()
     {
-        // 单例初始化
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
             
-            // 只在第一次初始化时清空卡牌
+            // 备份敌人卡牌数据库
+            if (enemyCardDatabase != null)
+            {
+                backupEnemyDeckCardIds = new List<string>(enemyCardDatabase.playerDeckCardIds);
+                backupEnemyOwnedCardIds = new List<string>(enemyCardDatabase.playerOwnedCardIds);
+                Debug.Log("已备份敌人卡牌数据库");
+            }
+            
+            // 清空玩家卡牌
             if (playerCardDatabase != null)
             {
                 playerCardDatabase.playerDeckCardIds.Clear();
                 playerCardDatabase.playerOwnedCardIds.Clear();
             }
-            
-            Debug.Log("EnemyImformation 第一次初始化");
         }
         else
         {
@@ -34,14 +43,15 @@ public class EnemyImformation : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    void Start()
+    
+    // 恢复敌人卡牌数据库
+    public void RestoreEnemyCardDatabase()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        if (enemyCardDatabase != null)
+        {
+            enemyCardDatabase.playerDeckCardIds = new List<string>(backupEnemyDeckCardIds);
+            enemyCardDatabase.playerOwnedCardIds = new List<string>(backupEnemyOwnedCardIds);
+            Debug.Log("已恢复敌人卡牌数据库");
+        }
     }
 }

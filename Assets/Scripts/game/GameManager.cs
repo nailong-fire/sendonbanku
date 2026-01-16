@@ -711,6 +711,7 @@ public class GameManager : MonoBehaviour
 
         List<CardEntity> targets = new List<CardEntity>();
         bool isAttackerPlayer = attacker.Owner == player;
+        attacker.Owner.resourceSystem.CurrentHope += 1;
         
         // 获取对方战场
         CardZone opponentBattlefield = isAttackerPlayer ? enemyBattlefield : playerBattlefield;
@@ -985,7 +986,8 @@ public class GameManager : MonoBehaviour
         
         if (enemy != null)
         {
-            enemy.DrawCard();
+            //enemy.DrawCard();
+            EnemyImformation.instance.enemyAI.AIDrawCard(EnemyImformation.instance.enemyName);
         }
         
         yield return new WaitForSeconds(0.5f);
