@@ -13,6 +13,7 @@ public class enemyai : MonoBehaviour
 
     public virtual void AIPlayCard()
     {
+        Debug.Log($"Enemy AI第 {turn} 回合行动开始...");
         return;
     }
     // Start is called before the first frame update

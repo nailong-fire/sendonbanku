@@ -1419,7 +1419,7 @@ MonoBehaviour:
   playerMovement: {fileID: 1568406119}
   npcName: the stupid
   option1: The Four Heavenly Kings?
-  option2: Why the duil?
+  option2: Why the duel?
   leave: Leave him alone.
   enemyAI: {fileID: 1662697315}
   enemyCardDatabase: {fileID: 11400000, guid: c3172afee12a5994f9d4956f5c365791, type: 2}
@@ -2814,6 +2814,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1090378691}
+  - component: {fileID: 1090378692}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -2837,6 +2838,18 @@ Transform:
   - {fileID: 1662697314}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1090378692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090378690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8fee070e07376d4593a3cc65985425d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1095491378
 GameObject:
   m_ObjectHideFlags: 0

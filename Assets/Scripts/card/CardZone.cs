@@ -157,7 +157,6 @@ public class CardZone : MonoBehaviour
             GameManager.Instance.player.resourceSystem.CurrentFaith -= card.CardData.FaithCost;
         else if (!card.Owner.isPlayerControlled && card.IsOnHand)
             GameManager.Instance.enemy.resourceSystem.CurrentFaith -= card.CardData.FaithCost;
-        Debug.Log($"卡牌 {card.CardData.CardName} 花费 {card.CardData.FaithCost} 信仰值放置到 {(isFrontRow ? "前排" : "后排")}_{positionIndex}，当前信仰值：{GameManager.Instance.player.resourceSystem.CurrentFaith}");
 
         if(handzone != null)
         {

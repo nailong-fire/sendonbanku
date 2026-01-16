@@ -14,6 +14,7 @@ public class stupidai : enemyai
     public override void AIPlayCard()
     {
         turn++;
+        Debug.Log($"Stupid AI第 {turn} 回合行动开始...");
         UniversalController enemy = GameManager.Instance.enemy;
         CardZone enemyBattlefield = enemy.battlefield;
         CardZone enemyHandZone = enemy.handZone;
