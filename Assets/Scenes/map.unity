@@ -1560,10 +1560,15 @@ MonoBehaviour:
   option2: Why the duel?
   leave: Leave him alone.
   enemyCardDatabase: {fileID: 11400000, guid: c3172afee12a5994f9d4956f5c365791, type: 2}
+<<<<<<< Updated upstream
   card1: 004
   card2: 006
   num_card1: 2
   num_card2: 1
+=======
+  card1: 
+  card2: 
+>>>>>>> Stashed changes
   dialogs:
   - {fileID: 11400000, guid: a8ddf5494174ee546a0770b993909b45, type: 2}
   - {fileID: 11400000, guid: f299a0ecbe9111547975f586aae7e79d, type: 2}
@@ -6226,10 +6231,15 @@ MonoBehaviour:
   option2: Do you believe in the Buddha?
   leave: Bye.
   enemyCardDatabase: {fileID: 11400000, guid: 570068120bbb370429262b0a389a96d6, type: 2}
+<<<<<<< Updated upstream
   card1: 012
   card2: 013
   num_card1: 1
   num_card2: 1
+=======
+  card1: 
+  card2: 
+>>>>>>> Stashed changes
   dialogs:
   - {fileID: 11400000, guid: 02430f8728fa61947879b84a59a70976, type: 2}
   - {fileID: 11400000, guid: bcbbc52b8f42e124f918f0f85d17dcc0, type: 2}
@@ -6827,11 +6837,17 @@ MonoBehaviour:
   option1: Afraid of darkness, too?
   option2: Step back, soldier!
   leave: See ya.
+<<<<<<< Updated upstream
   enemyCardDatabase: {fileID: 11400000, guid: 179ae506ce712df4d920ec8aa7793f89, type: 2}
   card1: 007
   card2: 005
   num_card1: 1
   num_card2: 2
+=======
+  enemyCardDatabase: {fileID: 11400000, guid: f15072cdfd72f6b409b611c31bbe30e8, type: 2}
+  card1: 
+  card2: 
+>>>>>>> Stashed changes
   dialogs:
   - {fileID: 11400000, guid: 9334fcbac0a376246b166e5d2e20b69a, type: 2}
   - {fileID: 11400000, guid: 603c6032ff953c541a7a71c5a70ee156, type: 2}
