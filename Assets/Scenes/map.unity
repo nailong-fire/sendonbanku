@@ -1500,6 +1500,8 @@ MonoBehaviour:
     content: Watch.
   npcName: unknow
   nextdialog: {fileID: 1359509739}
+  rockCollapseSound: {fileID: 8300000, guid: 4538294a32c1a0f4a96e234363dc2fc0, type: 3}
+  delayBeforeDialog: 2
 --- !u!1 &515713549
 GameObject:
   m_ObjectHideFlags: 0
