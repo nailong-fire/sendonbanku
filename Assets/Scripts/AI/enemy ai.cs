@@ -15,27 +15,29 @@ public class enemyai : MonoBehaviour
     {
         turn++;
         if (name == "the stupid")
-        Debug.Log($"Stupid AI第 {turn} 回合行动开始...");
-        UniversalController enemy = GameManager.Instance.enemy;
-        CardZone enemyBattlefield = enemy.battlefield;
-        CardZone enemyHandZone = enemy.handZone;
-        List<CardEntity> playableCards = enemy.handZone.GetAllCards();
-        CardEntity targetCard = null;
-        if (playableCards.Count > 0)
-            targetCard = playableCards[0];
-        if (enemy.resourceSystem.CurrentFaith >= 3 && targetCard != null)
         {
-            int i = 2; 
-            while (i >= 0)
+            Debug.Log($"Stupid AI第 {turn} 回合行动开始...");
+            UniversalController enemy = GameManager.Instance.enemy;
+            CardZone enemyBattlefield = enemy.battlefield;
+            CardZone enemyHandZone = enemy.handZone;
+            List<CardEntity> playableCards = enemy.handZone.GetAllCards();
+            CardEntity targetCard = null;
+            if (playableCards.Count > 0)
+                targetCard = playableCards[0];
+            if (enemy.resourceSystem.CurrentFaith >= 3 && targetCard != null)
             {
-                if (enemyBattlefield.PlaceCardAtPosition(targetCard, true, i, enemyHandZone))
+                int i = 2; 
+                while (i >= 0)
                 {
-                    return;
+                    if (enemyBattlefield.PlaceCardAtPosition(targetCard, true, i, enemyHandZone))
+                    {
+                        return;
+                    }
+                    i--;
                 }
-                i--;
             }
+            return;
         }
-        return;
     }
     // Start is called before the first frame update
     void Start()
