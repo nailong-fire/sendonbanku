@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEditor;
 
 public class NPCInteract : MonoBehaviour
 {
@@ -205,6 +206,10 @@ public class NPCInteract : MonoBehaviour
                 break;
             
             case NPCStoryStage.TheEnd:
+                performending();
+                dialogController.EndDialog();
+                FinishDialog();
+                break;
 
             default:
                 FinishDialog();
@@ -332,5 +337,10 @@ public class NPCInteract : MonoBehaviour
                 return d;
         }
         return null;
+    }
+
+    private void performending()
+    {
+        EndTransition.Instance.LoadScene();
     }
 }

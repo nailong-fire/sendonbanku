@@ -13,4 +13,60 @@ MonoBehaviour:
   m_Name: Leader_BattleWinOption2
   m_EditorClassIdentifier: 
   dialogId: 
-  lines: []
+  lines:
+  - speaker: 
+    content: He holds your gaze.
+  - speaker: Leader
+    content: I don't know how to say.
+  - speaker: Leader
+    content: "You know he\u2019s kind of fragile, right? You were not surprised that
+      time."
+  - speaker: Leader
+    content: I came across him standing alone, with you asleep.
+  - speaker: Leader
+    content: He asked me about this place.
+  - speaker: Leader
+    content: I accidentally told him the turth. And he killed himself.
+  - speaker: 
+    content: "He faltered, just for a second, on the word \u201Ctruth.\u201D"
+  - speaker: You
+    content: Truth?
+  - speaker: Leader
+    content: Yeah. The turth.
+  - speaker: Leader
+    content: The truth that many Buddhas have already fallen. The truth that my people
+      starve. The truth that we are no different from who you once were.
+  - speaker: 
+    content: "You can see it\u2014\u2014the agitation rising in him now, barely contained."
+  - speaker: Leader
+    content: The truth that this great Buddha still stands here, while my people
+      hide in the caves!
+  - speaker: Leader
+    content: And what can I do? What should I hope for?
+  - speaker: Leader
+    content: ...I can only pray. Pray that some god will save us all.
+  - speaker: 
+    content: He turns and looks back at the great Buddha behind him.
+  - speaker: Leader
+    content: This is our only hope.
+  - speaker: 
+    content: His tragedy. Your iron will.
+  - speaker: You
+    content: You know it's wrong.
+  - speaker: Leader
+    content: What?
+  - speaker: You
+    content: I say you know it's wrong.
+  - speaker: Leader
+    content: Then where is the hope?
+  - speaker: You
+    content: I don't know where the fuck hope is. All I know is that it's definitely
+      not here.
+  - speaker: You
+    content: You guys are always talking about hope. And I don't give a shit.
+  - speaker: You
+    content: Hope or no hope, I stand, and then I walk! You understand it?
+  - speaker: Leader
+    content: ............
+  - speaker: 
+    content: He stood, stunned.
