@@ -270,6 +270,55 @@ public class CardDatabaseSO : ScriptableObject
         Debug.Log("已清空牌组备份");
     }
 
+    // 根据玩家拥有的卡牌随机填充牌组（用于进入战斗前构建临时牌组）
+    // count: 需要填充的张数
+    // clearExisting: 是否先清空现有的 playerDeckCardIds
+    public void PopulatePlayerDeckFromOwnedRandom(int count, bool clearExisting = true)
+    {
+        if (playerOwnedCardIds == null || playerOwnedCardIds.Count == 0)
+        {
+            Debug.LogWarning("playerOwnedCardIds 为空，无法填充牌组");
+            return;
+        }
+
+        if (clearExisting)
+            playerDeckCardIds.Clear();
+
+        // 复制一份 owned id 列表，用于不重复抽取（保留原 owned 列表不变）
+        List<string> temp = new List<string>(playerOwnedCardIds);
+
+        // 如果请求数量大于拥有数量，则允许重复抽取（从原列表再次随机）
+        bool allowDuplicates = count > temp.Count;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (temp.Count == 0)
+            {
+                if (allowDuplicates)
+                {
+                    // 重新填充 temp
+                    temp = new List<string>(playerOwnedCardIds);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            int idx = UnityEngine.Random.Range(0, temp.Count);
+            string cardId = temp[idx];
+
+            // 使用现有方法添加到牌组（保留日志）
+            AddCardToPlayerDeck(cardId, 1);
+
+            // 如果不允许重复，从临时列表移除
+            if (!allowDuplicates)
+                temp.RemoveAt(idx);
+        }
+
+        Debug.Log($"已从拥有的卡牌中随机填充牌组，共 {playerDeckCardIds.Count} 张（目标 {count} 张）");
+    }
+
     // 编辑器校验（检查重复 ID）
     private void OnValidate()
     {
