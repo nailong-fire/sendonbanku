@@ -290,4 +290,19 @@ public class CardDatabaseSO : ScriptableObject
             }
         }
     }
+
+    // // 每次进入运行时（场景加载前）清空玩家拥有卡牌列表，避免上次运行遗留的数据
+    // [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    // private static void ClearPlayerOwnedCardsOnLoad()
+    // {
+    //     var dbs = Resources.FindObjectsOfTypeAll<CardDatabaseSO>();
+    //     foreach (var db in dbs)
+    //     {
+    //         if (db != null && db.playerOwnedCardIds != null && db.playerOwnedCardIds.Count > 0)
+    //         {
+    //             db.playerOwnedCardIds.Clear();
+    //             Debug.Log($"[CardDatabaseSO] Cleared playerOwnedCardIds for database: {db.name}");
+    //         }
+    //     }
+    // }
 }
