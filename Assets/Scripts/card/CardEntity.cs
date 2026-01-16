@@ -38,6 +38,10 @@ public class CardEntity : MonoBehaviour
     [Header("动画引用")]
     [SerializeField] private Animator animator;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip damageSound; // 受伤音效
+    [SerializeField] [Range(0f, 1f)] private float damageSoundDelay = 0f; // 音效延迟时间(秒)，用于对轴
+
 
     // 卡牌运行时数据
     private CardRuntimeData _cardData;
@@ -127,6 +131,16 @@ public class CardEntity : MonoBehaviour
     }
 
 
+    private System.Collections.IEnumerator PlaySoundWithDelay()
+    {
+        if (damageSoundDelay > 0)
+        {
+            yield return new WaitForSeconds(damageSoundDelay);
+        }
+        
+        AudioSource.PlayClipAtPoint(damageSound, transform.position);
+    }
+
     // 更新状态颜色（背景）
     private void UpdateStateColor()
     {
@@ -146,6 +160,12 @@ public class CardEntity : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Hurt");
+        }
+
+        // 播放受伤音效 (带延迟控制)
+        if (damageSound != null)
+        {
+            StartCoroutine(PlaySoundWithDelay());
         }
 
         _cardData.TakeDamage(damage);

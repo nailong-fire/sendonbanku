@@ -110,6 +110,8 @@ MonoBehaviour:
   guardian: {fileID: 0}
   guardedCard: {fileID: 0}
   animator: {fileID: 8767590770470306715}
+  damageSound: {fileID: 8300000, guid: 7f267956a8307144da542888d8bc6141, type: 3}
+  damageSoundDelay: 0.32
   _owner: {fileID: 0}
 --- !u!212 &1822689782527335337
 SpriteRenderer:
