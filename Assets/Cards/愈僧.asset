@@ -17,7 +17,7 @@ MonoBehaviour:
   description: 
   cardArt: {fileID: 0}
   cardBackground: {fileID: 0}
-  health: 2
+  health: 1
   power: 1
   speed: 4
   faithCost: 1

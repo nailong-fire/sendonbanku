@@ -866,6 +866,8 @@ MonoBehaviour:
   option2: Step back, soldier!
   leave: See ya.
   enemyCardDatabase: {fileID: 0}
+  card1: 
+  card2: 
   dialogs:
   - {fileID: 11400000, guid: 9334fcbac0a376246b166e5d2e20b69a, type: 2}
   npcId: VillageChief
@@ -1555,6 +1557,8 @@ MonoBehaviour:
   option2: Why the duel?
   leave: Leave him alone.
   enemyCardDatabase: {fileID: 11400000, guid: 394561a2518cce041a7af7943540646d, type: 2}
+  card1: 
+  card2: 
   dialogs:
   - {fileID: 11400000, guid: a8ddf5494174ee546a0770b993909b45, type: 2}
   - {fileID: 11400000, guid: f299a0ecbe9111547975f586aae7e79d, type: 2}
@@ -2984,7 +2988,7 @@ Transform:
   m_GameObject: {fileID: 1090378690}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -199.7527, y: 3.3791797, z: 0.0262507}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3644,6 +3648,8 @@ MonoBehaviour:
   option2: Pinch her little face.
   leave: Pet her head.(leave)
   enemyCardDatabase: {fileID: 11400000, guid: 179ae506ce712df4d920ec8aa7793f89, type: 2}
+  card1: 
+  card2: 
   dialogs:
   - {fileID: 11400000, guid: 33c8925a1e93d594d88bf6d9d3673cbb, type: 2}
   - {fileID: 11400000, guid: c2bf5f9c1daec164da176d38d5ddf1da, type: 2}
@@ -3891,6 +3897,8 @@ MonoBehaviour:
   option2: Do you believe in the Buddha?
   leave: Bye.
   enemyCardDatabase: {fileID: 0}
+  card1: 
+  card2: 
   dialogs:
   - {fileID: 11400000, guid: 02430f8728fa61947879b84a59a70976, type: 2}
   npcId: VillageChief
@@ -6206,6 +6214,8 @@ MonoBehaviour:
   option2: Do you believe in the Buddha?
   leave: Bye.
   enemyCardDatabase: {fileID: 0}
+  card1: 
+  card2: 
   dialogs:
   - {fileID: 11400000, guid: 02430f8728fa61947879b84a59a70976, type: 2}
   - {fileID: 11400000, guid: bcbbc52b8f42e124f918f0f85d17dcc0, type: 2}
@@ -6803,6 +6813,8 @@ MonoBehaviour:
   option2: Step back, soldier!
   leave: See ya.
   enemyCardDatabase: {fileID: 0}
+  card1: 
+  card2: 
   dialogs:
   - {fileID: 11400000, guid: 9334fcbac0a376246b166e5d2e20b69a, type: 2}
   - {fileID: 11400000, guid: 603c6032ff953c541a7a71c5a70ee156, type: 2}
@@ -7010,6 +7022,8 @@ MonoBehaviour:
   option2: My friend.
   leave: Leave
   enemyCardDatabase: {fileID: 0}
+  card1: 
+  card2: 
   dialogs:
   - {fileID: 11400000, guid: 8ccb6bd174245394db8ea175c3a9dca1, type: 2}
   - {fileID: 11400000, guid: 0b0106d1702c4ec4dbcb238104dde259, type: 2}

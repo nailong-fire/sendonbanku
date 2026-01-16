@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u6587\u6B8A\u83E9\u8428\uFF08\u5B9D\u5251\uFF09"
   m_EditorClassIdentifier: 
   cardId: 012
-  cardName: "\u6587\u6B8A\u83E9\u8428"
+  cardName: "\u5251\u6587\u6B8A\u83E9\u8428"
   description: 
   cardArt: {fileID: 0}
   cardBackground: {fileID: 0}
