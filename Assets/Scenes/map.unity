@@ -1602,7 +1602,7 @@ MonoBehaviour:
   option1: The Four Heavenly Kings?
   option2: Why the duel?
   leave: Leave him alone.
-  enemyCardDatabase: {fileID: 0}
+  enemyCardDatabase: {fileID: 11400000, guid: c3172afee12a5994f9d4956f5c365791, type: 2}
   dialogs:
   - {fileID: 11400000, guid: a8ddf5494174ee546a0770b993909b45, type: 2}
   - {fileID: 11400000, guid: f299a0ecbe9111547975f586aae7e79d, type: 2}
