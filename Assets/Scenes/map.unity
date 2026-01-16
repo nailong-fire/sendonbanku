@@ -3288,7 +3288,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogController: {fileID: 1641985949}
-  dialogLines: []
+  dialogLines:
+  - speaker: 
+    content: END.
   npcName: unknow
   nextdialog: {fileID: 0}
 --- !u!1 &1364008902
