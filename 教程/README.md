@@ -89,3 +89,7 @@
 
 - 提交内容：完整 `sendonbanku` 项目文件夹（含 Assets、Packages、ProjectSettings）。
 - 审阅方式：按上述导入步骤在 Unity 打开，运行 start 场景即可验证核心流程。
+
+
+# windows启动程序
+我们再github相同链接内上传了zip压缩包，解压启动即可。
