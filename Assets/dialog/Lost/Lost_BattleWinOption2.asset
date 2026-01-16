@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f64cba195bb3564ab00d35ae0697b8f, type: 3}
   m_Name: Lost_BattleWinOption2
   m_EditorClassIdentifier: 
-  dialogId: 
+  dialogId: BattleWin_Option2
   lines:
   - speaker: The lost
     content: Yessir!

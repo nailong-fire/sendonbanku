@@ -1325,7 +1325,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 522fc591fbcbe7b439817b140cc7f717, type: 2}
   - {fileID: 11400000, guid: 8dd688bf18c2d2044a18be1b6e6c0ea2, type: 2}
   - {fileID: 11400000, guid: a9f1012656cde5d4ea4bb89d68acb6e8, type: 2}
-  npcId: VillageChief
+  npcId: the stupid
   battleSceneName: CardBattle
   interactKey: 101
   talkHint: {fileID: 0}
@@ -3234,12 +3234,12 @@ MonoBehaviour:
   leave: Pet her head.(leave)
   dialogs:
   - {fileID: 11400000, guid: 33c8925a1e93d594d88bf6d9d3673cbb, type: 2}
-  - {fileID: 11400000, guid: 3d8eff0d44707214dbe87a7fb4dfd505, type: 2}
-  - {fileID: 11400000, guid: e7c2d96944c894947a2ae5b50558bf29, type: 2}
-  - {fileID: 11400000, guid: 483dc81cf6d2212468d1d0fd3d35ceb3, type: 2}
   - {fileID: 11400000, guid: c2bf5f9c1daec164da176d38d5ddf1da, type: 2}
+  - {fileID: 11400000, guid: 3d8eff0d44707214dbe87a7fb4dfd505, type: 2}
+  - {fileID: 11400000, guid: 483dc81cf6d2212468d1d0fd3d35ceb3, type: 2}
   - {fileID: 11400000, guid: b37de841f26047e42b5e8dd92414eed1, type: 2}
-  npcId: VillageChief
+  - {fileID: 11400000, guid: e7c2d96944c894947a2ae5b50558bf29, type: 2}
+  npcId: the little
   battleSceneName: cardbattle
   interactKey: 101
   talkHint: {fileID: 0}
@@ -5057,6 +5057,7 @@ Transform:
   - {fileID: 1935301049}
   - {fileID: 480726994}
   - {fileID: 1359509740}
+  - {fileID: 1910492634}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1835221858
@@ -5283,6 +5284,52 @@ MonoBehaviour:
   m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1910492633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1910492634}
+  - component: {fileID: 1910492635}
+  m_Layer: 0
+  m_Name: endanim
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1910492634
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910492633}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1794045504}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1910492635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910492633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7b0f7dd4a2265468ec46a18e3abe15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1474095791}
+  animationStateName: perform
 --- !u!1 &1935301048
 GameObject:
   m_ObjectHideFlags: 0
@@ -5292,6 +5339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1935301049}
+  - component: {fileID: 1935301050}
   m_Layer: 0
   m_Name: endtransition
   m_TagString: Untagged
@@ -5314,6 +5362,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1794045504}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1935301050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935301048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82634320bfd7964182539b3bc72f585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 1
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
+  enddialog: {fileID: 0}
 --- !u!1 &1952562271
 GameObject:
   m_ObjectHideFlags: 0
@@ -5723,12 +5786,12 @@ MonoBehaviour:
   leave: Bye.
   dialogs:
   - {fileID: 11400000, guid: 02430f8728fa61947879b84a59a70976, type: 2}
-  - {fileID: 11400000, guid: ae8386e4fb195fd498a6d24146bfb52b, type: 2}
+  - {fileID: 11400000, guid: bcbbc52b8f42e124f918f0f85d17dcc0, type: 2}
   - {fileID: 11400000, guid: 94bbbcd2ffb7f604b882813090bfbdca, type: 2}
   - {fileID: 11400000, guid: 9aaa441988454264ba1aee345c961b3e, type: 2}
   - {fileID: 11400000, guid: 917cdd5434da32d43acb62fa7c07ef6c, type: 2}
-  - {fileID: 11400000, guid: bcbbc52b8f42e124f918f0f85d17dcc0, type: 2}
-  npcId: VillageChief
+  - {fileID: 11400000, guid: ae8386e4fb195fd498a6d24146bfb52b, type: 2}
+  npcId: the sorrowful
   battleSceneName: cardbattle
   interactKey: 101
   talkHint: {fileID: 0}
@@ -6319,12 +6382,12 @@ MonoBehaviour:
   leave: See ya.
   dialogs:
   - {fileID: 11400000, guid: 9334fcbac0a376246b166e5d2e20b69a, type: 2}
-  - {fileID: 11400000, guid: d1c618294722e924596c2786b94ac80e, type: 2}
+  - {fileID: 11400000, guid: 603c6032ff953c541a7a71c5a70ee156, type: 2}
   - {fileID: 11400000, guid: c7c9156c449b72443ac7fac181656d1b, type: 2}
   - {fileID: 11400000, guid: eb0f0e14ec66f6644a7e7415b588f691, type: 2}
-  - {fileID: 11400000, guid: 603c6032ff953c541a7a71c5a70ee156, type: 2}
   - {fileID: 11400000, guid: 675e2b9547fb9d046a63a4d4a42624f1, type: 2}
-  npcId: VillageChief
+  - {fileID: 11400000, guid: d1c618294722e924596c2786b94ac80e, type: 2}
+  npcId: the lost
   battleSceneName: cardbattle
   interactKey: 101
   talkHint: {fileID: 0}
@@ -6519,18 +6582,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogController: {fileID: 1641985949}
   playerMovement: {fileID: 1568406119}
-  npcName: Leader
+  npcName: leader
   option1: The history.
   option2: My friend.
   leave: Leave
   dialogs:
   - {fileID: 11400000, guid: 8ccb6bd174245394db8ea175c3a9dca1, type: 2}
-  - {fileID: 11400000, guid: c7343f31121a5e249a19b0a6ea2b063f, type: 2}
+  - {fileID: 11400000, guid: 0b0106d1702c4ec4dbcb238104dde259, type: 2}
   - {fileID: 11400000, guid: 4e2c2915ddd050e4db1ae642b4d7bd19, type: 2}
   - {fileID: 11400000, guid: 6b6d64c3bf62b6043ae0508a9afd9415, type: 2}
   - {fileID: 11400000, guid: 748f9c9f016160c48a702a6875b4ca62, type: 2}
-  - {fileID: 11400000, guid: 0b0106d1702c4ec4dbcb238104dde259, type: 2}
-  npcId: VillageChief
+  - {fileID: 11400000, guid: c7343f31121a5e249a19b0a6ea2b063f, type: 2}
+  npcId: leader
   battleSceneName: cardbattle
   interactKey: 101
   talkHint: {fileID: 0}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f64cba195bb3564ab00d35ae0697b8f, type: 3}
   m_Name: Leader_BattleWinOption2
   m_EditorClassIdentifier: 
-  dialogId: 
+  dialogId: BattleWin_Option2
   lines:
   - speaker: 
     content: He holds your gaze.
@@ -32,15 +32,18 @@ MonoBehaviour:
   - speaker: You
     content: Truth?
   - speaker: Leader
-    content: Yeah. The turth.
+    content: Yeah...... the turth.
   - speaker: Leader
-    content: The truth that many Buddhas have already fallen. The truth that my people
-      starve. The truth that we are no different from who you once were.
+    content: 'The truth that many Buddhas have already fallen. '
+  - speaker: Leader
+    content: 'The truth that my people starve. '
+  - speaker: Leader
+    content: The truth that we are no different from who you once were.
   - speaker: 
     content: "You can see it\u2014\u2014the agitation rising in him now, barely contained."
   - speaker: Leader
     content: The truth that this great Buddha still stands here, while my people
-      hide in the caves!
+      hide in the caves.
   - speaker: Leader
     content: And what can I do? What should I hope for?
   - speaker: Leader
@@ -58,14 +61,16 @@ MonoBehaviour:
   - speaker: You
     content: I say you know it's wrong.
   - speaker: Leader
-    content: Then where is the hope?
+    content: ...then where is the hope?
   - speaker: You
-    content: I don't know where the fuck hope is. All I know is that it's definitely
-      not here.
+    content: I don't know where the hope is. All I know is that it's definitely not
+      here.
   - speaker: You
     content: You guys are always talking about hope. And I don't give a shit.
   - speaker: You
-    content: Hope or no hope, I stand, and then I walk! You understand it?
+    content: Hope or not, I stand. I walk.
+  - speaker: You
+    content: And so do you. And so do we all. You need a false idea to take a step?
   - speaker: Leader
     content: ............
   - speaker: 

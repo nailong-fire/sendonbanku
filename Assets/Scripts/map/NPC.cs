@@ -225,6 +225,7 @@ public class NPCInteract : MonoBehaviour
         GameState.Instance.story.readyForBattle = true;
         GameState.Instance.story.battleUnlocked = true;
         GameState.Instance.story.lastBattleNpcId = npcId;
+        Debug.Log("[NPCInteract] 玩家准备好战斗，记录战斗来源 NPC ID: " + npcId);
 
         dialogController.EndDialog();
         SceneTransition.Instance.LoadScene(battleSceneName);

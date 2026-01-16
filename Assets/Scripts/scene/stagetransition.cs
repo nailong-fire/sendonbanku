@@ -82,6 +82,8 @@ public class StageTransition : MonoBehaviour
 
         player.transform.position = new Vector3(Camera.main.transform.position.x + 8, player.transform.position.y, player.transform.position.z);
 
+        GameState.Instance.ResetStory();
+
         // 淡入（画面恢复）
         yield return StartCoroutine(Fade(1, 0));
 

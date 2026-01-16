@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f64cba195bb3564ab00d35ae0697b8f, type: 3}
   m_Name: Sorrowful_BattleWinOption1
   m_EditorClassIdentifier: 
-  dialogId: 
+  dialogId: BattleWin_Option1
   lines:
   - speaker: The sorrowful
     content: "It\u2019s been too long. We should have left\u2026 long before now."

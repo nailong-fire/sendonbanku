@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f64cba195bb3564ab00d35ae0697b8f, type: 3}
   m_Name: Leader_ReadyAsk
   m_EditorClassIdentifier: 
-  dialogId: 
+  dialogId: ReadyAsk
   lines:
   - speaker: Leader
     content: I'll tell you what I know after you beat me.
