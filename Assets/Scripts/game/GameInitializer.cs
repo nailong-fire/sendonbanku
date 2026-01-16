@@ -10,26 +10,19 @@ public class GameInitializer : MonoBehaviour
     {
         [Header("游戏设置")]
         public string gameName = "云冈卡牌对战";
-        public int maxTurns = 50;
-        public float turnTimeLimit = 60f;
         
         [Header("玩家初始设置")]
         public int playerStartingHope = 8;
-        public int playerStartingFaith = 0;
+        public int playerStartingFaith = 2;
         public int playerStartingHandSize = 3;
-        public int playerMaxHandSize = 7;
+        public int playerMaxHandSize = 5;
         
         [Header("敌人初始设置")]
         public int enemyStartingHope = 8;
-        public int enemyStartingFaith = 0;
+        public int enemyStartingFaith = 2;
         public int enemyStartingHandSize = 3;
-        public int enemyMaxHandSize = 7;
+        public int enemyMaxHandSize = 5;
         
-        [Header("战场位置")]
-        public Vector3 playerBattlefieldPosition = new Vector3(-4, 0, 0);
-        public Vector3 enemyBattlefieldPosition = new Vector3(4, 0, 0);
-        public Vector3 playerHandPosition = new Vector3(0, -3, 0);
-        public Vector3 enemyHandPosition = new Vector3(0, 3, 0);
     }
     
     [Header("游戏设置")]
@@ -167,6 +160,10 @@ public class GameInitializer : MonoBehaviour
                 Debug.LogError("玩家预制体上没有PlayerController组件！");
                 yield break;
             }
+            _player.Initialize(name: "玩家", isPlayer: true, startingHope: settings.playerStartingHope, startingFaith: settings.playerStartingFaith);
+            Debug.Log($"玩家初始faith: {settings.playerStartingFaith}, hope: {settings.playerStartingHope}");
+
+            _player.InitializeUI();
         }
         else
         {
@@ -189,6 +186,10 @@ public class GameInitializer : MonoBehaviour
                 Debug.LogError("敌人预制体上没有EnemyController组件！");
                 yield break;
             }
+            _enemy.Initialize(name: "敌人", isPlayer: false, startingHope: settings.enemyStartingHope, startingFaith: settings.enemyStartingFaith);
+            Debug.Log($"敌人初始faith: {settings.enemyStartingFaith}, hope: {settings.enemyStartingHope}");
+
+            _enemy.InitializeUI();
         }
         else
         {
@@ -212,7 +213,7 @@ public class GameInitializer : MonoBehaviour
             
             
             // 初始化玩家资源
-            _player.Initialize(name: "玩家", isPlayer: true, startingHope: settings.playerStartingHope, startingFaith: settings.playerStartingFaith);
+            //_player.Initialize(name: "玩家", isPlayer: true, startingHope: settings.playerStartingHope, startingFaith: settings.playerStartingFaith);
             
             // 抽初始手牌
             yield return StartCoroutine(DrawStartingHand(
@@ -231,7 +232,7 @@ public class GameInitializer : MonoBehaviour
             //_enemy.battlefield = _enemyBattlefield;
             
             // 初始化敌人资源
-            _enemy.Initialize(name: "敌人", isPlayer: false, startingHope: settings.enemyStartingHope, startingFaith: settings.enemyStartingFaith);
+            //_enemy.Initialize(name: "敌人", isPlayer: false, startingHope: settings.enemyStartingHope, startingFaith: settings.enemyStartingFaith);
             
             // 抽初始手牌
             yield return StartCoroutine(DrawStartingHand(

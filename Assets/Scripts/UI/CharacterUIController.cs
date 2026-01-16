@@ -74,6 +74,7 @@ public class CharacterUIController : MonoBehaviour, ICharacterUI
     
     public void UpdateHopeUI(int currentHope, int maxHope, int changeAmount)
     {
+        Debug.Log($"更新Hope UI: 当前Hope={currentHope}, 最大Hope={maxHope}, 变化量={changeAmount}");
         if (hopeText != null)
         {
             hopeText.text = $"{currentHope}";
@@ -95,6 +96,7 @@ public class CharacterUIController : MonoBehaviour, ICharacterUI
     
     public void UpdateFaithUI(int currentFaith, int maxFaith, int changeAmount)
     {
+        Debug.Log($"更新Faith UI: 当前Faith={currentFaith}, 最大Faith={maxFaith}, 变化量={changeAmount}");
         if (faithText != null)
         {
             faithText.text = currentFaith.ToString();

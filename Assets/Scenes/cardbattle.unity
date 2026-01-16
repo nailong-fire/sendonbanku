@@ -153,20 +153,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     gameName: "\u4E91\u5188\u5361\u724C\u5BF9\u6218"
-    maxTurns: 50
-    turnTimeLimit: 60
     playerStartingHope: 8
-    playerStartingFaith: 4
-    playerStartingHandSize: 1
+    playerStartingFaith: 2
+    playerStartingHandSize: 2
     playerMaxHandSize: 5
     enemyStartingHope: 8
-    enemyStartingFaith: 4
-    enemyStartingHandSize: 1
+    enemyStartingFaith: 2
+    enemyStartingHandSize: 2
     enemyMaxHandSize: 5
-    playerBattlefieldPosition: {x: -4, y: 0, z: 0}
-    enemyBattlefieldPosition: {x: 4, y: 0, z: 0}
-    playerHandPosition: {x: 0, y: -3, z: 0}
-    enemyHandPosition: {x: 0, y: 3, z: 0}
   playerPrefab: {fileID: 1114969769061787735, guid: 29532deff1f1d034fad39aacdd76be10, type: 3}
   enemyPrefab: {fileID: 6225686040232687082, guid: 6ec6a78faed7f2d46b8ec161bd5eaa06, type: 3}
   cardPrefab: {fileID: 1355342992358950991, guid: 11e73a581f61e81498fb44553cdcdceb, type: 3}
