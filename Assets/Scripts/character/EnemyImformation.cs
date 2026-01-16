@@ -18,14 +18,21 @@ public class EnemyImformation : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            
+            // 只在第一次初始化时清空卡牌
+            if (playerCardDatabase != null)
+            {
+                playerCardDatabase.playerDeckCardIds.Clear();
+                playerCardDatabase.playerOwnedCardIds.Clear();
+            }
+            
+            Debug.Log("EnemyImformation 第一次初始化");
         }
         else
         {
+            Debug.Log("EnemyImformation 检测到重复实例，销毁");
             Destroy(gameObject);
         }
-
-        playerCardDatabase.playerDeckCardIds.Clear();
-        playerCardDatabase.playerOwnedCardIds.Clear();
     }
 
     void Start()
