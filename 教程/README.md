@@ -53,7 +53,8 @@
 
 ## 运行入口与场景
 
-- 启动场景： [Assets/Scenes/start.unity](Assets/Scenes/start.unity)（标题/入口）。
+- 启动场景： [Assets/Scenes/Initial.unity](Assets/Scenes/Initial.unity)（标题/入口）
+- 序章场景： [Assets/Scenes/start.unity](Assets/Scenes/start.unity)
 - 地图探索： [Assets/Scenes/map.unity](Assets/Scenes/map.unity) 与 [Assets/Scenes/worldmap.unity](Assets/Scenes/worldmap.unity)。
 - 卡牌战斗： [Assets/Scenes/cardbattle.unity](Assets/Scenes/cardbattle.unity)。
 - 调试示例： [Assets/Scenes/test.unity](Assets/Scenes/test.unity)。
