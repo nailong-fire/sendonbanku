@@ -147,6 +147,7 @@ public class enemyai : MonoBehaviour
             }
             return;
         }
+        
     }
     // Start is called before the first frame update
     void Start()
