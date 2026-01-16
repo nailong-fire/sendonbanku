@@ -15,6 +15,8 @@ public class NPCInteract : MonoBehaviour
     public string option2 = null;
     public string leave = null;
     public CardDatabaseSO enemyCardDatabase;
+    public string card1;
+    public string card2;
 
     [Header("Dialog Data")]
     public List<DialogData> dialogs;
