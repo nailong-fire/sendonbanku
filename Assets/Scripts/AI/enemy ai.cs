@@ -80,7 +80,7 @@ public class enemyai : MonoBehaviour
             if (enemyBattlefield.GetBackRowCards().Count >= 2)
             {
                 targetCard = playableCards.Find(card => card.CardData.CardName == "守僧");
-                if (targetCard != null)
+                if (targetCard != null && enemy.resourceSystem.CurrentFaith >= 1)
                 {
                     int i = 2; 
                     while (i >= 1)
@@ -147,7 +147,34 @@ public class enemyai : MonoBehaviour
             }
             return;
         }
-        
+        else if (name == "the lost")
+        {
+            Debug.Log($"Lost AI第 {turn} 回合行动开始...");
+            UniversalController enemy = GameManager.Instance.enemy;
+            CardZone enemyBattlefield = enemy.battlefield;
+            CardZone enemyHandZone = enemy.handZone;
+            List<CardEntity> playableCards = enemy.handZone.GetAllCards();
+            CardEntity targetCard = null;
+            if (playableCards.Count == 0)
+                return;
+            if (enemyBattlefield.GetFrontRowCards().Count >= 3)
+            {
+                targetCard = playableCards.Find(card => card.CardData.CardName == "飞天");
+                if (targetCard != null)
+                {
+                    int i = 2; 
+                    while (i >= 1)
+                    {
+                        if (enemyBattlefield.PlaceCardAtPosition(targetCard, true, i, enemyHandZone))
+                        {
+                            return;
+                        }
+                        i--;
+                    }
+                }
+            }
+            return;
+        }
     }
     // Start is called before the first frame update
     void Start()
