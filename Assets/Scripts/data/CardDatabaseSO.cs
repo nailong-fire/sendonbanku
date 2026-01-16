@@ -125,51 +125,6 @@ public class CardDatabaseSO : ScriptableObject
         return drawnCards;
     }
 
-    // 从玩家弃牌组中随机抽取不重复的N张牌，并从弃牌组中移除
-    public List<CardDataSO> DrawCardsFromDiscardPile(int count, bool removeFromDiscardPile = true)
-    {
-        List<CardDataSO> drawnCards = new List<CardDataSO>();
-        
-        if (playerDiscardPileCardIds.Count == 0)
-        {
-            Debug.LogWarning("弃牌组为空，无法抽牌");
-            return drawnCards;
-        }
-
-        if (count > playerDiscardPileCardIds.Count)
-        {
-            Debug.LogWarning($"抽牌数量{count}超过弃牌组数量{playerDiscardPileCardIds.Count}");
-            count = playerDiscardPileCardIds.Count;
-        }
-
-        // 复制当前弃牌组用于随机选择
-        List<string> tempDiscardPile = new List<string>(playerDiscardPileCardIds);
-
-        for (int i = 0; i < count; i++)
-        {
-            if (tempDiscardPile.Count == 0) break;
-
-            int randomIndex = UnityEngine.Random.Range(0, tempDiscardPile.Count);
-            string cardId = tempDiscardPile[randomIndex];
-            CardDataSO card = GetCardById(cardId);
-            
-            if (card != null)
-            {
-                drawnCards.Add(card);
-                // 从临时弃牌组移除
-                tempDiscardPile.RemoveAt(randomIndex);
-                
-                // 如果需要从真实弃牌组移除
-                if (removeFromDiscardPile)
-                {
-                    playerDiscardPileCardIds.Remove(cardId);
-                }
-            }
-        }
-
-        return drawnCards;
-    }
-
     // 向玩家拥有牌添加卡牌
     public void AddCardToPlayerOwnedPile(string cardId, int count = 1)
     {

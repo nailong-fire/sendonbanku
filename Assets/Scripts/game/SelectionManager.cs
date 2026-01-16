@@ -183,14 +183,6 @@ public class SelectionManager : MonoBehaviour
             return;
         }
         
-        // 检查资源是否足够
-        if (GameManager.Instance.player.resourceSystem.CurrentFaith < card.CardData.FaithCost)
-        {
-            Debug.Log($"信仰值不足！需要 {card.CardData.FaithCost}");
-            ShowMessage($"信仰值不足！需要 {card.CardData.FaithCost} 信仰", 2f);
-            return;
-        }
-        
         // 选择卡牌
         SelectCard(card);
         
@@ -205,6 +197,14 @@ public class SelectionManager : MonoBehaviour
         {
             Debug.Log("请先选择一张卡牌");
             ShowMessage("请先选择一张卡牌", 2f);
+            return;
+        }
+
+        // 检查资源是否足够
+        if (GameManager.Instance.player.resourceSystem.CurrentFaith < selectedCard.CardData.FaithCost)
+        {
+            Debug.Log($"信仰值不足！需要 {selectedCard.CardData.FaithCost}");
+            ShowMessage($"信仰值不足！需要 {selectedCard.CardData.FaithCost} 信仰", 2f);
             return;
         }
         
