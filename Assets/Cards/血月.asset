@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bde68c0377d783e40b4909686769a129, type: 3}
-  m_Name: Card_016
+  m_Name: "\u8840\u6708"
   m_EditorClassIdentifier: 
-  cardId: 016
-  cardName: "\u84DD\u661F"
+  cardId: 017
+  cardName: "\u8840\u6708"
   description: 
   cardArt: {fileID: 0}
   cardBackground: {fileID: 0}
@@ -23,6 +23,6 @@ MonoBehaviour:
   faithCost: 2
   canPlaceFront: 1
   canPlaceBack: 1
-  specialEffects: 08000000
+  specialEffects: 09000000
   continuousEffects: 
   story: "\u8FD9\u662F\u5361\u724C\u7684\u80CC\u666F\u6545\u4E8B\u793A\u4F8B..."
