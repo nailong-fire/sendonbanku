@@ -648,7 +648,7 @@ public class GameManager : MonoBehaviour
         {
             foreach(CardEntity target in targets)
             {
-                if(target.IsInFrontRow)
+                if(target.IsInFrontRow && target.positionindex >= 0)
                 {
                     Debug.Log($"{attacker.CardData.CardName} 近战范围攻击 {target.CardData.CardName}");
                 
