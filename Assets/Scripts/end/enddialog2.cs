@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
 
-public class startdialog1 : MonoBehaviour
+public class enddialog2 : MonoBehaviour
 {
     [Header("References")]
     public DialogController dialogController;
     public DialogLine[] dialogLines;
-    public string npcName = "friend";
+    public string npcName = "unknow";
     public GameObject nextdialog = null;
 
     void Start()
@@ -25,11 +25,15 @@ public class startdialog1 : MonoBehaviour
         if (dialogController != null)
             dialogController.EndDialog();
         
-        StartTransition.Instance.LoadScene();
-        
-        if (nextdialog != null)
-            nextdialog.SetActive(true);
+
+        StartCoroutine(PlayEnding());
 
         gameObject.SetActive(false);
+    }
+
+    IEnumerator PlayEnding()
+    {
+        EndTransition.Instance.LoadScene();
+        yield return new WaitForSeconds(1f);
     }
 }

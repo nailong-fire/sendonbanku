@@ -15,6 +15,7 @@ public class EndTransition : MonoBehaviour
     [Header("Settings")]
     public float fadeDuration = 1f;       // 淡入淡出时长
     public Color fadeColor = Color.black;   // 过渡颜色（黑色/白色）
+    public GameObject enddialog = null;
     private Image fadeImage;
     private Canvas fadeCanvas;
     private bool isTransitioning = false;
@@ -83,6 +84,11 @@ public class EndTransition : MonoBehaviour
         yield return new WaitForSeconds(1f); // 可选的等待时间
 
         Camera.main.transform.position = new Vector3(Camera.main.transform.position.x - 50, Camera.main.transform.position.y, Camera.main.transform.position.z);
+
+        if (enddialog != null)
+        {
+            enddialog.SetActive(true);
+        }
 
         // 淡入（画面恢复）
         yield return StartCoroutine(Fade(1, 0));
