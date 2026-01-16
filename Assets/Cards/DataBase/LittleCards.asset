@@ -10,16 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d2acda39ce676f418127d0225813201, type: 3}
-  m_Name: StupidCards
+  m_Name: LittleCards
   m_EditorClassIdentifier: 
   allCards:
-  - {fileID: 11400000, guid: 9c90c29a2882c194a84859deac0c1946, type: 2}
+  - {fileID: 11400000, guid: 621c73cb8ae4500428bb2715e16faa95, type: 2}
+  - {fileID: 11400000, guid: 891007521d8890e409b72de5445643de, type: 2}
+  - {fileID: 11400000, guid: 61da3577827b3114c96cae4e38602424, type: 2}
+  - {fileID: 11400000, guid: 91c34df02a2f8334bbf63467294722d3, type: 2}
   playerOwnedCardIds: []
   playerDeckCardIds:
-  - 006
-  - 006
-  - 006
-  - 006
-  - 006
-  - 006
+  - 005
+  - 005
+  - 005
+  - 003
+  - 003
+  - 003
+  - 009
+  - 009
+  - 011
+  - 011
   playerDiscardPileCardIds: []
