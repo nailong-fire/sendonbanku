@@ -791,6 +791,8 @@ MonoBehaviour:
   option1: Afraid of darkness, too?
   option2: Step back, soldier!
   leave: See ya.
+  enemyAI: {fileID: 0}
+  enemyCardDatabase: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 9334fcbac0a376246b166e5d2e20b69a, type: 2}
   npcId: VillageChief
@@ -1419,6 +1421,8 @@ MonoBehaviour:
   option1: The Four Heavenly Kings?
   option2: Why the duil?
   leave: Leave him alone.
+  enemyAI: {fileID: 1662697315}
+  enemyCardDatabase: {fileID: 11400000, guid: c3172afee12a5994f9d4956f5c365791, type: 2}
   dialogs:
   - {fileID: 11400000, guid: a8ddf5494174ee546a0770b993909b45, type: 2}
   - {fileID: 11400000, guid: f299a0ecbe9111547975f586aae7e79d, type: 2}
@@ -3414,6 +3418,8 @@ MonoBehaviour:
   option1: You alone?
   option2: Pinch her little face.
   leave: Pet her head.(leave)
+  enemyAI: {fileID: 0}
+  enemyCardDatabase: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 33c8925a1e93d594d88bf6d9d3673cbb, type: 2}
   - {fileID: 11400000, guid: c2bf5f9c1daec164da176d38d5ddf1da, type: 2}
@@ -3660,6 +3666,8 @@ MonoBehaviour:
   option1: 'How long you lived here? '
   option2: Do you believe in the Buddha?
   leave: Bye.
+  enemyAI: {fileID: 0}
+  enemyCardDatabase: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 02430f8728fa61947879b84a59a70976, type: 2}
   npcId: VillageChief
@@ -3762,14 +3770,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e760df7d26ed0e49b0f92f48d5cbea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playercardDatabase: {fileID: 11400000, guid: 21e01924635ef614da761e0aa78c3125, type: 2}
   dialogController: {fileID: 1641985949}
   dialogLines:
   - speaker: leader
     content: Here is our cave.
-  - speaker: 
-    content: He suddenly turned, handed you a deck of cards.
   - speaker: leader
     content: These are the must here.
+  - speaker: 
+    content: He suddenly turned, handed you a deck of cards.
+  - speaker: 
+    content: You got 10 Monks, 5 Warrior Monks, 5 Healer Monks.
+  - speaker: 
+    content: When you checked the cards, the leader disappeared.
   npcName: leader
   nextdialog: {fileID: 0}
 --- !u!1 &1447151530
@@ -4392,7 +4405,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1498315613
+--- !u!1 &1556126970
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4400,37 +4413,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1498315615}
-  - component: {fileID: 1498315614}
+  - component: {fileID: 1556126972}
+  - component: {fileID: 1556126971}
   m_Layer: 0
-  m_Name: quit
+  m_Name: enemyImformation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1498315614
+--- !u!114 &1556126971
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1498315613}
+  m_GameObject: {fileID: 1556126970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd7cb0e24f10d8544ba020498d3715d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a91fa083e8a3f74e9e07273ef248051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1498315615
+  enemyAI: {fileID: 0}
+  enemyCardDatabase: {fileID: 0}
+  playerCardDatabase: {fileID: 11400000, guid: 21e01924635ef614da761e0aa78c3125, type: 2}
+--- !u!4 &1556126972
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1498315613}
+  m_GameObject: {fileID: 1556126970}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -190.27423, y: 0.55087847, z: -0.0248603}
+  m_LocalPosition: {x: 2.4524684, y: 4.29752, z: 0.038789175}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5002,6 +5018,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1662697314}
+  - component: {fileID: 1662697315}
   m_Layer: 0
   m_Name: stupid ai
   m_TagString: Untagged
@@ -5024,6 +5041,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1090378691}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1662697315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662697313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff092d29eb8ab34191b71658075867f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1695789602
 GameObject:
   m_ObjectHideFlags: 0
@@ -6195,6 +6224,8 @@ MonoBehaviour:
   option1: 'How long you lived here? '
   option2: Do you believe in the Buddha?
   leave: Bye.
+  enemyAI: {fileID: 0}
+  enemyCardDatabase: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 02430f8728fa61947879b84a59a70976, type: 2}
   - {fileID: 11400000, guid: bcbbc52b8f42e124f918f0f85d17dcc0, type: 2}
@@ -6791,6 +6822,8 @@ MonoBehaviour:
   option1: Afraid of darkness, too?
   option2: Step back, soldier!
   leave: See ya.
+  enemyAI: {fileID: 0}
+  enemyCardDatabase: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 9334fcbac0a376246b166e5d2e20b69a, type: 2}
   - {fileID: 11400000, guid: 603c6032ff953c541a7a71c5a70ee156, type: 2}
@@ -6997,6 +7030,8 @@ MonoBehaviour:
   option1: The history.
   option2: My friend.
   leave: Leave
+  enemyAI: {fileID: 0}
+  enemyCardDatabase: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 8ccb6bd174245394db8ea175c3a9dca1, type: 2}
   - {fileID: 11400000, guid: 0b0106d1702c4ec4dbcb238104dde259, type: 2}
@@ -7031,4 +7066,4 @@ SceneRoots:
   - {fileID: 940364766}
   - {fileID: 476640933}
   - {fileID: 1794045504}
-  - {fileID: 1498315615}
+  - {fileID: 1556126972}

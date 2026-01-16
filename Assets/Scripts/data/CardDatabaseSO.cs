@@ -161,31 +161,6 @@ public class CardDatabaseSO : ScriptableObject
         Debug.Log($"已向牌组添加{count}张 {card.cardName}");
     }
 
-    // 向玩家弃牌组添加卡牌
-    public void AddCardToDiscardPile(string cardId, int count = 1)
-    {
-        CardDataSO card = GetCardById(cardId);
-        if (card == null)
-        {
-            Debug.LogWarning($"未找到卡牌ID: {cardId}");
-            return;
-        }
-
-        for (int i = 0; i < count; i++)
-        {
-            playerDiscardPileCardIds.Add(cardId);
-        }
-
-        Debug.Log($"已向弃牌组添加{count}张 {card.cardName}");
-    }
-
-    // 清空弃牌组
-    public void ClearDiscardPile()
-    {
-        int count = playerDiscardPileCardIds.Count;
-        playerDiscardPileCardIds.Clear();
-        Debug.Log($"已清空弃牌组，共移除{count}张卡牌");
-    }
 
     // 记录当前玩家牌组（创建备份）
     public void BackupPlayerDeck()

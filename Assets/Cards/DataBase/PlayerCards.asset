@@ -14,12 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allCards:
   - {fileID: 11400000, guid: 5a6d115a7065b174daf55a537b7249a1, type: 2}
+  - {fileID: 11400000, guid: 8e397bba733355c4c9d04f76d626c7c9, type: 2}
   - {fileID: 11400000, guid: 0c89aec0b70de574ab14818335c3d856, type: 2}
-  - {fileID: 11400000, guid: 61da3577827b3114c96cae4e38602424, type: 2}
+  - {fileID: 11400000, guid: 9c90c29a2882c194a84859deac0c1946, type: 2}
+  - {fileID: 11400000, guid: ab61a35ebb124de4295a693af44685ab, type: 2}
+  - {fileID: 11400000, guid: 8bc789e086e5c5641a9d9e161f8bd348, type: 2}
   playerOwnedCardIds: []
   playerDeckCardIds:
   - 001
   - 001
   - 001
   - 001
+  - 001
+  - 002
+  - 002
+  - 002
+  - 010
+  - 010
   playerDiscardPileCardIds: []
