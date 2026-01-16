@@ -3936,7 +3936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e760df7d26ed0e49b0f92f48d5cbea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playercardDatabase: {fileID: 0}
+  playercardDatabase: {fileID: 11400000, guid: 21e01924635ef614da761e0aa78c3125, type: 2}
   dialogController: {fileID: 1641985949}
   dialogLines:
   - speaker: leader
