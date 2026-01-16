@@ -9,7 +9,7 @@ public class ResourceSystem
     [SerializeField] private int _currentHope = 8;
     
     [Header("Faith设置")]
-    [SerializeField] private int _currentFaith = 0;
+    [SerializeField] private int _currentFaith = 2;
     public int maxFaith = 20;
     
     // 事件
@@ -31,13 +31,11 @@ public class ResourceSystem
             int changeAmount = _currentHope - oldValue;
             
             OnHopeChanged?.Invoke(_currentHope);
+            Debug.Log($"CurrentHope set to {_currentHope}");
             OnHopeChangedWithDetails?.Invoke(_currentHope, maxHope, changeAmount);
             
-            // 调试日志
-            if (changeAmount != 0)
-            {
-                Debug.Log($"Hope变化: {oldValue} -> {_currentHope} (变化: {changeAmount})");
-            }
+            // 调试日志（总是输出）
+            Debug.Log($"Hope变化: {oldValue} -> {_currentHope} (变化: {changeAmount})");
         }
     }
     
@@ -51,12 +49,10 @@ public class ResourceSystem
             int changeAmount = _currentFaith - oldValue;
             
             OnFaithChanged?.Invoke(_currentFaith);
+            Debug.Log($"CurrentFaith set to {_currentFaith}");
             OnFaithChangedWithDetails?.Invoke(_currentFaith, maxFaith, changeAmount);
             
-            if (changeAmount != 0)
-            {
-                Debug.Log($"Faith变化: {oldValue} -> {_currentFaith} (变化: {changeAmount})");
-            }
+            Debug.Log($"Faith变化: {oldValue} -> {_currentFaith} (变化: {changeAmount})");
         }
     }
     
@@ -64,14 +60,14 @@ public class ResourceSystem
     public ResourceSystem()
     {
         _currentHope = maxHope;
-        _currentFaith = 0;
+        _currentFaith = 2;
     }
     
     public ResourceSystem(int startingHope, int startingFaith)
     {
         maxHope = startingHope;
-        _currentHope = startingHope;
-        _currentFaith = startingFaith;
+        CurrentHope = startingHope;
+        CurrentFaith = startingFaith;
     }
     
     // 检查是否有足够Faith
@@ -121,7 +117,7 @@ public class ResourceSystem
     public void ResetResources()
     {
         CurrentHope = maxHope;
-        CurrentFaith = 0;
+        CurrentFaith = 2;
     }
     
     // 复制资源状态

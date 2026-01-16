@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("敌人AI开始行动...");
         
         // 敌人出牌逻辑（简单示例）
-        if(enemy.handZone.GetCardCount() != 0)
+        /*if(enemy.handZone.GetCardCount() != 0)
         {
             Debug.Log("敌人出牌");
             CardEntity card = null;
@@ -204,7 +204,9 @@ public class GameManager : MonoBehaviour
             }
             // 等待一点时间，然后结束敌人阶段
             yield return new WaitForSeconds(1f);
-        }
+        }*/
+
+        yield return new WaitForSeconds(1f);
         
         EndEnemyActionPhase();
     }

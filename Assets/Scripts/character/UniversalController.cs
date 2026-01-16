@@ -71,7 +71,7 @@ public class UniversalController : MonoBehaviour
     }
 
     // 初始化UI
-    private void InitializeUI()
+    public void InitializeUI()
     {
         // 如果未指定UI控制器，尝试自动查找
         if (uiController == null)
@@ -97,7 +97,7 @@ public class UniversalController : MonoBehaviour
         characterName = name;
         isPlayerControlled = isPlayer;
         
-        //resourceSystem = new ResourceSystem(startingHope, startingFaith);
+        resourceSystem = new ResourceSystem(startingHope, startingFaith);
         
         // 初始化卡组
         InitializeDeck();
