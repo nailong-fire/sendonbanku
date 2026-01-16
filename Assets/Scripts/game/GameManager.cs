@@ -398,7 +398,8 @@ public class GameManager : MonoBehaviour
         List<CardEntity> targets = new List<CardEntity>(opponentBattlefield.GetAllCards());
         
         // 移除已经死亡的卡牌
-        targets.RemoveAll(card => !card.CardData.IsAlive);
+        if (targets != null)
+            targets.RemoveAll(card => !card.CardData.IsAlive);
         
         if (targets.Count == 0) return null;
 
@@ -496,7 +497,8 @@ public class GameManager : MonoBehaviour
         List<CardEntity> targets = new List<CardEntity>(allyBattlefield.GetAllCards());
         
         // 移除已经满血的卡牌
-        targets.RemoveAll(card => card.CardData.CurrentHealth >= card.CardData.MaxHealth);
+        if (targets != null)
+            targets.RemoveAll(card => card.CardData.CurrentHealth >= card.CardData.MaxHealth);
         
         if (targets.Count == 0) return null;
 
@@ -563,7 +565,8 @@ public class GameManager : MonoBehaviour
         List<CardEntity> targets = new List<CardEntity>(opponentBattlefield.GetAllCards());
         
         // 移除已经死亡的卡牌
-        targets.RemoveAll(card => !card.CardData.IsAlive);
+        if (targets != null)
+            targets.RemoveAll(card => !card.CardData.IsAlive);
         
         if (targets.Count == 0) return null;
 
@@ -626,7 +629,7 @@ public class GameManager : MonoBehaviour
 
         List<CardEntity> targets = new List<CardEntity>();
         bool isAttackerPlayer = attacker.Owner == player;
-        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        
         
         // 获取对方战场
         CardZone opponentBattlefield = isAttackerPlayer ? enemyBattlefield : playerBattlefield;
@@ -636,8 +639,10 @@ public class GameManager : MonoBehaviour
         else
             targets = opponentBattlefield.GetAllCards();
         
+        
         // 移除已经死亡的卡牌
-        targets.RemoveAll(card => !card.CardData.IsAlive);
+        if (targets != null)
+            targets.RemoveAll(card => !card.CardData.IsAlive);
         
         if (targets != null)
         {
@@ -676,7 +681,8 @@ public class GameManager : MonoBehaviour
             targets = opponentBattlefield.GetAllCards();
         
         // 移除已经死亡的卡牌
-        targets.RemoveAll(card => !card.CardData.IsAlive);
+        if (targets != null)
+            targets.RemoveAll(card => !card.CardData.IsAlive);
         
         if (targets != null)
         {
@@ -715,7 +721,8 @@ public class GameManager : MonoBehaviour
             targets = opponentBattlefield.GetAllCards();
         
         // 移除已经死亡的卡牌
-        targets.RemoveAll(card => !card.CardData.IsAlive);
+        if (targets != null)
+            targets.RemoveAll(card => !card.CardData.IsAlive);
         
         if (targets != null)
         {
