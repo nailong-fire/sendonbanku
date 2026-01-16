@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+#if UNITY_EDITOR
+using UnityEditorInternal;
+#endif
 
 public class startdialog2 : MonoBehaviour
 {
