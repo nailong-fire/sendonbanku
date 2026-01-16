@@ -244,27 +244,6 @@ public class CardDatabaseSO : ScriptableObject
         return deck;
     }
 
-    // 获取玩家弃牌组（返回卡牌数据对象列表）
-    public List<CardDataSO> GetPlayerDiscardPile()
-    {
-        List<CardDataSO> discardPile = new List<CardDataSO>();
-
-        foreach (string cardId in playerDiscardPileCardIds)
-        {
-            CardDataSO card = GetCardById(cardId);
-            if (card != null)
-            {
-                discardPile.Add(card);
-            }
-            else
-            {
-                Debug.LogWarning($"弃牌组中未找到卡牌: {cardId}");
-            }
-        }
-
-        return discardPile;
-    }
-
     // 获取玩家拥有卡牌（返回卡牌数据对象列表）
     public List<CardDataSO> GetPlayerOwnedCards()
     {
