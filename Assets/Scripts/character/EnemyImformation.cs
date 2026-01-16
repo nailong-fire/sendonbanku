@@ -9,6 +9,7 @@ public class EnemyImformation : MonoBehaviour
     public enemyai enemyAI = null;
     public CardDatabaseSO enemyCardDatabase = null;
     public CardDatabaseSO playerCardDatabase = null;
+    public string enemyName = "unknow";
 
     private void Awake()
     {

@@ -14,7 +14,6 @@ public class NPCInteract : MonoBehaviour
     public string option1 = null;
     public string option2 = null;
     public string leave = null;
-    public enemyai enemyAI;
     public CardDatabaseSO enemyCardDatabase;
 
     [Header("Dialog Data")]
@@ -227,7 +226,7 @@ public class NPCInteract : MonoBehaviour
         GameState.Instance.story.readyForBattle = true;
         GameState.Instance.story.battleUnlocked = true;
         GameState.Instance.story.lastBattleNpcId = npcId;
-        EnemyImformation.instance.enemyAI = enemyAI;
+        EnemyImformation.instance.enemyName = npcName;
         EnemyImformation.instance.enemyCardDatabase = enemyCardDatabase;
         Debug.Log("[NPCInteract] 玩家准备好战斗，记录战斗来源 NPC ID: " + npcId);
 

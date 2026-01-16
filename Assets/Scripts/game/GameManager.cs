@@ -172,7 +172,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("敌人AI开始行动...");
 
-        EnemyImformation.instance.enemyAI.AIPlayCard();
+        EnemyImformation.instance.enemyAI.AIPlayCard(EnemyImformation.instance.enemyName);
         
         // 敌人出牌逻辑（简单示例）
         /*if(enemy.handZone.GetCardCount() != 0)
@@ -626,6 +626,7 @@ public class GameManager : MonoBehaviour
 
         List<CardEntity> targets = new List<CardEntity>();
         bool isAttackerPlayer = attacker.Owner == player;
+        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         
         // 获取对方战场
         CardZone opponentBattlefield = isAttackerPlayer ? enemyBattlefield : playerBattlefield;

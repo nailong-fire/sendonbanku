@@ -558,6 +558,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb92a0299459b04aac71043aceed398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &152332590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 152332592}
+  - component: {fileID: 152332591}
+  m_Layer: 0
+  m_Name: enemyInformation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &152332591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152332590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a91fa083e8a3f74e9e07273ef248051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAI: {fileID: 1090378693}
+  enemyCardDatabase: {fileID: 0}
+  playerCardDatabase: {fileID: 11400000, guid: 21e01924635ef614da761e0aa78c3125, type: 2}
+  enemyName: unknow
+--- !u!4 &152332592
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152332590}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.4524684, y: 4.29752, z: 0.038789175}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &172697264
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +913,6 @@ MonoBehaviour:
   option1: Afraid of darkness, too?
   option2: Step back, soldier!
   leave: See ya.
-  enemyAI: {fileID: 0}
   enemyCardDatabase: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 9334fcbac0a376246b166e5d2e20b69a, type: 2}
@@ -1555,7 +1602,6 @@ MonoBehaviour:
   option1: The Four Heavenly Kings?
   option2: Why the duel?
   leave: Leave him alone.
-  enemyAI: {fileID: 0}
   enemyCardDatabase: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: a8ddf5494174ee546a0770b993909b45, type: 2}
@@ -2969,6 +3015,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1090378691}
   - component: {fileID: 1090378692}
+  - component: {fileID: 1090378693}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -2988,8 +3035,7 @@ Transform:
   m_LocalPosition: {x: -199.7527, y: 3.3791797, z: 0.0262507}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1662697314}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1090378692
@@ -3002,6 +3048,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8fee070e07376d4593a3cc65985425d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1090378693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090378690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff092d29eb8ab34191b71658075867f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1095491378
@@ -3584,7 +3642,6 @@ MonoBehaviour:
   option1: You alone?
   option2: Pinch her little face.
   leave: Pet her head.(leave)
-  enemyAI: {fileID: 0}
   enemyCardDatabase: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 33c8925a1e93d594d88bf6d9d3673cbb, type: 2}
@@ -3832,7 +3889,6 @@ MonoBehaviour:
   option1: 'How long you lived here? '
   option2: Do you believe in the Buddha?
   leave: Bye.
-  enemyAI: {fileID: 0}
   enemyCardDatabase: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 02430f8728fa61947879b84a59a70976, type: 2}
@@ -5097,37 +5153,6 @@ MonoBehaviour:
   choiceText2: {fileID: 81305679}
   choiceText3: {fileID: 1573447409}
   typingSpeed: 0.015
---- !u!1 &1662697313
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1662697314}
-  m_Layer: 0
-  m_Name: stupid ai
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1662697314
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662697313}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1090378691}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1695789602
 GameObject:
   m_ObjectHideFlags: 0
@@ -6144,7 +6169,6 @@ MonoBehaviour:
   option1: 'How long you lived here? '
   option2: Do you believe in the Buddha?
   leave: Bye.
-  enemyAI: {fileID: 0}
   enemyCardDatabase: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 02430f8728fa61947879b84a59a70976, type: 2}
@@ -6742,7 +6766,6 @@ MonoBehaviour:
   option1: Afraid of darkness, too?
   option2: Step back, soldier!
   leave: See ya.
-  enemyAI: {fileID: 0}
   enemyCardDatabase: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 9334fcbac0a376246b166e5d2e20b69a, type: 2}
@@ -6950,7 +6973,6 @@ MonoBehaviour:
   option1: The history.
   option2: My friend.
   leave: Leave
-  enemyAI: {fileID: 0}
   enemyCardDatabase: {fileID: 0}
   dialogs:
   - {fileID: 11400000, guid: 8ccb6bd174245394db8ea175c3a9dca1, type: 2}
@@ -6987,3 +7009,4 @@ SceneRoots:
   - {fileID: 476640933}
   - {fileID: 1794045504}
   - {fileID: 640493337}
+  - {fileID: 152332592}
